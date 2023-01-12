@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Appenders -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%d{HH:mm:ss}] [%-4level] %logger.%method:%line - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/Users/user/Downloads/springlog/Log.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/Users/user/Downloads/springlog/Log.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>[%d{HH:mm:ss}] [%-4level] %logger.%method:%line - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.zaxxer" level="off"/>
+	<logger name="com.ezen" level="debug"/>
+	<logger name="jdbc" level="off"/>
+	<logger name="jdbc.sqlonly" level="warn"/>
+	<logger name="jdbc.sqltiming" level="info"/>
+	<logger name="jdbc.audit" level="off"/>
+	<logger name="jdbc.resultsettable" level="debug"/>
+	<logger name="jdbc.resultset" level="off"/>
+	<logger name="jdbc.connection" level="off"/>
+	
+	<root level="info">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+	</root>
+</configuration>
