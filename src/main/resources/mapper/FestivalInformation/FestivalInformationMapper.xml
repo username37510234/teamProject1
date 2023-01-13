@@ -42,6 +42,11 @@
 		FROM FESTIVAL_INFORMATION
 		WHERE CONTENTID = #{contentid}
 	</select>
+	<select id="selectFestivalInformationLists" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO">
+		SELECT FI_NUM,
+		<include refid="festivalInformationColumns"></include>
+		FROM FESTIVAL_INFORMATION
+	</select>
 	<update id="updateFestivalInformation">
 		UPDATE FESTIVAL_INFORMATION
 		SET

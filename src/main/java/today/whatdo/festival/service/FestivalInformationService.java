@@ -1,5 +1,7 @@
 package today.whatdo.festival.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +39,9 @@ public class FestivalInformationService {
 			}
 		}
 		return updateCnt;
+	}
+	
+	public List<FestivalInformationVO> getFestivalInformationListAll(FestivalInformationVO festivalInfo){
+		return festivalInformationMapper.selectFestivalInformationLists(festivalInfo);
 	}
 }

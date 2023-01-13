@@ -16,4 +16,6 @@ public interface FestivalInformationMapper {
 	FestivalInformationVO selectFestivalInformation(String contentId);
 	
 	int updateFestivalInformation(FestivalInformationVO festivalInfo);
+	
+	List<FestivalInformationVO> selectFestivalInformationLists(FestivalInformationVO festivalInfo);
 }

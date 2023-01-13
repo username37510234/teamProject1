@@ -31,7 +31,7 @@ class WhatdoApplicationTests {
 	void contextLoads() {
 		String searchUrl = "/searchFestival?serviceKey=ZZ4Do%2FeK7YDGJOvm0LEWn7KE7eXGMmLnrCZgmAM0pQjheTpS7FtRtdMWkCm82KDNXkAKnXNXsZ6Idisedsidzg%3D%3D&numOfRows=1000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&eventStartDate=";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Date date = Date.from(Instant.now().plus(Duration.ofDays(10)));
+		Date date = Date.from(Instant.now().minus(Duration.ofDays(30)));
 		searchUrl += sdf.format(date);
 		
 		int result = festivalInformationService.dailyUpdateFestivalInformation(
