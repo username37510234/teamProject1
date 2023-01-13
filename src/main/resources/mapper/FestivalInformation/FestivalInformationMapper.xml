@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ezen.demo.mapper.FestivalInformationMapper">
+<mapper namespace="today.whatdo.festival.mapper.FestivalInformationMapper">
 	<sql id="festivalInformationColumns">
 		ADDR1, ADDR2, AREACODE, BOOKTOUR, CAT1,
 		CAT2, CAT3, CONTENTID, CONTENTTYPEID, CREATEDTIME,
@@ -36,8 +36,9 @@
 			#{tel},#{title}
 		)
 	</insert>
-	<select id="selectFestivalInformation">
-		SELECT FI_NUM, TITLE, CONTENTID
+	<select id="selectFestivalInformation" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO">
+		SELECT FI_NUM,
+		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION
 		WHERE CONTENTID = #{contentid}
 	</select>

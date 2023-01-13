@@ -24,11 +24,10 @@ public class FestivalInformationService {
 	public int dailyUpdateFestivalInformation(FestivalResultVO festivalInfos) {
 		int updateCnt = 0;
 		for (FestivalInformationVO festivalInfo : festivalInfos.getResponse().getBody().getItems().getItem()) {
-			int num = festivalInformationMapper.selectFestivalInformation(festivalInfo.getContentid()).getFiNum();
-			if (num == 0) {
+			if (festivalInformationMapper.selectFestivalInformation(festivalInfo.getContentid()) == null) {
 				festivalInformationMapper.insertFestivalInformation(festivalInfo);
 			} else {
-				festivalInfo.setFiNum(num);
+				festivalInfo.setFiNum(festivalInformationMapper.selectFestivalInformation(festivalInfo.getContentid()).getFiNum());
 				updateCnt += festivalInformationMapper.updateFestivalInformation(festivalInfo);
 			}
 		}
