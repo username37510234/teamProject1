@@ -8,9 +8,9 @@
 		</encoder>
 	</appender>
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/Users/user/Downloads/springlog/Log.log</file>
+		<file>/Users/user/Downloads/teamProject/Log.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/Users/user/Downloads/springlog/Log.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>/Users/user/Downloads/teamProject/Log.%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 
@@ -20,8 +20,8 @@
 		</encoder>
 	</appender>
 
-	<logger name="com.zaxxer" level="off"/>
-	<logger name="com.ezen" level="debug"/>
+	<logger name="today.zaxxer" level="off"/>
+	<logger name="today.whatdo" level="debug"/>
 	<logger name="jdbc" level="off"/>
 	<logger name="jdbc.sqlonly" level="warn"/>
 	<logger name="jdbc.sqltiming" level="info"/>
