@@ -21,17 +21,21 @@ public class FestivalInformationService {
 		return festivalInformationMapper.insertFestivalInformation(festivalInfo);
 	}
 
+	// 축제 데이터 업데이트용 서비스
+	// 이미 존재하는 데이터일경우 변경사항을 업데이트만 하고
+	// 존재하지 않는 데이터일경우 새로 인서트 하는 로직
 	public int dailyUpdateFestivalInformation(FestivalResultVO festivalInfos) {
 		int updateCnt = 0;
 		for (FestivalInformationVO festivalInfo : festivalInfos.getResponse().getBody().getItems().getItem()) {
-			if (festivalInformationMapper.selectFestivalInformation(festivalInfo.getContentid()) == null) {
-				festivalInformationMapper.insertFestivalInformation(festivalInfo);
+			FestivalInformationVO tmp = festivalInformationMapper
+					.selectFestivalInformation(festivalInfo.getContentid());
+			if (tmp == null) { // 존재여부 확인
+				updateCnt += festivalInformationMapper.insertFestivalInformation(festivalInfo); // 없을경우 인서트
 			} else {
-				festivalInfo.setFiNum(festivalInformationMapper.selectFestivalInformation(festivalInfo.getContentid()).getFiNum());
-				updateCnt += festivalInformationMapper.updateFestivalInformation(festivalInfo);
+				festivalInfo.setFiNum(tmp.getFiNum()); // 현재 있는 FiNum으로 설정
+				updateCnt += festivalInformationMapper.updateFestivalInformation(festivalInfo); // 있을경우 업데이트
 			}
 		}
-
 		return updateCnt;
 	}
 }

@@ -32,13 +32,17 @@ public class ApiScheduler {
 	private ApiCall apiFestivalInfo;
 	@Value("${datago.url}")
 	private String dataUrl;
+	@Value("${festival.update.period}")
+	private int updateDate;
 
+	// 매일 0시 0분 0초에 축제데이터를 받아오는 것
+	// Url로 축제 api로 접근해 받아온 정보를 FestivalInformationService를 통해 업데이트
 	@Scheduled(cron = "0 0 0 * * *")
 	public void dailyFestivalInformation() {
 		String searchUrl = "/searchFestival?serviceKey=ZZ4Do%2FeK7YDGJOvm0LEWn7KE7eXGMmLnrCZgmAM0pQjheTpS7FtRtdMWkCm82KDNXkAKnXNXsZ6Idisedsidzg%3D%3D&numOfRows=1000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&eventStartDate=";
+		Date date = Date.from(Instant.now().plus(Duration.ofDays(updateDate))); // 지금 날짜로부터 updateDate 일만큼 추가
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Date date = Date.from(Instant.now().plus(Duration.ofDays(30)));
-		searchUrl += sdf.format(date);
+		searchUrl += sdf.format(date);	// 해당 api에서 요구하는 형식으로 변형
 		int result = festivalInformationService.dailyUpdateFestivalInformation(
 				apiFestivalInfo.getDataToAPI(dataUrl + searchUrl, FestivalResultVO.class));
 		log.debug("result=>{}", result);
