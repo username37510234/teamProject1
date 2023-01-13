@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="today.whatdo.festival.mapper.DailyBoxOfficeMapper">
+	<sql id="BoxOfficeColumns">
+		`RANK`, MOVIE_NM, MOVIE_CD, RANK_INTEN, RANK_OLD_AND_NEW,
+		OPEN_DT, SALES_AMT, SALES_SHARE, SALES_INTEN, SALES_CHANGE,
+		SALES_ACC, AUDI_CNT, AUDI_INTEN, AUDI_CHANGE, AUDI_ACC,
+		SCRN_CNT, SHOW_CNT, TARGET_DT
+	</sql>
+
+	<insert id="insertDailyBoxOffices">
+		INSERT INTO BOX_OFFICE(
+		<include refid="BoxOfficeColumns"></include>
+		)
+		VALUES
+			<foreach collection="boxOfficeList" item="boxOffice" separator=",">
+				(
+				#{boxOffice.rank},#{boxOffice.movieNm},#{boxOffice.movieCd},#{boxOffice.rankInten},#{boxOffice.rankOldAndNew},
+				#{boxOffice.openDt},#{boxOffice.salesAmt},#{boxOffice.salesShare},#{boxOffice.salesInten},#{boxOffice.salesChange},
+				#{boxOffice.salesAcc},#{boxOffice.audiCnt},#{boxOffice.audiInten},#{boxOffice.audiChange},#{boxOffice.audiAcc},
+				#{boxOffice.scrnCnt},#{boxOffice.showCnt},#{boxOffice.targetDt}
+				)
+			</foreach>
+	</insert>
+	
+	<insert id="insertBoxOffice">
+		INSERT INTO BOX_OFFICE(
+			<include refid="BoxOfficeColumns"></include>
+		)
+		VALUES
+		(
+			#{rank},#{movieNm},#{movieCd},#{rankInten},#{rankOldAndNew},
+			#{openDt},#{salesAmt},#{salesShare},#{salesInten},#{salesChange},
+			#{salesAcc},#{audiCnt},#{audiInten},#{audiChange},#{audiAcc},
+			#{scrnCnt},#{showCnt},#{targetDt}
+		)
+	</insert>
+	
+	<select id="selectBoxOfficeList" resultType="today.whatdo.festival.vo.boxoffice.DailyBoxOfficeListVO">
+		SELECT
+		<include refid="BoxOfficeColumns"></include>
+		FROM BOX_OFFICE
+		<where>
+			
+		</where>
+	</select>
+</mapper>
