@@ -135,7 +135,11 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2023-01-16 14:54:07</creation_date>
+<<<<<<< HEAD
 			<updated_date>2023-01-16 17:08:36</updated_date>
+=======
+			<updated_date>2023-01-16 16:08:39</updated_date>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -830,6 +834,53 @@
 				<b>192</b>
 			</color>
 			<connections>
+<<<<<<< HEAD
+=======
+				<relation>
+					<id>0</id>
+					<source>1</source>
+					<target>0</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>1</id>
+					<source>4</source>
+					<target>0</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 			</connections>
 			<physical_name>FESTIVAL_INFORMATION</physical_name>
 			<logical_name>새 테이블</logical_name>
@@ -1169,8 +1220,14 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>13</word_id>
 					<id>10</id>
+=======
+					<id>4</id>
+					<referenced_column>38</referenced_column>
+					<relation>1</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1202,8 +1259,14 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>18</word_id>
 					<id>11</id>
+=======
+					<id>5</id>
+					<referenced_column>6</referenced_column>
+					<relation>0</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1839,7 +1902,11 @@
 			<connections>
 				<relation>
 					<id>2</id>
+<<<<<<< HEAD
 					<source>0</source>
+=======
+					<source>1</source>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1861,7 +1928,11 @@
 				</relation>
 				<relation>
 					<id>3</id>
+<<<<<<< HEAD
 					<source>3</source>
+=======
+					<source>4</source>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1956,6 +2027,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>15</word_id>
 					<id>29</id>
 					<description></description>
@@ -1991,6 +2063,10 @@
 				<normal_column>
 					<id>30</id>
 					<referenced_column>32</referenced_column>
+=======
+					<id>31</id>
+					<referenced_column>38</referenced_column>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2023,8 +2099,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<id>31</id>
 					<referenced_column>0</referenced_column>
+=======
+					<id>32</id>
+					<referenced_column>6</referenced_column>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2083,6 +2164,53 @@
 				<b>192</b>
 			</color>
 			<connections>
+<<<<<<< HEAD
+=======
+				<relation>
+					<id>4</id>
+					<source>1</source>
+					<target>3</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>5</id>
+					<source>4</source>
+					<target>3</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 			</connections>
 			<physical_name>USER_INFO</physical_name>
 			<logical_name>새 테이블</logical_name>
@@ -2226,6 +2354,11 @@
 				<normal_column>
 					<word_id>39</word_id>
 					<id>36</id>
+<<<<<<< HEAD
+=======
+					<referenced_column>38</referenced_column>
+					<relation>5</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2259,6 +2392,11 @@
 				<normal_column>
 					<word_id>32</word_id>
 					<id>37</id>
+<<<<<<< HEAD
+=======
+					<referenced_column>6</referenced_column>
+					<relation>4</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>

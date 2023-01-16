@@ -11,12 +11,17 @@ spring:
     hikari:
       minimum-idle: 2
       maximum-pool-size: 3
-      auto-commit: false
   mvc:
     view:
       prefix: /WEB-INF/
       suffix: .jsp
- 
+  servlet:
+    multipart:
+      location: \java-works\files
+      max-file-size: 50MB
+      max-request-size: 100MB
+        
+        
 mybatis:
   type-aliases-package: today.whatdo.festival.vo
   mapper-locations: mapper/**/*.xml
