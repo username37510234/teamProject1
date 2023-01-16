@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="today.whatdo.festival.UserInfoMapper">
+<mapper namespace="today.whatdo.userinfo.mapper.UserInfoMapper">
 <sql id="userInfoCols">
 UI_NUM, UI_ID, UI_NAME, UI_NICKNAME, UI_PWD, UI_ACTIVE, UI_PHONE, UI_CREDAT
 </sql>
@@ -17,7 +17,7 @@ AND UI_ID LIKE CONCAT('%',#{uiId},'%')
 </if>
 </where>
 </select>
-<select id="selectUserInfo" resultType="today.whatdo.festival.vo.UserInfoVO">
+<select id="selectUserInfo" resultType="today.whatdo.userinfo.vo.UserInfoVO">
 SELECT
 <include refid="userInfoCols"></include>
 FROM USER_INFO

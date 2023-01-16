@@ -1,4 +1,4 @@
-package today.whatdo.festival.vo;
+package today.whatdo.userinfo.vo;
 
 import lombok.Data;
 

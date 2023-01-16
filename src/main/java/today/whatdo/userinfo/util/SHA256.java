@@ -1,4 +1,4 @@
-package today.whatdo.festival.util;
+package today.whatdo.userinfo.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

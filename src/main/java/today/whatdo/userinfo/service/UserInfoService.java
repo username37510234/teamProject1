@@ -1,4 +1,4 @@
-package today.whatdo.festival.service;
+package today.whatdo.userinfo.service;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import today.whatdo.festival.mapper.UserInfoMapper;
-import today.whatdo.festival.util.SHA256;
-import today.whatdo.festival.vo.UserInfoVO;
+import today.whatdo.userinfo.mapper.UserInfoMapper;
+import today.whatdo.userinfo.util.SHA256;
+import today.whatdo.userinfo.vo.UserInfoVO;
 
 @Service
 public class UserInfoService {
