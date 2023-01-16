@@ -41,11 +41,11 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path></output_path>
-				<encoding></encoding>
-				<line_feed></line_feed>
+				<output_path>src\main\resources\erd\whatdo.sql</output_path>
+				<encoding>UTF-8</encoding>
+				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
-				<environment_id>null</environment_id>
+				<environment_id>0</environment_id>
 				<category_id>null</category_id>
 				<ddl_target>
 					<create_comment>true</create_comment>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2023-01-16 14:54:07</creation_date>
-			<updated_date>2023-01-16 15:34:21</updated_date>
+			<updated_date>2023-01-16 16:08:39</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -832,7 +832,7 @@
 			<connections>
 				<relation>
 					<id>0</id>
-					<source>4</source>
+					<source>1</source>
 					<target>0</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -854,7 +854,7 @@
 				</relation>
 				<relation>
 					<id>1</id>
-					<source>1</source>
+					<source>4</source>
 					<target>0</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1017,7 +1017,7 @@
 				<normal_column>
 					<id>4</id>
 					<referenced_column>38</referenced_column>
-					<relation>0</relation>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1051,7 +1051,7 @@
 				<normal_column>
 					<id>5</id>
 					<referenced_column>6</referenced_column>
-					<relation>1</relation>
+					<relation>0</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1905,7 +1905,7 @@
 			<connections>
 				<relation>
 					<id>2</id>
-					<source>4</source>
+					<source>1</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1927,7 +1927,7 @@
 				</relation>
 				<relation>
 					<id>3</id>
-					<source>1</source>
+					<source>4</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2024,7 +2024,7 @@
 				<normal_column>
 					<id>31</id>
 					<referenced_column>38</referenced_column>
-					<relation>2</relation>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2058,7 +2058,7 @@
 				<normal_column>
 					<id>32</id>
 					<referenced_column>6</referenced_column>
-					<relation>3</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2118,7 +2118,7 @@
 			<connections>
 				<relation>
 					<id>4</id>
-					<source>4</source>
+					<source>1</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2140,7 +2140,7 @@
 				</relation>
 				<relation>
 					<id>5</id>
-					<source>1</source>
+					<source>4</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2270,7 +2270,7 @@
 				<normal_column>
 					<id>36</id>
 					<referenced_column>38</referenced_column>
-					<relation>4</relation>
+					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2304,7 +2304,7 @@
 				<normal_column>
 					<id>37</id>
 					<referenced_column>6</referenced_column>
-					<relation>5</relation>
+					<relation>4</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
