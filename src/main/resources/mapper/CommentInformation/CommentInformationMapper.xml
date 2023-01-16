@@ -30,7 +30,7 @@
 		)
 	</insert>
 	
-	<select id="selectCommentInformation" resultType="today.whatdo.festival.vo.festivalInfo.CommentInformationVO">
+	<select id="selectCommentInformation" resultType="today.whatdo.festival.vo.commentInfo.CommentInformationVO">
 		SELECT CI_NUM,
 		<include  refid="commentInformationCols"></include>
 		FROM COMMENT_INFO
