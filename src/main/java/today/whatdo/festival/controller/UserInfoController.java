@@ -20,11 +20,7 @@ import today.whatdo.festival.vo.UserInfoVO;
 @Controller
 @Slf4j
 public class UserInfoController {
-/* @
- * Controller, RestController
- * Configuration
- * Service, Repository, Component
- */
+
 
 	@Autowired
 	private UserInfoService userInfoService;
