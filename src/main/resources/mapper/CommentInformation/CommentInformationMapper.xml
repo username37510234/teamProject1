@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="today.whatdo.festival.mapper.CommentInformationMapper">
+
+	<sql id="commentInformationCols">
+		CI_CONTENT, CI_ACTIVE, CI_CREDATTIM,
+		UI_NUM, FI_NUM
+	</sql>
+	
+	<insert id="insertCommentInformations">
+		INSERT INTO COMMENT_INFO(
+		<include refid="commentInformationCols"></include>
+		)
+		VALUES
+		<foreach collection="CommentInfoList" item="ComInfo" separator=",">
+			(
+				#{ComInfo.ciContent}, #{ComInfo.ciActive}, #{ComInfo.ciCredattim},
+				#{ComInfo.uiNum}, #{ComInfo.fiNum}
+			)
+		</foreach>
+	</insert>
+	
+	<insert id="insertCommentInformation">
+		INSERT INTO FESTIVAL_INFORMATION(
+		<include refid="commentInformationCols"></include>
+		)
+		VALUES
+		(
+			#{ciContent},#{ciActive},#{ciCredattim},#{uiNum},#{fiNum}
+		)
+	</insert>
+	
+	<select id="selectCommentInformation" resultType="today.whatdo.festival.vo.festivalInfo.CommentInformationVO">
+		SELECT CI_NUM,
+		<include  refid="commentInformationCols"></include>
+		FROM COMMENT_INFO
+	</select>
+	<update id="updateCommentInformation">
+		UPDATE COMMENT_INFO
+		SET CI_CONTENT = #{ciContent}, 
+		CI_ACTIVE = #{ciActive},
+		CI_CREDATTIM = DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'),
+		UI_NUM = #{uiNum},
+		FI_NUM = #{fiNum}
+		WHERE CI_NUM = #{ciNum}
+	</update>
+	
+	<delete id="deleteCommentInformation">
+		DELETE FROM COMMENT_INFO
+		WHERE CI_NUM=#{ciNum}
+	</delete>
+	
+</mapper>
