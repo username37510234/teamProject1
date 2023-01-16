@@ -11,12 +11,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import lombok.extern.slf4j.Slf4j;
 import today.whatdo.festival.vo.boxoffice.BoxOfficeResponseVO;
 import today.whatdo.festival.vo.boxoffice.DailyBoxOfficeListVO;
 
 @Component
-@Slf4j
 @PropertySource("classpath:env.properties")
 public class ApiBoxOfficeByRestTemplate {
 	@Value("${movie.url}")

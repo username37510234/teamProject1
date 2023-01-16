@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import today.whatdo.festival.api.ApiNearFestivalInfo;
 import today.whatdo.festival.mapper.FestivalInformationMapper;
 import today.whatdo.festival.vo.festivalInfo.FestivalInformationVO;
+import today.whatdo.festival.vo.festivalInfo.FestivalResponseVO;
 import today.whatdo.festival.vo.festivalInfo.FestivalResultVO;
+import today.whatdo.festival.vo.festivalInfo.SearchParameterVO;
 
 @Service
 public class FestivalInformationService {
@@ -41,7 +44,18 @@ public class FestivalInformationService {
 		return updateCnt;
 	}
 	
-	public List<FestivalInformationVO> getFestivalInformationListAll(FestivalInformationVO festivalInfo){
-		return festivalInformationMapper.selectFestivalInformationLists(festivalInfo);
+	public List<FestivalInformationVO> getFestivalInformationListAll(SearchParameterVO searchParameter){
+		return festivalInformationMapper.selectFestivalInformationLists(searchParameter);
+	}
+	
+	@Autowired
+	private ApiNearFestivalInfo apiNearFestivalInfo;
+	
+	public FestivalResponseVO getFestivalInformation(int fiNum) {
+		FestivalResponseVO response = new FestivalResponseVO();
+		FestivalInformationVO festivalInfo = festivalInformationMapper.selectFestivalInformationByNum(fiNum);
+		response.setFestivalInfo(festivalInfo); 
+		response.setLocationInfo(apiNearFestivalInfo.getLocationInformationByMap(festivalInfo)); 
+		return response;
 	}
 }

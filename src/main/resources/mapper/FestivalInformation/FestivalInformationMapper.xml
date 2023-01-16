@@ -42,10 +42,25 @@
 		FROM FESTIVAL_INFORMATION
 		WHERE CONTENTID = #{contentid}
 	</select>
-	<select id="selectFestivalInformationLists" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO">
+	<select id="selectFestivalInformationByNum" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO">
 		SELECT FI_NUM,
 		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION
+		WHERE FI_NUM = #{fiNum}
+	</select>
+	<select id="selectFestivalInformationLists" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.vo.festivalInfo.SearchParameterVO">
+		SELECT FI_NUM,
+		<include refid="festivalInformationColumns"></include>
+		FROM FESTIVAL_INFORMATION
+		<where>
+			<if test='fesMonth!="" and fesMonth!=null'>
+				AND LEFT(EVENTENDDATE,6) > CONCAT('2023',#{fesMonth})
+				AND CONCAT('2023',#{fesMonth}) > LEFT(EVENTSTARTDATE,6)
+			</if>
+			<if test='fesLocal!="" and fesLocal!=null'>
+				AND ADDR1 LIKE CONCAT(#{fesLocal},'%')
+			</if>
+		</where>
 	</select>
 	<update id="updateFestivalInformation">
 		UPDATE FESTIVAL_INFORMATION
