@@ -67,6 +67,7 @@ function join() {
 			uiId : document.querySelector('#uiId').value,
 			uiPwd : document.querySelector('#uiPwd').value,
 			uiName : document.querySelector('#uiName').value,
+			uiNickname : document.querySelector('#uiNickname').value,
 			uiProfile : document.querySelector('#uiPhone').value						
 	}
 	fetch('/user-infos',{
