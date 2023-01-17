@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-hi
+안녕하세요. 3조 입니다.
 </body>
 </html>
