@@ -16,7 +16,6 @@
 <button onclick="join()">회원가입</button>
 
 <script type="text/javascript">
-
 let isCheckedId = false;
 function checkId() {
 	const uiId = document.querySelector('#uiId').value;
