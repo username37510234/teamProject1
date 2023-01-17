@@ -44,13 +44,14 @@
                 <option value="제주">제주</option>
             </select>
         </div>
-        <table id="tBody">
+        <table>
             <tr>
                 <th>축제 명</th>
                 <th>위치</th>
                 <th>시작일</th>
                 <th>종료일</th>
             </tr>
+            <tbody id="tBody"></tbody>
         </table>
         <script>
             window.onload = function () {
@@ -71,7 +72,7 @@
                         html = '';
                         const body = document.querySelector('#tBody');
                         for(let data of toJsonData){
-                            html += '<tr><td>'+data.title+'</td><td>'+data.addr1+'</td>';
+                            html += '<tr><td><a href="/views/festivalInfo/viewItem?fiNum='+data.fiNum+'">'+data.title+'</a></td><td>'+data.addr1+'</td>';
                             html += '<td>'+data.eventstartdate+'</td><td>'+data.eventenddate+'</td></tr>';
                         }
                         body.innerHTML = html;

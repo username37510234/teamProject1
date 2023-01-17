@@ -3,7 +3,7 @@ package today.whatdo.festival.festivalinfo.vo.commentInfo;
 import lombok.Data;
 
 @Data
-public class CommentInformationVO {
+public class CommentInfoVO {
 
 	private int ciNum;
 	private String ciContent;
@@ -11,5 +11,6 @@ public class CommentInformationVO {
 	private String ciCredattim;
 	private int uiNum;
 	private int fiNum;
-	
+	private String uiId;
+	private String title;
 }
