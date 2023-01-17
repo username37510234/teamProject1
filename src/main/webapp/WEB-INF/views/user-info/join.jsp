@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<input type="text" id="uiId" placeholder="아이디"><button onclick="checkId">중복확인</button><br>
+<input type="text" id="uiId" placeholder="아이디"><button onclick="checkId()">중복확인</button><br>
 <input type="text" id="uiName" placeholder="이름"><br>
 <input type="password" id="uiPwd" placeholder="비밀번호"><br>
 <input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
@@ -81,7 +81,7 @@ function join() {
 	.then(function(data){
 		console.log(data);
 		alert('회원가입이 완료되었습니다.')
-		
+		location.href='/'
 	})
 }
 </script>
