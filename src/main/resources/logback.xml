@@ -8,9 +8,9 @@
 		</encoder>
 	</appender>
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/javaEE/logs/TeamProject/Log.log</file>
+		<file>/3rdTeam/logs/Log.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/javaEE/logs/TeamProject/Log.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>/3rdTeam/logs/Log.%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 
@@ -20,7 +20,6 @@
 		</encoder>
 	</appender>
 
-	<logger name="today.zaxxer" level="off"/>
 	<logger name="today.whatdo" level="debug"/>
 	<logger name="jdbc" level="off"/>
 	<logger name="jdbc.sqlonly" level="warn"/>
