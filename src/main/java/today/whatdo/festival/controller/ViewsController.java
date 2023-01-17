@@ -11,4 +11,8 @@ public class ViewsController {
 		return "views/index";
 	}
 	
+	@GetMapping("/views/**")
+	public void goPage() {
+	}
+	
 }

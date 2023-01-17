@@ -1,4 +1,4 @@
-package today.whatdo.festival.controller;
+package today.whatdo.userinfo.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
-import today.whatdo.festival.service.UserInfoService;
-import today.whatdo.festival.vo.UserInfoVO;
+import today.whatdo.userinfo.service.UserInfoService;
+import today.whatdo.userinfo.vo.UserInfoVO;
 
 @Controller
 @Slf4j

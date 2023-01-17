@@ -1,8 +1,8 @@
-package today.whatdo.festival.mapper;
+package today.whatdo.userinfo.mapper;
 
 import java.util.List;
 
-import today.whatdo.festival.vo.UserInfoVO;
+import today.whatdo.userinfo.vo.UserInfoVO;
 
 public interface UserInfoMapper {
 

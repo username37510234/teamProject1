@@ -10,9 +10,15 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
+<<<<<<< HEAD
 	<zoom>0.8</zoom>
 	<x>0</x>
 	<y>0</y>
+=======
+	<zoom>1.0</zoom>
+	<x>79</x>
+	<y>57</y>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +141,15 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2023-01-16 14:54:07</creation_date>
+<<<<<<< HEAD
 			<updated_date>2023-01-16 16:35:32</updated_date>
+=======
+<<<<<<< HEAD
+			<updated_date>2023-01-16 17:08:36</updated_date>
+=======
+			<updated_date>2023-01-16 16:08:39</updated_date>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -818,18 +832,30 @@
 	<contents>
 		<table>
 			<id>0</id>
+<<<<<<< HEAD
 			<height>204</height>
 			<width>288</width>
+=======
+			<height>527</height>
+			<width>247</width>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
+<<<<<<< HEAD
 			<x>516</x>
 			<y>552</y>
+=======
+			<x>816</x>
+			<y>24</y>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<color>
 				<r>128</r>
 				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
+<<<<<<< HEAD
+=======
 				<relation>
 					<id>0</id>
 					<source>2</source>
@@ -874,8 +900,9 @@
 					<referenced_column>null</referenced_column>
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 			</connections>
-			<physical_name>COMMENT_INFO</physical_name>
+			<physical_name>FESTIVAL_INFORMATION</physical_name>
 			<logical_name>새 테이블</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -883,13 +910,46 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>10</word_id>
+					<word_id>21</word_id>
 					<id>0</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>integer</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>true</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>0</word_id>
+					<id>1</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -916,51 +976,18 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>8</word_id>
-					<id>1</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>text</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>7</word_id>
+					<word_id>1</word_id>
 					<id>2</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>character(n)</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
+					<not_null>false</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>
@@ -982,8 +1009,206 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>9</word_id>
+					<word_id>2</word_id>
 					<id>3</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>3</word_id>
+					<id>4</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>4</word_id>
+					<id>5</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>5</word_id>
+					<id>6</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>6</word_id>
+					<id>7</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>11</word_id>
+					<id>8</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>true</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>12</word_id>
+					<id>9</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1015,18 +1240,28 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
+					<word_id>13</word_id>
+					<id>10</id>
+=======
 					<id>4</id>
+<<<<<<< HEAD
 					<referenced_column>10</referenced_column>
 					<relation>0</relation>
+=======
+					<referenced_column>38</referenced_column>
+					<relation>1</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
@@ -1049,18 +1284,391 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
+					<word_id>18</word_id>
+					<id>11</id>
+=======
 					<id>5</id>
+<<<<<<< HEAD
 					<referenced_column>23</referenced_column>
 					<relation>1</relation>
+=======
+					<referenced_column>6</referenced_column>
+					<relation>0</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>17</word_id>
+					<id>12</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>19</word_id>
+					<id>13</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>20</word_id>
+					<id>14</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>24</word_id>
+					<id>15</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>25</word_id>
+					<id>16</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>26</word_id>
+					<id>17</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>27</word_id>
+					<id>18</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>28</word_id>
+					<id>19</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>29</word_id>
+					<id>20</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>30</word_id>
+					<id>21</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>31</word_id>
+					<id>22</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
@@ -1097,12 +1705,22 @@
 		</table>
 		<table>
 			<id>1</id>
+<<<<<<< HEAD
 			<height>152</height>
 			<width>217</width>
+=======
+			<height>86</height>
+			<width>186</width>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
+<<<<<<< HEAD
 			<x>516</x>
 			<y>288</y>
+=======
+			<x>360</x>
+			<y>252</y>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1110,6 +1728,7 @@
 			</color>
 			<connections>
 				<relation>
+<<<<<<< HEAD
 					<id>2</id>
 					<source>2</source>
 					<target>1</target>
@@ -1134,6 +1753,32 @@
 				<relation>
 					<id>3</id>
 					<source>4</source>
+=======
+					<id>0</id>
+					<source>0</source>
+					<target>1</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>1</id>
+					<source>3</source>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<target>1</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1163,7 +1808,11 @@
 			<columns>
 				<normal_column>
 					<word_id>23</word_id>
+<<<<<<< HEAD
 					<id>6</id>
+=======
+					<id>23</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1196,7 +1845,11 @@
 				</normal_column>
 				<normal_column>
 					<word_id>22</word_id>
+<<<<<<< HEAD
 					<id>7</id>
+=======
+					<id>24</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1228,9 +1881,15 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<id>8</id>
 					<referenced_column>10</referenced_column>
 					<relation>2</relation>
+=======
+					<id>25</id>
+					<referenced_column>32</referenced_column>
+					<relation>1</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1262,9 +1921,15 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<id>9</id>
 					<referenced_column>23</referenced_column>
 					<relation>3</relation>
+=======
+					<id>26</id>
+					<referenced_column>0</referenced_column>
+					<relation>0</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1310,20 +1975,89 @@
 		</table>
 		<table>
 			<id>2</id>
+<<<<<<< HEAD
 			<height>256</height>
 			<width>284</width>
+=======
+			<height>107</height>
+			<width>209</width>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
+<<<<<<< HEAD
 			<x>168</x>
 			<y>108</y>
+=======
+			<x>360</x>
+			<y>36</y>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<color>
 				<r>128</r>
 				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
+<<<<<<< HEAD
+=======
+				<relation>
+					<id>2</id>
+<<<<<<< HEAD
+					<source>0</source>
+=======
+					<source>1</source>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+					<target>2</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>3</id>
+<<<<<<< HEAD
+					<source>3</source>
+=======
+					<source>4</source>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+					<target>2</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			</connections>
+<<<<<<< HEAD
 			<physical_name>USER_INFO</physical_name>
+=======
+			<physical_name>DIB_INFO</physical_name>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<logical_name>새 테이블</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -1331,8 +2065,13 @@
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>37</word_id>
 					<id>10</id>
+=======
+					<word_id>16</word_id>
+					<id>27</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1364,6 +2103,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>34</word_id>
 					<id>11</id>
 					<description></description>
@@ -1498,6 +2238,10 @@
 				<normal_column>
 					<word_id>32</word_id>
 					<id>15</id>
+=======
+					<word_id>14</word_id>
+					<id>28</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1529,8 +2273,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>38</word_id>
 					<id>16</id>
+=======
+<<<<<<< HEAD
+					<word_id>15</word_id>
+					<id>29</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1562,8 +2311,58 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+					<id>30</id>
+					<referenced_column>32</referenced_column>
+=======
+					<id>31</id>
+					<referenced_column>38</referenced_column>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+					<relation>3</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+<<<<<<< HEAD
 					<word_id>33</word_id>
 					<id>17</id>
+=======
+<<<<<<< HEAD
+					<id>31</id>
+					<referenced_column>0</referenced_column>
+=======
+					<id>32</id>
+					<referenced_column>6</referenced_column>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+					<relation>2</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1609,11 +2408,20 @@
 		</table>
 		<table>
 			<id>3</id>
+<<<<<<< HEAD
 			<height>178</height>
 			<width>244</width>
+=======
+			<height>233</height>
+			<width>240</width>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
+<<<<<<< HEAD
 			<x>516</x>
+=======
+			<x>12</x>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<y>72</y>
 			<color>
 				<r>128</r>
@@ -1621,6 +2429,8 @@
 				<b>192</b>
 			</color>
 			<connections>
+<<<<<<< HEAD
+=======
 				<relation>
 					<id>4</id>
 					<source>2</source>
@@ -1665,8 +2475,9 @@
 					<referenced_column>null</referenced_column>
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 			</connections>
-			<physical_name>DIB_INFO</physical_name>
+			<physical_name>USER_INFO</physical_name>
 			<logical_name>새 테이블</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -1674,8 +2485,13 @@
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>16</word_id>
 					<id>18</id>
+=======
+					<word_id>37</word_id>
+					<id>32</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1707,20 +2523,24 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>14</word_id>
 					<id>19</id>
+=======
+					<word_id>34</word_id>
+					<id>33</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>character(n)</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
+					<unique_key>true</unique_key>
 					<character_set></character_set>
 					<collation></collation>
 					<sequence>
@@ -1740,8 +2560,9 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>15</word_id>
-					<id>20</id>
+					<word_id>35</word_id>
+					<id>34</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1773,21 +2594,25 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>21</id>
-					<referenced_column>10</referenced_column>
-					<relation>4</relation>
+<<<<<<< HEAD
+					<word_id>15</word_id>
+					<id>20</id>
+=======
+					<word_id>36</word_id>
+					<id>35</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
-					<unique_key>true</unique_key>
+					<unique_key>false</unique_key>
 					<character_set></character_set>
 					<collation></collation>
 					<sequence>
@@ -1807,21 +2632,141 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>22</id>
-					<referenced_column>23</referenced_column>
+<<<<<<< HEAD
+					<id>21</id>
+					<referenced_column>10</referenced_column>
+					<relation>4</relation>
+=======
+					<word_id>39</word_id>
+					<id>36</id>
+<<<<<<< HEAD
+=======
+					<referenced_column>38</referenced_column>
 					<relation>5</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
-					<unique_key>true</unique_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+<<<<<<< HEAD
+					<id>22</id>
+					<referenced_column>23</referenced_column>
+					<relation>5</relation>
+=======
+					<word_id>32</word_id>
+					<id>37</id>
+<<<<<<< HEAD
+=======
+					<referenced_column>6</referenced_column>
+					<relation>4</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>38</word_id>
+					<id>38</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>33</word_id>
+					<id>39</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
 					<character_set></character_set>
 					<collation></collation>
 					<sequence>
@@ -1855,20 +2800,78 @@
 		</table>
 		<table>
 			<id>4</id>
+<<<<<<< HEAD
 			<height>646</height>
 			<width>295</width>
+=======
+			<height>170</height>
+			<width>243</width>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
+<<<<<<< HEAD
 			<x>972</x>
 			<y>60</y>
+=======
+			<x>360</x>
+			<y>516</y>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<color>
 				<r>128</r>
 				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
+				<relation>
+					<id>4</id>
+					<source>0</source>
+					<target>4</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>5</id>
+					<source>3</source>
+					<target>4</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
 			</connections>
+<<<<<<< HEAD
 			<physical_name>FESTIVAL_INFORMATION</physical_name>
+=======
+			<physical_name>COMMENT_INFO</physical_name>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 			<logical_name>새 테이블</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -1876,8 +2879,13 @@
 			<option></option>
 			<columns>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>21</word_id>
 					<id>23</id>
+=======
+					<word_id>10</word_id>
+					<id>40</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1909,6 +2917,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>0</word_id>
 					<id>24</id>
 					<description></description>
@@ -2471,12 +3480,15 @@
 				</normal_column>
 				<normal_column>
 					<word_id>27</word_id>
+=======
+					<word_id>8</word_id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<id>41</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>text</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2503,12 +3515,17 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>28</word_id>
+=======
+					<word_id>7</word_id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<id>42</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
+<<<<<<< HEAD
 					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
@@ -2543,6 +3560,9 @@
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>varchar(n)</type>
+=======
+					<type>character(n)</type>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2569,8 +3589,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>30</word_id>
 					<id>44</id>
+=======
+					<word_id>9</word_id>
+					<id>43</id>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2602,17 +3627,57 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+<<<<<<< HEAD
 					<word_id>31</word_id>
 					<id>45</id>
+=======
+					<id>44</id>
+					<referenced_column>32</referenced_column>
+					<relation>5</relation>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<id>45</id>
+					<referenced_column>0</referenced_column>
+					<relation>4</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>integer</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
