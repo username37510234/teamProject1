@@ -17,7 +17,7 @@
         <div id="location"></div>
         <script>
             window.onload = function () {
-                fetch("/festival-info/5")
+                fetch("/festival-info/${param.fiNum}")
                     .then(function (result) {
                         return result.json();
                     }).then(function (toJsonData) {
