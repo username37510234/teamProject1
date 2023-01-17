@@ -13,6 +13,7 @@
 <input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
 <input type="text" id="uiPhone" placeholder="전화번호"><br>
 <button onclick="join()">회원가입</button>
+
 <script type="text/javascript">
 
 let isCheckedId = false;
