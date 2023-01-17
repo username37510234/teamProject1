@@ -11,6 +11,7 @@
 <input type="text" id="uiName" placeholder="이름"><br>
 <input type="password" id="uiPwd" placeholder="비밀번호"><br>
 <input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
+<input type="text" id="uiNickname" placeholder="닉네임"><br>
 <input type="text" id="uiPhone" placeholder="전화번호"><br>
 <button onclick="join()">회원가입</button>
 
