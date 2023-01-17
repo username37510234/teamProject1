@@ -13,10 +13,12 @@
 <input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
 <input type="text" id="uiNickname" placeholder="닉네임"><br>
 <input type="text" id="uiPhone" placeholder="전화번호"><br>
+<input type="checkbox" id="uiActive" >개인정보 활용에 동의합니다(필수)<br>
 <button onclick="join()">회원가입</button>
 
 <script type="text/javascript">
 let isCheckedId = false;
+
 function checkId() {
 	const uiId = document.querySelector('#uiId').value;
 	if(uiId.trim().length<4){
@@ -63,11 +65,17 @@ function join() {
 		uipwdCheck.focus();
 		return;
 	}
+	const uiActive = document.querySelector('#uiActive');
+	if(uiActive.value != 1){
+		alert('개인정보 활용에 동의해주셔야 합니다.')
+		uiActive.focus();
+	}
 	const param = {
 			uiId : document.querySelector('#uiId').value,
 			uiPwd : document.querySelector('#uiPwd').value,
 			uiName : document.querySelector('#uiName').value,
 			uiNickname : document.querySelector('#uiNickname').value,
+			uiActive : document.querySelector('#uiActive').value,
 			uiProfile : document.querySelector('#uiPhone').value						
 	}
 	fetch('/user-infos',{

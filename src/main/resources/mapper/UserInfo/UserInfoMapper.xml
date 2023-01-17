@@ -7,8 +7,7 @@
 	<sql id="userInfoCols">
 		UI_NUM, UI_ID, UI_NAME, UI_NICKNAME, UI_PWD, UI_ACTIVE, UI_PHONE, UI_CREDAT
 	</sql>
-	<select id="selectUserInfoList"
-		resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
+	<select id="selectUserInfoList"	resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
 		SELECT * FROM USER_INFO
 		<where>
 			<if test='uiName != null and uiName !=""'>
@@ -19,8 +18,7 @@
 			</if>
 		</where>
 	</select>
-	<select id="selectUserInfo"
-		resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
+	<select id="selectUserInfo"	resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
 		SELECT
 		<include refid="userInfoCols"></include>
 		FROM USER_INFO
