@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="today.whatdo.festival.festivalinfo.mapper.LikeInfoMapper">
+	<sql id="likeInfocols">
+	LI_NUM, LI_ACTIVE, UI_NUM, FI_NUM
+	</sql>
+	
+	<select id="seletelike" resultType="today.whatdo.festival.festivalinfo.vo.likeInfo.LikeInfoVO">
+		SELECT
+		<include refid="likeInfocols"></include>
+		FROM LIKE_INFO
+	</select>
+	<insert id="insertLike" parameterType="today.whatdo.festival.festivalinfo.vo.likeInfo.LikeInfoVO">
+		INSERT INTO LIKE_INFO(
+		<include refid="likeInfocols"></include>
+		)
+		VALUES
+		<foreach collection="LikeInfoList" item="LikeInfo" separator=",">
+			(
+				#{LikeInfo.liNum}, #{LikeInfo.liActive}, #{LikeInfo.uiNum}, #{LikeInfo.fiNum}
+			)
+		</foreach>
+			
+	</insert>
+	<insert id="insertLikes" parameterType="today.whatdo.festival.festivalinfo.vo.likeInfo.LikeInfoVO">
+	
+		
+	</insert>
+</mapper>
