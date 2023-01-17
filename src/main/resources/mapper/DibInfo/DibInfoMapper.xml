@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="today.whatdo.festival.mapper.FestivalInformationMapper">
+<mapper namespace="today.whatdo.festival.festivalinfo.mapper.FestivalInformationMapper">
 	<sql id="dibInfoCols">
 		DI_NUM, DI_ACTIVE, DI_DATE, UI_NUM, FI_NUM
 	</sql>
-	<select id="selectDibInformationList" resultType="today.whatdo.festival.vo.festivalInfo.DibInfoVO">
+	<select id="selectDibInformationList" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.DibInfoVO">
 		SELECT
 		<include refid="dibInfoCols"></include>
 		FROM DIB_INFO
 	</select>
-	<insert id="insertDibInformations" parameterType="today.whatdo.festival.vo.festivalInfo.DibInfoVO">
+	<insert id="insertDibInformations" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.DibInfoVO">
 		
 	</insert>
-	<insert id="insertDibInformation" parameterType="today.whatdo.festival.vo.festivalInfo.DibInfoVO">
+	<insert id="insertDibInformation" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.DibInfoVO">
 		
 	</insert>
 </mapper>

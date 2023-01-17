@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="today.whatdo.festival.mapper.FestivalInformationMapper">
+<mapper namespace="today.whatdo.festival.festivalinfo.mapper.FestivalInformationMapper">
 	<sql id="festivalInformationColumns">
 		ADDR1, ADDR2, AREACODE, BOOKTOUR, CAT1,
 		CAT2, CAT3, CONTENTID, CONTENTTYPEID, CREATEDTIME,
@@ -36,19 +36,19 @@
 			#{tel},#{title}
 		)
 	</insert>
-	<select id="selectFestivalInformation" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO">
+	<select id="selectFestivalInformation" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO">
 		SELECT FI_NUM,
 		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION
 		WHERE CONTENTID = #{contentid}
 	</select>
-	<select id="selectFestivalInformationByNum" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO">
+	<select id="selectFestivalInformationByNum" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO">
 		SELECT FI_NUM,
 		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION
 		WHERE FI_NUM = #{fiNum}
 	</select>
-	<select id="selectFestivalInformationLists" resultType="today.whatdo.festival.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.vo.festivalInfo.SearchParameterVO">
+	<select id="selectFestivalInformationLists" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO">
 		SELECT FI_NUM,
 		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION

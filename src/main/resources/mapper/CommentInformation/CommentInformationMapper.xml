@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="today.whatdo.festival.mapper.CommentInformationMapper">
+<mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInformationMapper">
 
 	<sql id="commentInformationCols">
 		CI_CONTENT, CI_ACTIVE, CI_CREDATTIM,
 		UI_NUM, FI_NUM
 	</sql>
-	
 	<insert id="insertCommentInformations">
 		INSERT INTO COMMENT_INFO(
 		<include refid="commentInformationCols"></include>
@@ -30,7 +29,7 @@
 		)
 	</insert>
 	
-	<select id="selectCommentInformation" resultType="today.whatdo.festival.vo.commentInfo.CommentInformationVO">
+	<select id="selectCommentInformation" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInformationVO">
 		SELECT CI_NUM,
 		<include  refid="commentInformationCols"></include>
 		FROM COMMENT_INFO
