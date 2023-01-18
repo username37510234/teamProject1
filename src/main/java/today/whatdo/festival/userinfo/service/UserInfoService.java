@@ -49,6 +49,10 @@ public class UserInfoService {
 		return userInfoMapper.selectUserInfoByIdAndPwd(userInfo);
 	}
 	
+	public UserInfoVO selectUserInfoByKakaoID(String uiKakaoId) {
+		return userInfoMapper.selectUserInfoByKakaoID(uiKakaoId);
+	}
+	
 	public boolean checkPassword(UserInfoVO userInfo, int uiNum) {
 		UserInfoVO tmpUserInfo = userInfoMapper.selectUserInfo(uiNum);
 		if(tmpUserInfo!=null) {
