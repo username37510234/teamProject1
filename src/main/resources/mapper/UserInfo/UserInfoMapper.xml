@@ -44,6 +44,7 @@
 		FROM USER_INFO
 		WHERE UI_ID = #{uiId}
 		AND UI_PWD = #{uiPwd}
+		AND UI_ACTIVE = 1
 	</select>
 
 	<insert id="insertUserInfo">
@@ -60,7 +61,8 @@
 		WHERE UI_NUM=#{uiNum}
 	</update>
 	<delete id="deleteUserInfo">
-		DELETE FROM USER_INFO
+		UPDATE USER_INFO
+		SET UI_ACTIVE= 0
 		WHERE UI_NUM=#{uiNum}
 	</delete>
 
