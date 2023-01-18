@@ -11,7 +11,7 @@ public class UserInfoVO {
 	private String uiName;
 	private String uiNickname;
 	private String uiPwd;
-	private boolean uiActive;
+	private String uiActive;
 	private String uiPhone;
 	private String uiCredat;
 	
