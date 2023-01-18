@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <c:if test="${uiKakaoId eq null}">
 <input type="text" id="uiId" placeholder="아이디"><button onclick="checkId()">중복확인</button><br>
 <input type="password" id="uiPwd" placeholder="비밀번호"><br>

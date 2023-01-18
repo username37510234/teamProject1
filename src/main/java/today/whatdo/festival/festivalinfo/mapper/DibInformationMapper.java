@@ -9,5 +9,5 @@ public interface DibInformationMapper {
 	List<DibInfoVO> selectDibInformationList();
 	DibInfoVO selectDibInformation();
 	int insertDibInformation(DibInfoVO dibInfo);
-	
+	int deleteDibInformation(int diNum);
 }

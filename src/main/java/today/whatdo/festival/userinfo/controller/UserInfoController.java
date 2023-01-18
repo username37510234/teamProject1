@@ -30,57 +30,58 @@ import today.whatdo.festival.userinfo.vo.UserInfoVO;
 @Slf4j
 public class UserInfoController {
 
-
 	@Autowired
 	private UserInfoService userInfoService;
-	
+
 	@GetMapping("/user-infos")
-	public String getUserInfos(Model model,UserInfoVO userInfo) {
+	public String getUserInfos(Model model, UserInfoVO userInfo) {
 		log.info("userInfo=>{}", userInfo);
 		model.addAttribute("userList", userInfoService.getUserInfos(userInfo));
 		return "views/user-info/list";
 	}
-	
+
 	@GetMapping("/user-infos/check/{uiId}")
 	@ResponseBody
-	public boolean existUserId(@PathVariable("uiId")String uiId) {
+	public boolean existUserId(@PathVariable("uiId") String uiId) {
 		return userInfoService.existsUserId(uiId);
 	}
-	
+
 	@PostMapping("/user-infos")
 	public @ResponseBody int addUserInfo(@RequestBody UserInfoVO userInfo) {
 		return userInfoService.insertUserInfo(userInfo);
 	}
-	
+
 	@PostMapping("/user-infos/{uiNum}")
 	public @ResponseBody boolean checkPassword(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum) {
 		return userInfoService.checkPassword(userInfo, uiNum);
 	}
-	
+
 	@PatchMapping("/user-infos/{uiNum}")
-	public @ResponseBody boolean modifyUserInfo(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum, HttpSession session) {
+	public @ResponseBody boolean modifyUserInfo(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum,
+			HttpSession session) {
 		UserInfoVO sessionUserInfo = (UserInfoVO) session.getAttribute("userInfo");
-		if(sessionUserInfo==null || sessionUserInfo.getUiNum()!=uiNum) {
+		if (sessionUserInfo == null || sessionUserInfo.getUiNum() != uiNum) {
 			throw new RuntimeException("잘못된 정보 수정 입니다.");
 		}
 		userInfo.setUiNum(uiNum);
 		return userInfoService.updateUserInfo(userInfo, session);
 	}
-	
+
 	@DeleteMapping("/user-infos/{uiNum}")
-	public @ResponseBody boolean removeUserInfo(@RequestBody UserInfoVO userInfo,@PathVariable("uiNum") int uiNum) {
+	public @ResponseBody boolean removeUserInfo(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum) {
 		return userInfoService.removeUserInfo(userInfo, uiNum);
 	}
-	
+
 	@PostMapping("/login")
 	public @ResponseBody UserInfoVO login(@RequestBody UserInfoVO userInfo, HttpSession session) {
 		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
-		if(loginUserInfo != null) {
+		if (loginUserInfo != null) {
 			session.setAttribute("userInfo", loginUserInfo);
 			loginUserInfo.setUiPwd(null);
 		}
 		return loginUserInfo;
 	}
+<<<<<<< HEAD
 	
 	@PostMapping("/logout")
 	public @ResponseBody UserInfoVO logout(@RequestBody UserInfoVO userInfo, HttpSession session) {
@@ -93,14 +94,17 @@ public class UserInfoController {
 	}
 	
 	
+=======
+
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 	@GetMapping("/oauth")
-	public String oauth(@RequestParam("code")String code , Model model, HttpSession session) {
+	public String oauth(@RequestParam("code") String code, Model model, HttpSession session) {
 		RestTemplate restTemplate = new RestTemplate();
 		String uri = "https://kauth.kakao.com/oauth/token";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-		MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("grant_type", "authorization_code");
 		map.add("client_id", "bd9229e30ac2706e3c2f266a26c27c7d");
 		map.add("redirect_uri", "http://localhost/oauth");
@@ -109,20 +113,21 @@ public class UserInfoController {
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
 		ResponseEntity<KakaoLoginVO> res = restTemplate.postForEntity(uri, request, KakaoLoginVO.class);
-		
+
 		KakaoLoginVO kakaoLogin = res.getBody();
 		uri = "https://kapi.kakao.com/v2/user/me";
-		headers.set("Authorization", "Bearer "+kakaoLogin.getAccess_token());
-		
+		headers.set("Authorization", "Bearer " + kakaoLogin.getAccess_token());
+
 		res = restTemplate.postForEntity(uri, request, KakaoLoginVO.class);
 		kakaoLogin = res.getBody();
-		
+
 		UserInfoVO loginUserInfo = userInfoService.selectUserInfoByUiKakaoID(kakaoLogin.getId());
-		if(loginUserInfo==null) {
-			model.addAttribute("uiKakaoId",kakaoLogin.getId());
+		if (loginUserInfo == null) {
+			model.addAttribute("uiKakaoId", kakaoLogin.getId());
 			return "views/user-info/join";
 		}
 		session.setAttribute("userInfo", loginUserInfo);
 		return "/";
 	}
+	
 }

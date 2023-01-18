@@ -5,10 +5,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Insert title here</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
     </head>
 
     <body>
-        <div id="searchOption">
+        <div id="searchOption" class="container">
             <select name="" id="fesMonth" onchange="loadFestivalList()">
                 <option value="">선택</option>
                 <option value="01">1월</option>
@@ -43,37 +46,42 @@
                 <option value="경상북도">경상북도</option>
                 <option value="제주">제주</option>
             </select>
+            축제명 검색
+            <input type="text" id="fesTitle"><button type="button" onclick="loadFestivalList()">검색하기</button>
         </div>
-        <table>
-            <tr>
-                <th>축제 명</th>
-                <th>위치</th>
-                <th>시작일</th>
-                <th>종료일</th>
-            </tr>
-            <tbody id="tBody"></tbody>
-        </table>
+        <div class="container">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>축제 명</th>
+                    <th>위치</th>
+                    <th>시작일</th>
+                    <th>종료일</th>
+                </tr>
+                <tbody id="tBody"></tbody>
+            </table>
+        </div>
         <script>
             window.onload = function () {
                 loadFestivalList();
             }
-            function loadFestivalList(){
-                const searchObjs = document.querySelectorAll('#searchOption select')
+            function loadFestivalList() {
+                const searchObjs = document.querySelectorAll('#searchOption [id]')
                 console.log(searchObjs);
                 let url = '?';
-                for(let searchObj of searchObjs){
+                for (let searchObj of searchObjs) {
                     url += searchObj.id + '=' + searchObj.value + '&';
                 }
                 console.log(url);
-                fetch("/festival-infos"+url)
+                fetch("/festival-infos" + url)
                     .then(function (result) {
                         return result.json();
                     }).then(function (toJsonData) {
                         html = '';
                         const body = document.querySelector('#tBody');
-                        for(let data of toJsonData){
-                            html += '<tr><td><a href="/views/festivalInfo/viewItem?fiNum='+data.fiNum+'">'+data.title+'</a></td><td>'+data.addr1+'</td>';
-                            html += '<td>'+data.eventstartdate+'</td><td>'+data.eventenddate+'</td></tr>';
+                        for (let data of toJsonData) {
+                            html += '<tr><td><img src="'+data.firstimage+'" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
+                            html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
                         }
                         body.innerHTML = html;
                     });
