@@ -6,4 +6,5 @@ import lombok.Data;
 public class SearchParameterVO {
 	private String fesMonth;
 	private String fesLocal;
+	private String fesTitle;
 }

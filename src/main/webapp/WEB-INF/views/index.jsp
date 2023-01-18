@@ -35,6 +35,21 @@
 	</header>
 	<!-- HEADER END -->
 
+<<<<<<< HEAD
+<c:if test="${userInfo eq null}">
+로그인을 해주시기 바랍니다.
+<a href="/views/user-info/login">로그인</a>
+<a href="/views/user-info/join">회원가입</a><br>
+<a href=""><img src="/resources/kakao_login/ko/kakao_login_medium_narrow.png"/></a><br>
+<a href=""><img src="/resources/kakao_login/ko/kakao_login_medium_wide.png"/></a>
+</c:if>
+<c:if test="${userInfo ne null}">
+${userInfo.uiName}님 안녕하세요.
+<a href="/views/user-info/view">회원정보</a>
+<a href="/views/board-info/list">게시판</a>
+<a href="/">로그아웃</a>
+</c:if>
+=======
 
 	<!-- MAIN -->
 	<main>
@@ -56,5 +71,6 @@
 		<p>데이터 제공 : 한국관광공사</p>
 	</footer>
 	<!-- FOOTER END -->
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 </body>
 </html>

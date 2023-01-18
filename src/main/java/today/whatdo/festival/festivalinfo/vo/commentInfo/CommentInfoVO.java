@@ -6,11 +6,11 @@ import lombok.Data;
 public class CommentInfoVO {
 
 	private int ciNum;
+	private String ciWriter;
 	private String ciContent;
-	private String ciActive;
 	private String ciCredattim;
+	private String ciActive;
 	private int uiNum;
 	private int fiNum;
-	private String uiId;
-	private String title;
+
 }
