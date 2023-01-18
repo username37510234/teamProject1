@@ -82,6 +82,17 @@ public class UserInfoController {
 		return loginUserInfo;
 	}
 	
+	@PostMapping("/logout")
+	public @ResponseBody UserInfoVO logout(@RequestBody UserInfoVO userInfo, HttpSession session) {
+		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
+		if(loginUserInfo != null) {
+			session.invalidate();
+			
+		}
+		return null;
+	}
+	
+	
 	@GetMapping("/oauth")
 	public String oauth(@RequestParam("code")String code , Model model, HttpSession session) {
 		RestTemplate restTemplate = new RestTemplate();

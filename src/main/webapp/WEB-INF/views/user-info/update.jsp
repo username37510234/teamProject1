@@ -16,12 +16,9 @@
 
 function join(){
 	const param = {
-			uiZip : document.querySelector('#uiZip').value,
+			uiId : document.querySelector('#uiId').value,
 			uiName : document.querySelector('#uiName').value,
-			uiAddr1 : document.querySelector('#uiAddr1').value,
-			uiAddr2 : document.querySelector('#uiAddr2').value,
-			uiProfile : document.querySelector('#uiProfile').value,
-			uiEmail : document.querySelector('#uiEmail').value
+			uiPhone : document.querySelector('#uiPhone').value,
 	}
 	fetch('/user-infos/${userInfo.uiNum}',{
 		method : 'PATCH',

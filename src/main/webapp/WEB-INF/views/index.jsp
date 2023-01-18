@@ -20,7 +20,7 @@
 ${userInfo.uiName}님 안녕하세요.
 <a href="/views/user-info/view">회원정보</a>
 <a href="/views/board-info/list">게시판</a>
-<a href="">로그아웃</a>
+<a href="/">로그아웃</a>
 </c:if>
 </body>
 </html>
