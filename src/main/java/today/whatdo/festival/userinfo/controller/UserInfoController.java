@@ -82,9 +82,8 @@ public class UserInfoController {
 		return loginUserInfo;
 	}
 	
-	//kakao login
 	@GetMapping("/oauth")
-	public String oauth(@RequestParam("code") String code, Model model, HttpSession session) {
+	public String oauth(@RequestParam("code")String code , Model model, HttpSession session) {
 		RestTemplate restTemplate = new RestTemplate();
 		String uri = "https://kauth.kakao.com/oauth/token";
 		HttpHeaders headers = new HttpHeaders();
@@ -92,27 +91,27 @@ public class UserInfoController {
 
 		MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
 		map.add("grant_type", "authorization_code");
-		map.add("client_id", "175423f05591ec33e1712c6cdb8ee97b"); //rest key
-		map.add("redirect_uri", "http://localhost/oauth"); //ec2로 하면 도메인이나 고정 ip로 바뀌어야 한다.
-		map.add("code", code); //일회용이더라
+		map.add("client_id", "bd9229e30ac2706e3c2f266a26c27c7d");
+		map.add("redirect_uri", "http://localhost/oauth");
+		map.add("code", code);
 
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
-		
+
 		ResponseEntity<KakaoLoginVO> res = restTemplate.postForEntity(uri, request, KakaoLoginVO.class);
 		
 		KakaoLoginVO kakaoLogin = res.getBody();
 		uri = "https://kapi.kakao.com/v2/user/me";
-		headers.set("Authorization", "Bearer " + kakaoLogin.getAccess_token());
+		headers.set("Authorization", "Bearer "+kakaoLogin.getAccess_token());
 		
 		res = restTemplate.postForEntity(uri, request, KakaoLoginVO.class);
 		kakaoLogin = res.getBody();
 		
-		UserInfoVO loginUserInfo = userInfoService.selectUserInfoByKakaoID(kakaoLogin.getId());
+		UserInfoVO loginUserInfo = userInfoService.selectUserInfoByUiKakaoID(kakaoLogin.getId());
 		if(loginUserInfo==null) {
-			model.addAttribute("uiKakaoId", kakaoLogin.getId());
-			return "views/kakao/join";
+			model.addAttribute("uiKakaoId",kakaoLogin.getId());
+			return "views/user-info/join";
 		}
-		session.setAttribute("userInfo",loginUserInfo);
+		session.setAttribute("userInfo", loginUserInfo);
 		return "/";
 	}
 	

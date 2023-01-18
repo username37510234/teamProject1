@@ -12,7 +12,9 @@
 <c:if test="${userInfo eq null}">
 로그인을 해주시기 바랍니다.
 <a href="/views/user-info/login">로그인</a>
-<a href="/views/user-info/join">회원가입</a>
+<a href="/views/user-info/join">회원가입</a><br>
+<a href=""><img src="/resources/kakao_login/ko/kakao_login_medium_narrow.png"/></a><br>
+<a href=""><img src="/resources/kakao_login/ko/kakao_login_medium_wide.png"/></a>
 </c:if>
 <c:if test="${userInfo ne null}">
 ${userInfo.uiName}님 안녕하세요.

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,18 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${uiKakaoId eq null}"></c:if>
+<c:if test="${uiKakaoId eq null}">
 <input type="text" id="uiId" placeholder="아이디"><button onclick="checkId()">중복확인</button><br>
-<input type="text" id="uiName" placeholder="이름"><br>
 <input type="password" id="uiPwd" placeholder="비밀번호"><br>
 <input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
+</c:if>
+<input type="text" id="uiName" placeholder="이름"><br>
 <input type="text" id="uiNickname" placeholder="닉네임"><br>
 <input type="text" id="uiPhone" placeholder="전화번호"><br>
 <input type="checkbox" id="uiActive" >개인정보 활용에 동의합니다(필수)<br>
 <button onclick="join()">회원가입</button>
 
 <script type="text/javascript">
-let isCheckedId = false;
+let isCheckedId = '${uiKakaoId}'? true : false;
 
 function checkId() {
 	const uiId = document.querySelector('#uiId').value;
@@ -41,27 +42,35 @@ function checkId() {
 		}
 	});
 }
+function getParam(){
+	const objs = document.querySelectorAll('input');
+	const param = {};
+	for(const obj of objs){
+		param[obj.id] = obj.value;
+	}
+	return param;
+}
 function join() {
 	if(!isCheckedId){
 		alert('중복확인 해주세요.');
 		return false;
 	}
 	const uiId = document.querySelector('#uiId')
-	if(uiId.value.trim().length<4){
+	if(uiId && uiId.value.trim().length<4){
 		alert('아이디는 4글자 이상입니다.');
 		uiId.value='';
 		uiId.focus();
 		return;
 	}
 	const uiPwd = document.querySelector('#uiPwd');
-	if(uiPwd.value.trim().length<6){
+	if(uiPwd && uiPwd.value.trim().length<6){
 		alert('비밀번호는 6글자 이상입니다.');
 		uiPwd.value='';
 		uiPwd.focus();
 		return;
 	}
 	const uiPwdCheck = document.querySelector('#uiPwdCheck');
-	if(uiPwd.value != uiPwdCheck.value){
+	if(uiPwdCheck && uiPwd.value != uiPwdCheck.value){
 		alert('비밀번호와 비밀번호 확인이 다릅니다.');
 		uiPwdCheck.value='';
 		uipwdCheck.focus();
@@ -72,14 +81,10 @@ function join() {
 		alert('개인정보 활용에 동의해주셔야 합니다.')
 		uiActive.focus();
 	}
-	const param = {
-			uiId : document.querySelector('#uiId').value,
-			uiPwd : document.querySelector('#uiPwd').value,
-			uiName : document.querySelector('#uiName').value,
-			uiNickname : document.querySelector('#uiNickname').value,
-			uiActive : document.querySelector('#uiActive').value,
-			uiProfile : document.querySelector('#uiPhone').value						
-	}
+	
+	const param = getParam();
+	param.uiKakaoId= '${uiKakaoId}';
+	
 	fetch('/user-infos',{
 		method : 'POST',
 		headers : {
