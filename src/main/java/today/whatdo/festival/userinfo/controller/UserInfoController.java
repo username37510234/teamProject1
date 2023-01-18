@@ -81,7 +81,6 @@ public class UserInfoController {
 		}
 		return loginUserInfo;
 	}
-<<<<<<< HEAD
 	
 	@PostMapping("/logout")
 	public @ResponseBody UserInfoVO logout(@RequestBody UserInfoVO userInfo, HttpSession session) {
@@ -93,10 +92,6 @@ public class UserInfoController {
 		return null;
 	}
 	
-	
-=======
-
->>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 	@GetMapping("/oauth")
 	public String oauth(@RequestParam("code") String code, Model model, HttpSession session) {
 		RestTemplate restTemplate = new RestTemplate();
