@@ -55,6 +55,9 @@ public class FestivalInformationService {
 		FestivalResponseVO response = new FestivalResponseVO();
 		FestivalInformationVO festivalInfo = festivalInformationMapper.selectFestivalInformationByNum(fiNum);
 		response.setFestivalInfo(festivalInfo); 
+		if("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
+			return response;
+		}
 		response.setLocationInfo(apiNearFestivalInfo.getLocationInformationByMap(festivalInfo)); 
 		return response;
 	}
