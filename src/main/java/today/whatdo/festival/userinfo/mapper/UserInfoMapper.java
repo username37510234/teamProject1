@@ -10,6 +10,7 @@ public interface UserInfoMapper {
 	UserInfoVO selectUserInfoById(String uiId);
 	UserInfoVO selectUserInfo(int uiNum);
 	UserInfoVO selectUserInfoByIdAndPwd(UserInfoVO userInfo);
+	UserInfoVO selectUserInfoByUiKakaoID(String uiKakaoId);
 	int insertUserInfo(UserInfoVO userInfo);
 	int updateUserInfo(UserInfoVO userInfo);
 	int deleteUserInfo(int uiNum);

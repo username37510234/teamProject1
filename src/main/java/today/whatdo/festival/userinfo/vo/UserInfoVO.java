@@ -7,6 +7,7 @@ public class UserInfoVO {
 
 	private int uiNum;
 	private String uiId;
+	private String uiKakaoId;
 	private String uiName;
 	private String uiNickname;
 	private String uiPwd;
