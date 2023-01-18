@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import today.whatdo.festival.festivalinfo.mapper.DibInformationMapper;
 import today.whatdo.festival.festivalinfo.vo.dibInfo.DibInfoVO;
+import today.whatdo.festival.userinfo.vo.UserInfoVO;
 
 @Service
 public class DibInformationService {
@@ -14,12 +15,8 @@ public class DibInformationService {
 	@Autowired
 	private DibInformationMapper dibInformationMapper;
 	
-	public List<DibInfoVO> getDibInformationList(){
-		return dibInformationMapper.selectDibInformationList();
-	}
-	
-	public DibInfoVO getDibInformation() {
-		return dibInformationMapper.selectDibInformation();
+	public List<DibInfoVO> getDibInformationList(DibInfoVO dibInfo){
+		return dibInformationMapper.selectDibInformationList(dibInfo);
 	}
 	
 	public int insertDibInformation(DibInfoVO dibInfo) {

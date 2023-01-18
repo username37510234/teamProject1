@@ -15,19 +15,12 @@
 			DI.DI_ACTIVE = 1
 		</where>
 	</select>
-	<select id="selectDibInformation" resultType="today.whatdo.festival.festivalinfo.vo.dibInfo.DibInfoVO">
-		SELECT
-		<include refid="dibInfoCols"></include>
-		FROM DIB_INFO DI
-		INNER JOIN USER_INFO UI ON DI.UI_NUM = UI.UI_NUM
-		WHERE DI.DI_NUM=#{diNum}
-	</select>
 	<insert id="insertDibInformation" parameterType="today.whatdo.festival.festivalinfo.vo.dibInfo.DibInfoVO">
 		INSERT INTO DIB_INFO(
 		DI_NUM, DI_ACTIVE, DI_DATE, UI_NUM, FI_NUM
 		)
 		VALUES(
-		#{diNum},#{diActive},#{diDate},#{uiNum},#{fiNum}
+		#{diNum},#{diActive},DATE_FORMAT(NOW(),'%Y%m%d'),#{uiNum},#{fiNum}
 		)
 	</insert>
 	<delete id="deleteDibInformation">

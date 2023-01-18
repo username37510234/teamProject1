@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -34,15 +35,22 @@
 		</nav>		
 	</header>
 	<!-- HEADER END -->
-
-
+	
 	<!-- MAIN -->
 	<main>
-		
+		<table border="1">
+			<tr>
+				<th>찜 번호</th>
+				<th>축제 번호</th>
+				<th>찜한 날짜</th>
+			</tr>
+			<tBody id="tBody"></tBody>
+		</table>
+		<br>
+		<button>찜 취소</button>
 	</main>
 	<!-- MAIN END -->
-
-
+	
 	<!-- FOOTER -->
 	<footer>
 		<div>
@@ -56,5 +64,29 @@
 		<p>데이터 제공 : 한국관광공사</p>
 	</footer>
 	<!-- FOOTER END -->
+<script>
+window.onload = function(){
+	getDipInfoList();
+}
+function getDipInfoList(){
+	fetch('/dib-infos')
+	.then(function(res){
+		return res.json();
+	})
+	.then(function(list){
+		console.log(list);
+		let html = '';
+		for(let value of list){
+			const dibInfo = value;
+			html += '<tr>';
+			html += '<td>' + dibInfo.diNum + '</td>';
+			html += '<td>' + dibInfo.fiNum + '</td>';
+			html += '<td>' + dibInfo.diDate + '</td>';
+			html += '</tr>';
+		}
+		document.querySelector('#tBody').innerHTML = html;
+	});
+}
+</script>
 </body>
 </html>
