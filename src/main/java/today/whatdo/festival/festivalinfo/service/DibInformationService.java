@@ -25,4 +25,8 @@ public class DibInformationService {
 	public int insertDibInformation(DibInfoVO dibInfo) {
 		return dibInformationMapper.insertDibInformation(dibInfo);
 	}
+	
+	public int deleteDibInformation(int diNum) {
+		return dibInformationMapper.deleteDibInformation(diNum);
+	}
 }

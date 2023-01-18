@@ -114,4 +114,5 @@ public class UserInfoController {
 		session.setAttribute("userInfo", loginUserInfo);
 		return "/";
 	}
+	
 }

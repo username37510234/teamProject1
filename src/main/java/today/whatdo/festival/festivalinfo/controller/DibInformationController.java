@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class DibInformationController {
 		return dibInformationService.getDibInformation();
 	}
 	
+	//로그인 돼있어야, 등록 가능
 	@PostMapping("/dib-infos")
 	@ResponseBody
 	public int insertDibInformation(@RequestBody DibInfoVO dibInformation, HttpSession session) {
@@ -46,6 +48,12 @@ public class DibInformationController {
 		}
 		dibInformation.setUiNum(userInfo.getUiNum());
 		return dibInformationService.insertDibInformation(dibInformation);
+	}
+	
+	@DeleteMapping("/dib-infos/{diNum}")
+	@ResponseBody
+	public int deleteBoardInfo(@PathVariable int diNum) {
+		return dibInformationService.deleteDibInformation(diNum);
 	}
 	
 }

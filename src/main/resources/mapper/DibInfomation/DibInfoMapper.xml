@@ -30,4 +30,7 @@
 		#{diNum},#{diActive},#{diDate},#{uiNum},#{fiNum}
 		)
 	</insert>
+	<delete id="deleteDibInformation">
+		DELETE FROM DIB_INFO WHERE DI_NUM=#{diNum}
+	</delete>
 </mapper>
