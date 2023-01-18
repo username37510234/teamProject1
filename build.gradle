@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.2'    //jackson gradle추가함, 삭제 가능(박진영)
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.12'
 	implementation 'javax.servlet:jstl'
     implementation "org.apache.tomcat.embed:tomcat-embed-jasper"

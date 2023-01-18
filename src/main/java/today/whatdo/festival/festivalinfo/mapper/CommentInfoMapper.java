@@ -11,8 +11,8 @@ public interface CommentInfoMapper {
 
 	List<CommentInfoVO> selectCommentInfoList(CommentInfoVO commentInfo);
 	CommentInfoVO selectCommentInfo(int ciNum);
-	int insertCommentInfo(CommentInfoVO commentInfo);
+	int insertComment(CommentInfoVO vo);
 	int updateCommentInfoActive(int ciNum);
 	int updateCommentInfo(CommentInfoVO commentInfo);
-	int deleteCommentInfo(int ciNum);
+	int deleteComment(int ciNum);
 }
