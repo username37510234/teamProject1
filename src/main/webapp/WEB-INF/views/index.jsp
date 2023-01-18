@@ -20,6 +20,10 @@
 			<a href="/views/user-info/view">회원정보</a>
 			</c:if>
 		</div>
+		<div>
+			<input type="text" value="검색어 입력">
+			<input type="submit" value="검색">
+		</div>
 		<nav>
 			<ul id="menu">
 				<li><a href="">지역별 축제</a>
