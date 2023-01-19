@@ -3,56 +3,51 @@
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInfoMapper">
 
 	<sql id="commentInfoCols">
-		CI.UI_NUM, CI.CI_NUM, CI.CI_CONTENT, CI.CI_ACTIVE, CI.CI_CREDATTIM
+		CI.CI_NUM, CI.CI_WRITER, CI.CI_CONTENT, CI.CI_CREDATTIM, CI.CI_ACTIVE,  CI.UI_NUM, CI.FI_NUM 
 	</sql>
 	
 	<select id="selectCommentInfoList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO">
-		SELECT 
-		<include  refid="commentInfoCols"></include>
-		, FI.TITLE, UI.UI_ID
+		SELECT
+		<include refid="commentInfoCols"></include>
 		FROM COMMENT_INFO CI
-		INNER JOIN USER_INFO UI ON CI.UI_NUM = UI.UI_NUM
-		<where>
-			CI.CI_ACTIVE = 1
-			<if test='ciContent != null and ciContent != ""'>
-				AND CI_CONTENT LIKE CONCAT('%',#{ciContent},'%')
-			</if>
-		</where>
+		INNER JOIN FESTIVAL_INFORMATION FI 
+		ON CI.FI_NUM = FI.FI_NUM
+		WHERE CI_NUM = #{ciNum}
+		 
 	</select>
 	
 	<select id="selectCommentInfo" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO" >
-		SELECT
+		SELECT 
 		<include refid="commentInfoCols"></include>
-		, FI.TITLE, UI.UI_ID
 		FROM COMMENT_INFO CI
-		INNER JOIN USER_INFO UI ON CI.UI_NUM = UI.UI_NUM
-		WHERE CI.CI_NUM = #{ciNum}
+		INNER JOIN FESTIVAL_INFORMATION FI
+		ON CI.FI_NUM = FI.FI_NUM
+		WHERE CI_NUM = #{CiNum}
 	</select>
 	
-	<insert id="insertCommentInfo">
+	<insert id="insertComment">
 		INSERT INTO COMMENT_INFO(
-		CI_CONTENT, CI_ACTIVE, CI_CREDATTIM, UI_NUM, FI_NUM, UI_ID, TITLE
+		CI_NUM, CI_WRITER, CI_CONTENT,CI_CREDATTIM, CI_ACTIVE, UI_NUM, FI_NUM
 		)
 		VALUES(
-		#{ciContent},#{ciActive}, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'), #{uiNum}, #{fiNum}, #{uiId},(title)
+		#{ciNum}, #{ciWriter}, #{ciContent}, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'),#{ciActive}, #{uiNum}, #{fiNum}
 		)
 	</insert>
 	
-	<update id="updateCommentInfo">
+	<update id="updateCommentActive">
 		UPDATE COMMENT_INFO
-		SET CI_CONTENT = #{ciContent}, 
-		CI_ACTIVE = #{ciActive},
-		CI_CREDATTIM = DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'),
-		UI_NUM = #{uiNum},
-		FI_NUM = #{fiNum},
-		UI_ID = #{uiId},
-		TITLE = #{title}
-		WHERE CI_NUM = #{ciNum}
+		SET CI_ACTIVE=0 
+		WHERE CI_NUM=#{ciNum}
 	</update>
 	
-	<delete id="deleteCommentInformation">
-		DELETE FROM COMMENT_INFO
+	<update id="updateComment"> 
+		UPDATE COMMENT_INFO
+		SET CI_WTITER = #{biTitle},
+		CI_CONTENT = #{biContent}
 		WHERE CI_NUM=#{ciNum}
-	</delete>
+	</update>
 	
+	<delete id="deleteComment">
+		DELETE FROM COMMENT_INFO WHERE CI_NUM=#{ciNum}
+	</delete>
 </mapper>

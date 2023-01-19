@@ -9,7 +9,7 @@
 <body>
 	<!-- HEADER -->
 	<header>
-		<h1><img src="logo.jpg" alt="오늘 뭐하지?"></h1>
+		<h1><img src="" alt="오늘 뭐하지?"></h1>
 		<div>
 			<c:if test="${userInfo eq null}">
 			<a href="/auth/login">로그인</a>
@@ -29,12 +29,13 @@
 				<li><a href="">지역별 축제</a>
 				<li><a href="">전국 축제</a>
 				<li><a href="">인기 축제</a>
-				<li><a href="">찜 목록</a>
+				<li><a href="/views/dib-list/list">찜 목록</a>
 			</ul>
 		</nav>		
 	</header>
 	<!-- HEADER END -->
 
+<<<<<<< HEAD
 <c:if test="${userInfo eq null}">
 로그인을 해주시기 바랍니다.
 <a href="/auth/login">로그인</a>
@@ -50,12 +51,13 @@ ${userInfo.uiName}님 안녕하세요.
 </c:if>
 
 
+=======
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 	<!-- MAIN -->
 	<main>
 		
 	</main>
 	<!-- MAIN END -->
-
 
 	<!-- FOOTER -->
 	<footer>
@@ -70,6 +72,9 @@ ${userInfo.uiName}님 안녕하세요.
 		<p>데이터 제공 : 한국관광공사</p>
 	</footer>
 	<!-- FOOTER END -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 </body>
 </html>

@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import today.whatdo.festival.festivalinfo.api.ApiLinkedOpenData;
 import today.whatdo.festival.festivalinfo.api.ApiNearFestivalInfo;
 import today.whatdo.festival.festivalinfo.mapper.FestivalInformationMapper;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalResponseVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalResultVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
+import today.whatdo.festival.festivalinfo.vo.festivalInfo.LinkedData.LinkedBindingsVO;
 
 @Service
 public class FestivalInformationService {
@@ -50,11 +52,18 @@ public class FestivalInformationService {
 	
 	@Autowired
 	private ApiNearFestivalInfo apiNearFestivalInfo;
+	@Autowired
+	private ApiLinkedOpenData apiLinkedOpenData;
 	
 	public FestivalResponseVO getFestivalInformation(int fiNum) {
 		FestivalResponseVO response = new FestivalResponseVO();
 		FestivalInformationVO festivalInfo = festivalInformationMapper.selectFestivalInformationByNum(fiNum);
 		response.setFestivalInfo(festivalInfo); 
+		try{
+			response.setLinkedInfo(apiLinkedOpenData.getLinkedOpenData(festivalInfo.getTitle())); // API에서 받아온 값을 등록
+		}catch(Exception e) {
+			response.setLinkedInfo(null);	// 접속이 안될경우 null 입력
+		}
 		if("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
 			return response;
 		}

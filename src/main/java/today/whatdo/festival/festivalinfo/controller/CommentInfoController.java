@@ -2,7 +2,6 @@ package today.whatdo.festival.festivalinfo.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,15 +18,16 @@ import today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO;
 
 @Controller
 public class CommentInfoController {
-
+	
 	@Autowired
 	private CommentInfoService commentInfoService;
 	
 	@GetMapping("/comment-infos")
 	@ResponseBody
-	public List<CommentInfoVO> getCommentInfos(@ModelAttribute CommentInfoVO commentInfo) {
+	public List<CommentInfoVO> getCommentInfos(@ModelAttribute CommentInfoVO commentInfo){
 		return commentInfoService.getCommentInfos(commentInfo);
 	}
+	
 	@GetMapping("/comment-infos/{ciNum}")
 	@ResponseBody
 	public CommentInfoVO getCommentInfos(@PathVariable int ciNum) {
@@ -36,14 +36,14 @@ public class CommentInfoController {
 	
 	@PostMapping("/comment-infos")
 	@ResponseBody
-	public int insertCommentInfo(@RequestBody CommentInfoVO commentInfo) {
-		return commentInfoService.insertCommentInfo(commentInfo);
+	public int insertComment(@RequestBody CommentInfoVO commentInfo) {
+		return commentInfoService.insertComment(commentInfo);
 	}
 	
 	@DeleteMapping("/comment-infos/{ciNum}")
 	@ResponseBody
-	public int deleteCommentInfo(@PathVariable int ciNum) {
-		return commentInfoService.updateCommentInfoActive(ciNum);
+	public int deleteBoardInfo(@PathVariable int ciNum) {
+		return commentInfoService.deleteComment(ciNum);
 	}
 	
 	@PatchMapping("/comment-infos/{ciNum}")

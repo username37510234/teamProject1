@@ -12,27 +12,30 @@ import today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO;
 public class CommentInfoService {
 
 	@Autowired
-	private CommentInfoMapper commentInfoMapper;
+	private CommentInfoMapper mapper;
 	
 	public List<CommentInfoVO> getCommentInfos(CommentInfoVO commentInfo){
-		return commentInfoMapper.selectCommentInfoList(commentInfo);
-	}
-	
-	public int insertCommentInfo(CommentInfoVO commentInfo) {
-		return commentInfoMapper.insertCommentInfo(commentInfo);
+		return mapper.selectCommentInfoList(commentInfo);
 	}
 	
 	public CommentInfoVO getCommentInfo(int ciNum) {
-		return commentInfoMapper.selectCommentInfo(ciNum);
+		return mapper.selectCommentInfo(ciNum);
+	}
+	
+	public int insertComment(CommentInfoVO commentInfo) {
+		return mapper.insertComment(commentInfo);
 	}
 
 	public int updateCommentInfoActive(int ciNum) {
-		return commentInfoMapper.updateCommentInfoActive(ciNum);
+		return mapper.updateCommentInfoActive(ciNum);
 	}
+	
 	public int updateCommentInfo(CommentInfoVO commentInfo) {
-		return commentInfoMapper.updateCommentInfo(commentInfo);
+		return mapper.updateCommentInfo(commentInfo);
 	}
-	public int deleteCommentInfo(int ciNum) {
-		return commentInfoMapper.deleteCommentInfo(ciNum);
+	public int deleteComment(int ciNum) {
+		return mapper.deleteComment(ciNum);
+		
 	}
+	
 }
