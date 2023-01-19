@@ -31,17 +31,32 @@
                     }).then(function (toJsonData) {
                         let html = '';
                         const fest = toJsonData.festivalInfo;
-                        html += '<td colspan=2><img src="' + fest.firstimage + '" height=600px width=90%></td>';
+                        html += '<tr><td colspan=2><img src="' + fest.firstimage + '" height=600px width=100%></td></tr>';
                         html += '<tr><td>축제명</td><td>' + fest.title + '</td></tr>';
                         html += '<tr><td>위치</td><td>' + fest.addr1 + '</td></tr>';
                         html += '<tr><td>시작일</td><td>' + fest.eventstartdate + '</td></tr>';
                         html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
+                        if (toJsonData.linkedInfo.length!==0) {
+                            const fesDetail = toJsonData.linkedInfo[0];
+                            if (fesDetail.showTime) {
+                                html += '<tr><td>운영시간</td><td>' + fesDetail.showTime.value + '</td></tr>';
+                            }
+                            if (fesDetail.description) {
+                                html += '<tr><td colspan=2>' + fesDetail.description.value + '</td></tr>';
+                            }
+                            const fesPictures = toJsonData.linkedInfo;
+                            if (fesPictures.length > 1) {
+                                for (let fesPicture of fesPictures) {
+                                    html += '<img src="' + fesPicture.depiction.value + '" width=200px height=200px>'
+                                }
+                            }
+                        }
                         document.querySelector('#festivalInfo').innerHTML = html;
                         html = '<ul class="list-group">';
                         document.querySelector('title').innerText = fest.title;
                         const locations = toJsonData.locationInfo;
                         for (let location of locations) {
-                            html += '<li class="list-group-item"><img src="'+location.firstimage;
+                            html += '<li class="list-group-item"><img src="' + location.firstimage;
                             html += '" width="100px"><br>관광지명 :' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
                         }
                         html += '</ul>';
