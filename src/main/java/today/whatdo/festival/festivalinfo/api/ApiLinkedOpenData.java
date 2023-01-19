@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.yaml.snakeyaml.util.UriEncoder;
 
 import lombok.extern.slf4j.Slf4j;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.LinkedData.LinkedBindingsVO;
@@ -18,7 +19,7 @@ public class ApiLinkedOpenData {
 	private ApiCall apiCall;
 	
 	public List<LinkedBindingsVO> getLinkedOpenData(String title) {
-		title = title.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");	// 문자에서 특수부호 제거(오류방지)
+		title = title.replaceAll("\"", "");	// 문자에서 따옴표 제거(오류방지)
 		String url = "http://data.visitkorea.or.kr/sparql?format=json&query=";
 		String uri = "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\n"
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n"
@@ -47,12 +48,19 @@ public class ApiLinkedOpenData {
 				+ "} LIMIT 10";
 		try {
 			uri = URLEncoder.encode(uri,"UTF-8"); // 쿼리문을 URL인코딩으로 파싱
+			LinkedResponseVO result = apiCall.getDataToAPI(url+uri, LinkedResponseVO.class); // LINKEDAPI 호출
+			if(result.getResults().getBindings().size()==0) {
+				uri = UriEncoder.decode(uri);
+				uri = uri.replace("foaf:depiction ?depiction;", "");
+				uri = URLEncoder.encode(uri,"UTF-8");
+				result = apiCall.getDataToAPI(url+uri, LinkedResponseVO.class);
+				return result.getResults().getBindings(); // 값만 반환
+			}
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LinkedResponseVO result = apiCall.getDataToAPI(url+uri, LinkedResponseVO.class); // LINKEDAPI 호출
-		return result.getResults().getBindings(); // 값만 반환
+		return null;
 	}
 
 }
