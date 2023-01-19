@@ -8,9 +8,9 @@ public class CommentInfoVO {
 	private int ciNum;
 	private String ciWriter;
 	private String ciContent;
-	private String ciCredattim;
+	private String ciRegdate;
 	private String ciActive;
-	private int uiNum;
+	
 	private int fiNum;
 
 }
