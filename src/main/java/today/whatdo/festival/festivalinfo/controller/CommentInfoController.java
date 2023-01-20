@@ -2,6 +2,8 @@ package today.whatdo.festival.festivalinfo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import today.whatdo.festival.festivalinfo.service.CommentInfoService;
 import today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO;
+import today.whatdo.festival.userinfo.vo.UserInfoVO;
 
 @Controller
 public class CommentInfoController {
@@ -36,14 +39,13 @@ public class CommentInfoController {
 	
 	@PostMapping("/comment-infos")
 	@ResponseBody
-	public int insertComment(@RequestBody CommentInfoVO commentInfo) {
-		return commentInfoService.insertComment(commentInfo);
-	}
-	
-	@DeleteMapping("/comment-infos/{ciNum}")
-	@ResponseBody
-	public int deleteBoardInfo(@PathVariable int ciNum) {
-		return commentInfoService.deleteComment(ciNum);
+	public int insertCommentInfo(@RequestBody CommentInfoVO commentInfo, HttpSession session) {
+		UserInfoVO userInfo = (UserInfoVO)session.getAttribute("userInfo");
+		if(userInfo == null) {
+			throw new RuntimeException("로그인이 필요합니다.");
+		}
+//		commentInfo.setFiNum(userInfo.getFiNum());  
+		return commentInfoService.insertCommentInfo(commentInfo);
 	}
 	
 	@PatchMapping("/comment-infos/{ciNum}")
@@ -52,5 +54,12 @@ public class CommentInfoController {
 		commentInfo.setCiNum(ciNum);
 		return commentInfoService.updateCommentInfo(commentInfo);
 	}
+	
+	@DeleteMapping("/comment-infos/{ciNum}")
+	@ResponseBody
+	public int deleteCommentInfo(@PathVariable int ciNum) {
+		return commentInfoService.updateCommentInfoActive(ciNum);
+	}
+	
 	
 }

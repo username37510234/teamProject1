@@ -2,52 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInfoMapper">
 
-	<sql id="commentInfoCols">
-		CI.CI_NUM, CI.CI_WRITER, CI.CI_CONTENT, CI.CI_CREDATTIM, CI.CI_ACTIVE,  CI.UI_NUM, CI.FI_NUM 
-	</sql>
+	<!-- 댓글 조회 -->
+	<select id="readComment" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO">
+    	SELECT
+    		CI_NUM, CI_WRITER, CI_CONTENT, CI_REGDATE
+    	 FROM COMMENT_INFO
+    	<where>
+    		CI_ACTIVE = 1
+    		<if test ='ciContent != null and ciContent !=""'>
+    			AND CI_CONTENT LIKE CONCAT('%',#{CiContent},'%')
+    		</if>
+    	</where>
+	</select>
 	
-	<select id="selectCommentInfoList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO">
+	<select id="selectCommentInfo" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO">
 		SELECT
-		<include refid="commentInfoCols"></include>
-		FROM COMMENT_INFO CI
-		INNER JOIN FESTIVAL_INFORMATION FI 
-		ON CI.FI_NUM = FI.FI_NUM
-		WHERE CI_NUM = #{ciNum}
-		 
+    		CI_NUM, CI_WRITER, CI_CONTENT, CI_REGDATE
+    	 FROM COMMENT_INFO
+    	WHERE CI_NUM = #{ciNum}
 	</select>
 	
-	<select id="selectCommentInfo" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO" >
-		SELECT 
-		<include refid="commentInfoCols"></include>
-		FROM COMMENT_INFO CI
-		INNER JOIN FESTIVAL_INFORMATION FI
-		ON CI.FI_NUM = FI.FI_NUM
-		WHERE CI_NUM = #{CiNum}
-	</select>
-	
-	<insert id="insertComment">
+	<insert id="insertCommentInfo">
 		INSERT INTO COMMENT_INFO(
-		CI_NUM, CI_WRITER, CI_CONTENT,CI_CREDATTIM, CI_ACTIVE, UI_NUM, FI_NUM
-		)
+		CI_NUM, CI_WRITER, CI_CONTENT, CI_REGDATE, CI_ACTIVE, 
+		FI_NUM)
 		VALUES(
-		#{ciNum}, #{ciWriter}, #{ciContent}, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'),#{ciActive}, #{uiNum}, #{fiNum}
+		#{ciNum}, #{ciWriter}, #{ciContent}, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'),#{ciActive}, 
+		#{FiNum}
 		)
 	</insert>
 	
-	<update id="updateCommentActive">
+	<update id="updateCommentInfoActive">
 		UPDATE COMMENT_INFO
 		SET CI_ACTIVE=0 
 		WHERE CI_NUM=#{ciNum}
 	</update>
 	
-	<update id="updateComment"> 
+	<update id="updateCommentInfo"> 
 		UPDATE COMMENT_INFO
-		SET CI_WTITER = #{biTitle},
-		CI_CONTENT = #{biContent}
+		SET CI_NUM = #{ciNum},
+		CI_WRITER = #{ciWriter},
+		CI_CONTENT = #{ciContent},
 		WHERE CI_NUM=#{ciNum}
 	</update>
 	
-	<delete id="deleteComment">
+	
+	
+	<delete id="deleteCommentInfo">
 		DELETE FROM COMMENT_INFO WHERE CI_NUM=#{ciNum}
 	</delete>
+	
+	
 </mapper>
