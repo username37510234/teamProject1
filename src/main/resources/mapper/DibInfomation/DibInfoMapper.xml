@@ -8,16 +8,14 @@
 		SELECT
 		<include refid="dibInfoCols"></include>
 		FROM DIB_INFO DI
-		<!-- 로그인 상태에서만 찜 리스트 보이기 -->
+		<!-- 유저 번호 받아오기 -->
 		INNER JOIN USER_INFO UI ON DI.UI_NUM = UI.UI_NUM
-		<where>
-			<!-- 0이 되면 찜 리스트에서 제거 -->
-			DI.DI_ACTIVE = 1
-		</where>
+		<!-- 찜 번호순으로 정렬 -->
+		ORDER BY DI.DI_NUM
 	</select>
 	<insert id="insertDibInformation" parameterType="today.whatdo.festival.festivalinfo.vo.dibInfo.DibInfoVO">
 		INSERT INTO DIB_INFO(
-		DI_NUM, DI_ACTIVE, DI_DATE, UI_NUM, FI_NUM
+		<include refid="dibInfoCols"></include>
 		)
 		VALUES(
 		#{diNum},#{diActive},DATE_FORMAT(NOW(),'%Y%m%d'),#{uiNum},#{fiNum}
@@ -25,5 +23,13 @@
 	</insert>
 	<delete id="deleteDibInformation">
 		DELETE FROM DIB_INFO WHERE DI_NUM=#{diNum}
+	</delete>
+	<delete id="deleteDibInformations">
+		DELETE FROM DIB_INFO WHERE
+			<if test='diNums != null and diNums.size != 0'>
+				<foreach collection="diNums" item="diNum" separator="OR">
+					DI_NUM = #{diNum}
+				</foreach>
+			</if>
 	</delete>
 </mapper>

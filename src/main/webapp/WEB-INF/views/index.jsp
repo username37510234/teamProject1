@@ -26,10 +26,10 @@
 		</div>
 		<nav>
 			<ul id="menu">
-				<li><a href="">지역별 축제</a>
+				<li><a href="/views/festivalInfo/list">지역별 축제</a>
 				<li><a href="">전국 축제</a>
 				<li><a href="">인기 축제</a>
-				<li><a href="/views/dib-list/list">찜 목록</a>
+				<li><a href="/views/dib-info/list">찜 목록</a>
 			</ul>
 		</nav>		
 	</header>

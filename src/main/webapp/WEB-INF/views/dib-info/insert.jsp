@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<script>
+window.onload = function(){
+	insertDipInfo();
+}
+function insertDipInfo(){
+	
+}
+</script>
 </body>
 </html>

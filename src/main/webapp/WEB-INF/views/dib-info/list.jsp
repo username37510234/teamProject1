@@ -27,10 +27,10 @@
 		</div>
 		<nav>
 			<ul id="menu">
-				<li><a href="">지역별 축제</a>
+				<li><a href="/views/festivalInfo/list">지역별 축제</a>
 				<li><a href="">전국 축제</a>
 				<li><a href="">인기 축제</a>
-				<li><a href="/views/dib-list/list">찜 목록</a>
+				<li><a href="/views/dib-info/list">찜 목록</a>
 			</ul>
 		</nav>		
 	</header>
@@ -38,16 +38,19 @@
 	
 	<!-- MAIN -->
 	<main>
-		<table border="1">
-			<tr>
-				<th>찜 번호</th>
-				<th>축제 번호</th>
-				<th>찜한 날짜</th>
-			</tr>
-			<tBody id="tBody"></tBody>
-		</table>
+		<div>
+			<table border="1">
+				<tr>
+					<th><input type="checkbox" name="allCheck" onclick="toggleCheck(this)"></th>
+					<th>찜 번호</th>
+					<th>축제 번호</th>
+					<th>찜한 날짜</th>
+				</tr>
+				<tBody id="tBody"></tBody>
+			</table>
+		</div>
 		<br>
-		<button>찜 취소</button>
+		<p><button onclick="deleteDipInfo()">찜 취소</button></p>
 	</main>
 	<!-- MAIN END -->
 	
@@ -64,10 +67,21 @@
 		<p>데이터 제공 : 한국관광공사</p>
 	</footer>
 	<!-- FOOTER END -->
+	
 <script>
 window.onload = function(){
 	getDipInfoList();
 }
+
+function toggleCheck(obj){
+	console.log(obj);
+	const diNums = document.querySelectorAll('input[name="diNums"]');
+	for(const diNum of diNums){
+		/* console.log(diNum); */
+		diNum.checked = obj.checked;
+	}
+}
+
 function getDipInfoList(){
 	fetch('/dib-infos')
 	.then(function(res){
@@ -79,13 +93,50 @@ function getDipInfoList(){
 		for(let value of list){
 			const dibInfo = value;
 			html += '<tr>';
-			html += '<td>' + dibInfo.diNum + '</td>';
-			html += '<td>' + dibInfo.fiNum + '</td>';
+			html += '<td><input type="checkbox" name="diNums" value="' + dibInfo.diNum  + '"></td>';
+			html += '<td>' + dibInfo.diNum  + '</td>';
+			html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + dibInfo.fiNum + '">' + dibInfo.fiNum + '</a></td>';
 			html += '<td>' + dibInfo.diDate + '</td>';
 			html += '</tr>';
 		}
 		document.querySelector('#tBody').innerHTML = html;
 	});
+}
+function deleteDipInfo(){
+	const diNumObjs = document.querySelectorAll('input[name="diNums"]:checked');
+	console.log(diNumObjs);
+	const diNums = [];
+	for(const diNumObj of diNumObjs){
+		diNums.push(diNumObj.value);
+	}
+	console.log(diNums);
+	if(diNums.length===0){
+		alert('선택하세요');
+		return;
+	}
+	const param = {
+		diNums:diNums
+	}
+	fetch('/dib-infos',{
+		method:'DELETE',
+		headers: {
+			 'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(param)
+	})
+	.then(function(res){
+		console.log(res);
+		return res.json();
+	})
+	.then(function(data){
+		console.log(data);
+		if(data===1){
+			alert('취소 성공!');
+			location.href='/views/dib-info/list'
+		} else {
+			alert('취소 실패!');
+		}
+	})
 }
 </script>
 </body>
