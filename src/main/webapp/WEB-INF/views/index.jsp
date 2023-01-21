@@ -12,12 +12,12 @@
 		<h1><img src="" alt="오늘 뭐하지?"></h1>
 		<div>
 			<c:if test="${userInfo eq null}">
-			<a href="/views/user-info/login">로그인</a>
-			<a href="/views/user-info/join">회원가입</a>
+			<a href="/auth/login">로그인</a>
+			<a href="/auth/join">회원가입</a>
 			</c:if>
 			<c:if test="${userInfo ne null}">
-			<a href="">로그아웃</a>
-			<a href="/views/user-info/view">회원정보</a>
+			<a href="/auth/logout">로그아웃</a>
+			<a href="/auth/view">회원정보</a>
 			</c:if>
 		</div>
 		<div>
@@ -35,6 +35,24 @@
 	</header>
 	<!-- HEADER END -->
 
+<<<<<<< HEAD
+<c:if test="${userInfo eq null}">
+로그인을 해주시기 바랍니다.
+<a href="/auth/login">로그인</a>
+<a href="/auth/join">회원가입</a><br>
+<a href=""><img src="/resources/kakao_login/ko/kakao_login_medium_narrow.png"/></a><br>
+<a href=""><img src="/resources/kakao_login/ko/kakao_login_medium_wide.png"/></a>
+</c:if>
+<c:if test="${userInfo ne null}">
+${userInfo.uiName}님 안녕하세요.
+<a href="/auth/view">회원정보</a>
+<a href="/auth/list">게시판</a>
+<a href="/logout">로그아웃</a>
+</c:if>
+
+
+=======
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 	<!-- MAIN -->
 	<main>
 		
@@ -54,5 +72,9 @@
 		<p>데이터 제공 : 한국관광공사</p>
 	</footer>
 	<!-- FOOTER END -->
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 </body>
 </html>

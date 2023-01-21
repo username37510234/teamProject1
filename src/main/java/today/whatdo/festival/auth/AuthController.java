@@ -1,72 +1,44 @@
-package today.whatdo.festival.userinfo.controller;
+package today.whatdo.festival.auth;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
-import lombok.extern.slf4j.Slf4j;
 import today.whatdo.festival.userinfo.service.UserInfoService;
+import today.whatdo.festival.userinfo.vo.KakaoLoginVO;
 import today.whatdo.festival.userinfo.vo.UserInfoVO;
 
 @Controller
-@Slf4j
-@RequestMapping("/user-infos")
-public class UserInfoController {
+@RequestMapping("/auth")
+public class AuthController {
 
 	@Autowired
 	private UserInfoService userInfoService;
 
-	@GetMapping
-	public String getUserInfos(Model model, UserInfoVO userInfo) {
-		log.info("userInfo=>{}", userInfo);
-		model.addAttribute("userList", userInfoService.getUserInfos(userInfo));
-		return "views/user-info/list";
-	}
-
-	@GetMapping("/check/{uiId}")
-	@ResponseBody
-	public boolean existUserId(@PathVariable("uiId") String uiId) {
-		return userInfoService.existsUserId(uiId);
-	}
-
-	@PostMapping
-	public @ResponseBody int addUserInfo(@RequestBody UserInfoVO userInfo) {
-		return userInfoService.insertUserInfo(userInfo);
-	}
-
-	@PostMapping("/{uiNum}")
-	public @ResponseBody boolean checkPassword(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum) {
-		return userInfoService.checkPassword(userInfo, uiNum);
-	}
-
-	@PatchMapping("/{uiNum}")
-	public @ResponseBody boolean modifyUserInfo(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum,
-			HttpSession session) {
-		UserInfoVO sessionUserInfo = (UserInfoVO) session.getAttribute("userInfo");
-		if (sessionUserInfo == null || sessionUserInfo.getUiNum() != uiNum) {
-			throw new RuntimeException("잘못된 정보 수정 입니다.");
+	@GetMapping("/login")
+	public String login(HttpSession session) {
+		if (session != null) {
+			return "redirect:/";
 		}
-		userInfo.setUiNum(uiNum);
-		return userInfoService.updateUserInfo(userInfo, session);
+		
+		return "views/user-info/login";
 	}
-
-	@DeleteMapping("/{uiNum}")
-	public @ResponseBody boolean removeUserInfo(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum) {
-		return userInfoService.removeUserInfo(userInfo, uiNum);
-	}
-
-<<<<<<< HEAD
-=======
+	
 	@PostMapping("/login")
 	public @ResponseBody UserInfoVO login(@RequestBody UserInfoVO userInfo, HttpSession session) {
 		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
@@ -76,20 +48,23 @@ public class UserInfoController {
 		}
 		return loginUserInfo;
 	}
->>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 	
-<<<<<<< HEAD
-=======
-	@PostMapping("/logout")
-	public @ResponseBody UserInfoVO logout(@RequestBody UserInfoVO userInfo, HttpSession session) {
-		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
-		if(loginUserInfo != null) {
-			session.invalidate();
-			
-		}
-		return null;
+	@GetMapping("/view")
+	public String myInfo() {
+		return "views/user-info/view";
+	}
+
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		System.out.println("session :: " + session);
+		session.invalidate(); //세션무효화
+		
+		return "redirect:/";
 	}
 	
+	
+
 	@GetMapping("/oauth")
 	public String oauth(@RequestParam("code") String code, Model model, HttpSession session) {
 		RestTemplate restTemplate = new RestTemplate();
@@ -122,6 +97,4 @@ public class UserInfoController {
 		session.setAttribute("userInfo", loginUserInfo);
 		return "/";
 	}
->>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
-	
 }

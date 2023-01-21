@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+window.location.herf="/";
+</script>
 </head>
 <body>
-<script>
-
-</script>
+<%session.removeAttribute("member"); %>
 </body>
 </html>

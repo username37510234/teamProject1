@@ -15,27 +15,25 @@ public class CommentInfoService {
 	private CommentInfoMapper mapper;
 	
 	public List<CommentInfoVO> getCommentInfos(CommentInfoVO commentInfo){
-		return mapper.selectCommentInfoList(commentInfo);
+		return mapper.readComment(commentInfo);
 	}
 	
 	public CommentInfoVO getCommentInfo(int ciNum) {
 		return mapper.selectCommentInfo(ciNum);
 	}
 	
-	public int insertComment(CommentInfoVO commentInfo) {
-		return mapper.insertComment(commentInfo);
+	public int insertCommentInfo(CommentInfoVO commentInfo) {
+		return mapper.insertCommentInfo(commentInfo);
 	}
-
+	
 	public int updateCommentInfoActive(int ciNum) {
 		return mapper.updateCommentInfoActive(ciNum);
 	}
-	
 	public int updateCommentInfo(CommentInfoVO commentInfo) {
 		return mapper.updateCommentInfo(commentInfo);
 	}
-	public int deleteComment(int ciNum) {
-		return mapper.deleteComment(ciNum);
-		
-	}
 	
+	public int deleteCommentInfo(int ciNum) {
+		return mapper.deleteCommentInfoint(ciNum);
+	}
 }
