@@ -27,6 +27,11 @@ public class FestivalInformationService {
 	public int insertFestivalInformation(FestivalInformationVO festivalInfo) {
 		return festivalInformationMapper.insertFestivalInformation(festivalInfo);
 	}
+	
+	//마이리스트 축제 정보 불러오기
+	public FestivalInformationVO selectFestivalInformationByNum(int fiNum) {
+		return festivalInformationMapper.selectFestivalInformationByNum(fiNum);
+	}
 
 	// 축제 데이터 업데이트용 서비스
 	// 이미 존재하는 데이터일경우 변경사항을 업데이트만 하고

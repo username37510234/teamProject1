@@ -20,20 +20,20 @@ import today.whatdo.festival.userinfo.vo.UserInfoVO;
 
 @Controller
 @Slf4j
-@RequestMapping("/user-infos")
+//@RequestMapping("/user-infos")
 public class UserInfoController {
 
 	@Autowired
 	private UserInfoService userInfoService;
 
-	@GetMapping
+	@GetMapping("/user-infos")
 	public String getUserInfos(Model model, UserInfoVO userInfo) {
 		log.info("userInfo=>{}", userInfo);
 		model.addAttribute("userList", userInfoService.getUserInfos(userInfo));
 		return "views/user-info/list";
 	}
 
-	@GetMapping("/check/{uiId}")
+	@GetMapping("/user-infos/check/{uiId}")
 	@ResponseBody
 	public boolean existUserId(@PathVariable("uiId") String uiId) {
 		return userInfoService.existsUserId(uiId);
@@ -44,12 +44,12 @@ public class UserInfoController {
 		return userInfoService.insertUserInfo(userInfo);
 	}
 
-	@PostMapping("/{uiNum}")
+	@PostMapping("/user-infos/{uiNum}")
 	public @ResponseBody boolean checkPassword(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum) {
 		return userInfoService.checkPassword(userInfo, uiNum);
 	}
 
-	@PatchMapping("/{uiNum}")
+	@PatchMapping("/user-infos/{uiNum}")
 	public @ResponseBody boolean modifyUserInfo(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum,
 			HttpSession session) {
 		UserInfoVO sessionUserInfo = (UserInfoVO) session.getAttribute("userInfo");
@@ -60,9 +60,28 @@ public class UserInfoController {
 		return userInfoService.updateUserInfo(userInfo, session);
 	}
 
-	@DeleteMapping("/{uiNum}")
+	@DeleteMapping("/user-infos/{uiNum}")
 	public @ResponseBody boolean removeUserInfo(@RequestBody UserInfoVO userInfo, @PathVariable("uiNum") int uiNum) {
 		return userInfoService.removeUserInfo(userInfo, uiNum);
 	}
 	
+	@PostMapping("/login")
+	public @ResponseBody UserInfoVO login(@RequestBody UserInfoVO userInfo, HttpSession session) {
+		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
+		if (loginUserInfo != null) {
+			session.setAttribute("userInfo", loginUserInfo);
+			loginUserInfo.setUiPwd(null);
+		}
+		return loginUserInfo;
+	}
+
+	@PostMapping("/logout")
+	public @ResponseBody UserInfoVO logout(@RequestBody UserInfoVO userInfo, HttpSession session) {
+		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
+		if(loginUserInfo != null) {
+			session.invalidate();
+
+		}
+		return null;
+	}
 }

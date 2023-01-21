@@ -46,8 +46,8 @@ public class ControllerAOP {
 		//session scope에 정보가 없을 경우 로그인 페이지로 이동
 		//사용자한테 알려주려면 alert.jsp로 가거나 ${msg}로 알려주기
 		//폴더 직접 체크 대신 리스트로 체크해도 된다.
-		//현재는 찜 목록 테스트만
-		if(uri.startsWith("/views/dib-info/") && session.getAttribute("userInfo")==null) {
+		//현재는 마이 리스트만
+		if(uri.startsWith("/views/my-list/") && session.getAttribute("userInfo")==null) {
 			req.setAttribute("msg", "로그인을 해야만 접근 가능합니다.");
 			return "views/user-info/login";
 		}

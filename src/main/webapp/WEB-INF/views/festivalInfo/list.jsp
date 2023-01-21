@@ -81,7 +81,7 @@
                         const body = document.querySelector('#tBody');
                         for (let data of toJsonData) {
                             html += '<tr><td><img src="'+data.firstimage+'" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
-                            html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td><button>찜하기</button></tr>';
+                            html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
                         }
                         body.innerHTML = html;
                     });

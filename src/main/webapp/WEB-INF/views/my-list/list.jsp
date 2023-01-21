@@ -10,14 +10,14 @@
 <body>
 	<!-- HEADER -->
 	<header>
-		<h1><img src="" alt="오늘 뭐하지?"></h1>
+		<h1><a href="/"><img src="" alt="오늘 뭐하지?"></a></h1>
 		<div>
 			<c:if test="${userInfo eq null}">
 			<a href="/views/user-info/login">로그인</a>
 			<a href="/views/user-info/join">회원가입</a>
 			</c:if>
 			<c:if test="${userInfo ne null}">
-			<a href="">로그아웃</a>
+			<a href="/views/user-info/logout">로그아웃</a>
 			<a href="/views/user-info/view">회원정보</a>
 			</c:if>
 		</div>
@@ -30,7 +30,7 @@
 				<li><a href="/views/festivalInfo/list">지역별 축제</a>
 				<li><a href="">전국 축제</a>
 				<li><a href="">인기 축제</a>
-				<li><a href="/views/dib-info/list">찜 목록</a>
+				<li><a href="/views/my-list/list">마이리스트</a>
 			</ul>
 		</nav>		
 	</header>
@@ -42,15 +42,18 @@
 			<table border="1">
 				<tr>
 					<th><input type="checkbox" name="allCheck" onclick="toggleCheck(this)"></th>
-					<th>찜 번호</th>
-					<th>축제 번호</th>
-					<th>찜한 날짜</th>
-				</tr>
-				<tBody id="tBody"></tBody>
+					<th>추가한 날짜</th>
+					<th>축제 이미지</th>
+	                <th>축제 명</th>
+	                <th>위치</th>
+	                <th>시작일</th>
+	                <th>종료일</th>
+                </tr>
+                <tBody id="tBody"></tBody>
 			</table>
 		</div>
 		<br>
-		<p><button onclick="deleteDipInfo()">찜 취소</button></p>
+		<p><button onclick="deleteMyList()">축제 삭제</button></p>
 	</main>
 	<!-- MAIN END -->
 	
@@ -70,54 +73,65 @@
 	
 <script>
 window.onload = function(){
-	getDipInfoList();
+	getMyLists();
 }
 
 function toggleCheck(obj){
 	console.log(obj);
-	const diNums = document.querySelectorAll('input[name="diNums"]');
-	for(const diNum of diNums){
+	const diNums = document.querySelectorAll('input[name="mlNums"]');
+	for(const mlNum of mlNums){
 		/* console.log(diNum); */
 		diNum.checked = obj.checked;
 	}
 }
 
-function getDipInfoList(){
-	fetch('/dib-infos')
+function getMyLists(){
+	fetch('/my-lists')
 	.then(function(res){
 		return res.json();
 	})
-	.then(function(list){
-		console.log(list);
+	.then(function(myLists){
+		console.log(myLists);
 		let html = '';
-		for(let value of list){
-			const dibInfo = value;
-			html += '<tr>';
-			html += '<td><input type="checkbox" name="diNums" value="' + dibInfo.diNum  + '"></td>';
-			html += '<td>' + dibInfo.diNum  + '</td>';
-			html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + dibInfo.fiNum + '">' + dibInfo.fiNum + '</a></td>';
-			html += '<td>' + dibInfo.diDate + '</td>';
-			html += '</tr>';
+		for(let myListValue of myLists){
+			const myList = myListValue;
+			console.log(myList);
+			fetch('/festival-infos/' + myList.mlNum)
+			.then(function(res){
+				return res.json();
+			})
+			.then(function(fesInfo){
+				html += '<tr>';
+				html += '<td><input type="checkbox" name="mlNums" value="' + myList.mlNum  + '"></td>';
+				html += '<td>' + myList.mlDate + '</td>';
+				html += '<td><img src="' + fesInfo.firstimage + '" height=125px></td>';
+				html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + myList.fiNum + '">' + fesInfo.title + '</a></td>';
+				html += '<td>' + fesInfo.addr1 + '</td>';
+				html += '<td>' + fesInfo.eventstartdate + '</td>';
+				html += '<td>' + fesInfo.eventenddate + '</td>';
+				html += '</tr>';
+				document.querySelector('#tBody').innerHTML = html;
+			});
 		}
-		document.querySelector('#tBody').innerHTML = html;
-	});
+	})
 }
-function deleteDipInfo(){
-	const diNumObjs = document.querySelectorAll('input[name="diNums"]:checked');
-	console.log(diNumObjs);
-	const diNums = [];
-	for(const diNumObj of diNumObjs){
-		diNums.push(diNumObj.value);
+
+function deleteMyList(){
+	const mlNumObjs = document.querySelectorAll('input[name="mlNums"]:checked');
+	console.log(mlNumObjs);
+	const mlNums = [];
+	for(const mlNumObj of mlNumObjs){
+		mlNums.push(mlNumObj.value);
 	}
-	console.log(diNums);
-	if(diNums.length===0){
+	console.log(mlNums);
+	if(mlNums.length===0){
 		alert('선택하세요');
 		return;
 	}
 	const param = {
-		diNums:diNums
+		mlNums:mlNums
 	}
-	fetch('/dib-infos',{
+	fetch('/my-lists',{
 		method:'DELETE',
 		headers: {
 			 'Content-Type': 'application/json'
@@ -131,10 +145,10 @@ function deleteDipInfo(){
 	.then(function(data){
 		console.log(data);
 		if(data===1){
-			alert('취소 성공!');
-			location.href='/views/dib-info/list'
+			alert('삭제 완료!');
+			location.href='/views/my-list/list'
 		} else {
-			alert('취소 실패!');
+			alert('삭제 실패!');
 		}
 	})
 }
