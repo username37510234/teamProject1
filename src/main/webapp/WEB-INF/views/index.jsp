@@ -16,7 +16,7 @@
 			<a href="/views/user-info/join">회원가입</a>
 			</c:if>
 			<c:if test="${userInfo ne null}">
-			<a href="/views/user-info/logout">로그아웃</a>
+			<a href="/auth/logout">로그아웃</a>
 			<a href="/views/user-info/view">회원정보</a>
 			</c:if>
 		</div>
