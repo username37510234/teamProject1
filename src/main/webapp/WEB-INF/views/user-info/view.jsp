@@ -10,6 +10,7 @@
 <body>
 번호 : ${userInfo.uiNum}<br>
 아이디 : ${userInfo.uiId}<br>
+닉네임 : ${userInfo.uiNickname}<br>
 전화번호 : ${userInfo.uiPhone}<br>
 
 <div id="confirm" style="display:none">

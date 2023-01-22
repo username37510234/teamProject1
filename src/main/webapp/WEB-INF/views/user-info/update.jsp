@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<input type="text" id="uiId" value="${userInfo.uiId}" disabled><br>
-<input type="text" id="uiName"  value="${userInfo.uiName}"><br>
-<input type="text" id="uiPhone"  value="${userInfo.uiPhone}"><br>
+<input type="text" id="uiId" value="${userInfo.uiId}" disabled>아이디<br>
+<input type="text" id="uiName"  value="${userInfo.uiName}">이름<br>
+<input type="text" id="uiNickname"  value="${userInfo.uiNickname}">닉네임<br>
+<input type="text" id="uiPhone"  value="${userInfo.uiPhone}">휴대폰번호<br>
+
 
 <button onclick="join()">회원수정</button>
 <script>
@@ -18,7 +20,8 @@ function join(){
 	const param = {
 			uiId : document.querySelector('#uiId').value,
 			uiName : document.querySelector('#uiName').value,
-			uiPhone : document.querySelector('#uiPhone').value,
+			uiNickname : document.querySelector('#uiNickname').value,
+			uiPhone : document.querySelector('#uiPhone').value
 	}
 	fetch('/user-infos/${userInfo.uiNum}',{
 		method : 'PATCH',
