@@ -13,7 +13,7 @@ public interface MyListMapper {
 	//마이리스트 추가
 	int insertMyList(MyListVO myList);
 	//마이리스트 삭제
-	int deleteMyList(int mlNum);
+	int deleteMyList(int fiNum);
 	//마이리스트 선택 삭제
 	int deleteMyLists(@Param("mlNums") List<Integer> mlNums);
 }

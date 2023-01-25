@@ -25,8 +25,8 @@ public class MyListService {
 	}
 	
 	//마이리스트 삭제
-	public int deleteMyList(int mlNum) {
-		return myListMapper.deleteMyList(mlNum);
+	public int deleteMyList(int fiNum) {
+		return myListMapper.deleteMyList(fiNum);
 	}
 	
 	//마이리스트 선택 삭제

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -50,6 +51,20 @@
 		</span>
 
 	</div>
+	
+	<!-- 마이리스트 추가 -->
+	<c:if test="${userInfo eq null}">
+	<div>
+		<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
+		<button onclick="location.href='/views/my-list/'">마이리스트 추가</button>
+	</div>
+	</c:if>
+	<c:if test="${userInfo ne null}">
+	<div>
+		<button onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
+	</div>
+	</c:if>
+	
 </div>
 <div id="location" class="float-end container" style="width: 35%; margin-top:100px">
 	<h2> 추천 주변 관광지</h2>
@@ -58,6 +73,49 @@
 </div>
 
 <script>
+
+	/* 마이리스트 추가 */
+	function insertMyList(){
+		const param = {};
+		param.uiNum = ${userInfo.uiNum};
+		param.fiNum = ${param.fiNum};
+		fetch('/my-lists',{
+			method : 'POST',
+			headers: {
+				'Content-Type' : 'application/json'
+			},
+			body : JSON.stringify(param)
+		})
+		.then(function(res){
+			return res.json();
+		})
+		.then(function(data){
+			console.log(data);
+	 		if(data===1){
+				alert('등록 완료');
+			} else {
+				alert('등록 취소');
+				deleteMyList();
+			}
+		})
+	}
+	
+	/* 마이리스트 삭제 */
+	function deleteMyList(){
+		fetch('/my-lists/${param.fiNum}',{
+			method : 'DELETE'
+		})
+		.then(function(res){
+			console.log(res);
+			return res.json();
+		})
+		.then(function(data){
+			if(data===1){
+			} else {
+				alert('취소 실패!');
+			}
+		});
+	}
 
 	function getLikeCount(){
 		fetch("/festival/like/count/${param.fiNum}")

@@ -15,7 +15,7 @@
 		<!-- 유저 번호 찾기 -->
 		WHERE ML.UI_NUM=#{uiNum}
 		<!-- 추가한 번호순으로 정렬 -->
-		ORDER BY ML.ML_NUM
+		ORDER BY ML.ML_NUM ASC
 	</select>
 	<insert id="insertMyList" parameterType="today.whatdo.festival.festivalinfo.vo.mylist.MyListVO">
 		INSERT INTO MY_LIST(
@@ -26,7 +26,7 @@
 		)
 	</insert>
 	<delete id="deleteMyList">
-		DELETE FROM MY_LIST WHERE ML_NUM=#{mlNum}
+		DELETE FROM MY_LIST WHERE FI_NUM=#{fiNum}
 	</delete>
 	<delete id="deleteMyLists">
 		DELETE FROM MY_LIST WHERE

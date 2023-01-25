@@ -17,7 +17,7 @@
 			<a href="/views/user-info/join">회원가입</a>
 			</c:if>
 			<c:if test="${userInfo ne null}">
-			<a href="/views/user-info/logout">로그아웃</a>
+			<a href="/auth/logout">로그아웃</a>
 			<a href="/views/user-info/view">회원정보</a>
 			</c:if>
 		</div>
@@ -96,13 +96,14 @@ function getMyLists(){
 		for(let myListValue of myLists){
 			const myList = myListValue;
 			console.log(myList);
-			fetch('/festival-infos/' + myList.mlNum)
+			fetch('/festival-infos/' + myList.fiNum)
 			.then(function(res){
+				console.log(res);
 				return res.json();
 			})
 			.then(function(fesInfo){
 				html += '<tr>';
-				html += '<td><input type="checkbox" name="mlNums" value="' + myList.mlNum  + '"></td>';
+				html += '<td><input type="checkbox" name="mlNums" value="' + myList.mlNum + '"></td>';
 				html += '<td>' + myList.mlDate + '</td>';
 				html += '<td><img src="' + fesInfo.firstimage + '" height=125px></td>';
 				html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + myList.fiNum + '">' + fesInfo.title + '</a></td>';
@@ -144,7 +145,7 @@ function deleteMyList(){
 	})
 	.then(function(data){
 		console.log(data);
-		if(data===1){
+		if(data>=1){
 			alert('삭제 완료!');
 			location.href='/views/my-list/list'
 		} else {

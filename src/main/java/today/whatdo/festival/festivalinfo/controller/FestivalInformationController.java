@@ -29,7 +29,7 @@ public class FestivalInformationController {
 	
 	//마이리스트 축제 정보 불러오기
 	@GetMapping("/festival-infos/{fiNum}")
-	public FestivalInformationVO getFestivalInformationToDip(@PathVariable("fiNum") int fiNum) {
+	public FestivalInformationVO getFestivalInformationToMyList(@PathVariable("fiNum") int fiNum) {
 		return festivalInformationService.selectFestivalInformationByNum(fiNum);
 	}
 }
