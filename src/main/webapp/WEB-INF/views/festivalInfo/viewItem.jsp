@@ -73,7 +73,7 @@
 </div>
 
 <!-- 댓글 추가 -->
-	<div class="comment-box">
+	<div class="comment-box container">
 
 		<div class="comment-count">
 			댓글 <span id="count">0</span>
@@ -108,8 +108,8 @@
 	/* 마이리스트 추가 */
 	function insertMyList(){
 		const param = {};
-		param.uiNum = ${userInfo.uiNum};
-		param.fiNum = ${param.fiNum};
+		param.uiNum = ${userInfo.uiNum}
+		param.fiNum = ${param.fiNum}
 		fetch('/my-lists',{
 			method : 'POST',
 			headers: {
@@ -247,9 +247,6 @@
 
 	})
 	
-</script>
-
-<script>
 	window.onload = function () {
 
 		fetch("/festival-info/${param.fiNum}")
@@ -263,7 +260,7 @@
 			html += '<tr><td>위치</td><td>' + fest.addr1 + '</td></tr>';
 			html += '<tr><td>시작일</td><td>' + fest.eventstartdate + '</td></tr>';
 			html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
-			if (toJsonData.linkedInfo.length !== 0) {
+			if (toJsonData.linkedInfo != null && toJsonData.linkedInfo.length !== 0) {
 				const fesDetail = toJsonData.linkedInfo[0];
 				if (fesDetail.showTime) {
 					html += '<tr><td>운영시간</td><td>' + fesDetail.showTime.value + '</td></tr>';
