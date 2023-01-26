@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<input type="text" id="uiId" value="${userInfo.uiId}" disabled>아이디<br>
-<input type="text" id="uiName"  value="${userInfo.uiName}">이름<br>
-<input type="text" id="uiNickname"  value="${userInfo.uiNickname}">닉네임<br>
-<input type="text" id="uiPhone"  value="${userInfo.uiPhone}">휴대폰번호<br>
+아이디	<input type="text" id="uiId" value="${userInfo.uiId}" disabled><br>
+이름		<input type="text" id="uiName"  value="${userInfo.uiName}" disabled><br>
+닉네임	<input type="text" id="uiNickname"  value="${userInfo.uiNickname}"><br>
+전화번호	<input type="text" id="uiPhone"  value="${userInfo.uiPhone}"><br>
 
 
 <button onclick="join()">회원수정</button>

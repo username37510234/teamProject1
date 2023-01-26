@@ -49,9 +49,9 @@
 
 	<insert id="insertUserInfo">
 		INSERT INTO USER_INFO(
-		UI_ID, UI_NAME,UI_KAKAO_ID, UI_NICKNAME, UI_PWD, UI_ACTIVE, UI_PHONE, UI_CREDAT
+		UI_ID, UI_NAME, UI_NICKNAME, UI_PWD, UI_ACTIVE, UI_PHONE, UI_CREDAT
 		)
-		VALUES(#{uiId},#{uiName},#{uiKakaoId},#{uiNickname},#{uiPwd},1,#{uiPhone},DATE_FORMAT(NOW(), '%Y%m%d'))
+		VALUES(#{uiId},#{uiName},#{uiNickname},#{uiPwd},1,#{uiPhone},DATE_FORMAT(NOW(), '%Y%m%d'))
 	</insert>
 	<update id="updateUserInfo">
 		UPDATE USER_INFO

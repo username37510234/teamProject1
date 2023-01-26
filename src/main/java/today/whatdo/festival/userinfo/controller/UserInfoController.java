@@ -39,7 +39,7 @@ public class UserInfoController {
 		return userInfoService.existsUserId(uiId);
 	}
 
-	@PostMapping
+	@PostMapping("/user-infos")
 	public @ResponseBody int addUserInfo(@RequestBody UserInfoVO userInfo) {
 		return userInfoService.insertUserInfo(userInfo);
 	}
