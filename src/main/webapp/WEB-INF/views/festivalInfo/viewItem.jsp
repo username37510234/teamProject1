@@ -72,6 +72,37 @@
 <div id="map" class="container" style="width:500px;height:400px;">
 </div>
 
+<!-- 댓글 추가 -->
+	<div class="comment-box">
+
+		<div class="comment-count">
+			댓글 <span id="count">0</span>
+		</div>
+
+
+		<div class="comment-name">
+			<span class="anonym">작성자 : <input type="text"
+				class="form-control" id="com_writer" placeholder="이름"
+				name="com_writer" value='${userInfo.uiId}' readonly
+				style="width: 100px; border: none;">
+			</span>
+		</div>
+
+
+		<div class="comment-sbox">
+			<textarea class="comment-input" id="com_content" cols="80" rows="2"
+				name="com_content"></textarea>
+
+		</div>
+		<div class="regBtn">
+			<button id="Comment_regist">댓글등록</button>
+		</div>
+
+		<div class="comment_Box" style="border: 1px solid gray;">
+			<!-- 댓글이 들어갈 박스 -->
+		</div>
+	</div>
+
 <script>
 
 	/* 마이리스트 추가 */

@@ -2,55 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInfoMapper">
 
-	<!-- 댓글 조회 -->
-	<select id="readComment" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO">
-    	SELECT
-    		CI_NUM, CI_WRITER, CI_CONTENT, CI_REGDATE
-    	 FROM COMMENT_INFO
-    	<where>
-    		CI_ACTIVE = 1
-    		<if test ='ciContent != null and ciContent !=""'>
-    			AND CI_CONTENT LIKE CONCAT('%',#{CiContent},'%')
-    		</if>
-    	</where>
+	<insert id="CommentRegist">
+  		INSERT INTO COMMENT_INFO(CI_NUM, CI_WRITER, CI_CONTENT, FI_NUM)
+		values (#{ciNum} ,#{ciWriter},#{ciContent}, #{fiNum})
+  	</insert>
+  	
+  	<select id="getTotal" resultType="int">
+  		SELECT COUNT(*) FROM COMMENT_INFO WHERE CI_NUM = #{ciNum}
+  	</select>
+  	
+  	<select id="getList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+  		SELECT * FROM COMMENT_INFO WHERE CI_NUM = #{ciNum}
+  	</select>
+  	
+  	<select id="myRecord" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+		SELECT * FROM COMMENT_INFO
+		WHERE CI_WRITER = #{ciWriter}
 	</select>
 	
-	<select id="selectCommentInfo" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO">
-		SELECT
-    		CI_NUM, CI_WRITER, CI_CONTENT, CI_REGDATE
-    	 FROM COMMENT_INFO
-    	WHERE CI_NUM = #{ciNum}
-	</select>
-	
-	<insert id="insertCommentInfo">
-		INSERT INTO COMMENT_INFO(
-		CI_NUM, CI_WRITER, CI_CONTENT, CI_REGDATE, CI_ACTIVE, 
-		FI_NUM)
-		VALUES(
-		#{ciNum}, #{ciWriter}, #{ciContent}, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'),#{ciActive}, 
-		#{FiNum}
-		)
-	</insert>
-	
-	<update id="updateCommentInfoActive">
-		UPDATE COMMENT_INFO
-		SET CI_ACTIVE=0 
-		WHERE CI_NUM=#{ciNum}
-	</update>
-	
-	<update id="updateCommentInfo"> 
-		UPDATE COMMENT_INFO
-		SET CI_NUM = #{ciNum},
-		CI_WRITER = #{ciWriter},
-		CI_CONTENT = #{ciContent},
-		WHERE CI_NUM=#{ciNum}
-	</update>
-	
-	
-	
-	<delete id="deleteCommentInfo">
-		DELETE FROM COMMENT_INFO WHERE CI_NUM=#{ciNum}
+	<delete id="commentDelete">
+		DELETE FROM COMMENT_INFO
+		WHERE CI_WRITER = #{ciWriter} AND CI_CONTENT = #{ciContent}
 	</delete>
+	
+	<select id="getComList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+        SELECT * FROM COMMENT_INFO WHERE CI_WRITER = #{ciWriter}
+     </select>
 	
 	
 </mapper>
