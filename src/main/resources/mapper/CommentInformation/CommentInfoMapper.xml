@@ -2,52 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInfoMapper">
 
-	<sql id="commentInfoCols">
-		CI.CI_NUM, CI.CI_WRITER, CI.CI_CONTENT, CI.CI_CREDATTIM, CI.CI_ACTIVE,  CI.UI_NUM, CI.FI_NUM 
-	</sql>
-	
-	<select id="selectCommentInfoList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO">
-		SELECT
-		<include refid="commentInfoCols"></include>
-		FROM COMMENT_INFO CI
-		INNER JOIN FESTIVAL_INFORMATION FI 
-		ON CI.FI_NUM = FI.FI_NUM
-		WHERE CI_NUM = #{ciNum}
-		 
+	<insert id="CommentRegist">
+  		INSERT INTO COMMENT_INFO(CI_NUM, CI_WRITER, CI_CONTENT, FI_NUM)
+		values (#{ciNum} ,#{ciWriter},#{ciContent}, #{fiNum})
+  	</insert>
+  	
+  	<select id="getTotal" resultType="int">
+  		SELECT COUNT(*) FROM COMMENT_INFO WHERE CI_NUM = #{ciNum}
+  	</select>
+  	
+  	<select id="getList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+  		SELECT * FROM COMMENT_INFO WHERE CI_NUM = #{ciNum}
+  	</select>
+  	
+  	<select id="myRecord" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+		SELECT * FROM COMMENT_INFO
+		WHERE CI_WRITER = #{ciWriter}
 	</select>
 	
-	<select id="selectCommentInfo" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentInfoVO" >
-		SELECT 
-		<include refid="commentInfoCols"></include>
-		FROM COMMENT_INFO CI
-		INNER JOIN FESTIVAL_INFORMATION FI
-		ON CI.FI_NUM = FI.FI_NUM
-		WHERE CI_NUM = #{CiNum}
-	</select>
-	
-	<insert id="insertComment">
-		INSERT INTO COMMENT_INFO(
-		CI_NUM, CI_WRITER, CI_CONTENT,CI_CREDATTIM, CI_ACTIVE, UI_NUM, FI_NUM
-		)
-		VALUES(
-		#{ciNum}, #{ciWriter}, #{ciContent}, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'),#{ciActive}, #{uiNum}, #{fiNum}
-		)
-	</insert>
-	
-	<update id="updateCommentActive">
-		UPDATE COMMENT_INFO
-		SET CI_ACTIVE=0 
-		WHERE CI_NUM=#{ciNum}
-	</update>
-	
-	<update id="updateComment"> 
-		UPDATE COMMENT_INFO
-		SET CI_WTITER = #{biTitle},
-		CI_CONTENT = #{biContent}
-		WHERE CI_NUM=#{ciNum}
-	</update>
-	
-	<delete id="deleteComment">
-		DELETE FROM COMMENT_INFO WHERE CI_NUM=#{ciNum}
+	<delete id="commentDelete">
+		DELETE FROM COMMENT_INFO
+		WHERE CI_WRITER = #{ciWriter} AND CI_CONTENT = #{ciContent}
 	</delete>
+	
+	<select id="getComList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+        SELECT * FROM COMMENT_INFO WHERE CI_WRITER = #{ciWriter}
+     </select>
+	
+	
 </mapper>

@@ -10,7 +10,7 @@
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
   integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
 <script>
-  Kakao.init('5a39527bae8eba60a27c217f9778a683'); // <-- app KEY!!
+  Kakao.init('82febca4b29e4327a47c30d8e9856913'); // <-- app KEY!!(사용하려는 앱의 JavaScript 키 입력)
 </script>
 
 <a id="kakao-login-btn" href="javascript:loginWithKakao()">

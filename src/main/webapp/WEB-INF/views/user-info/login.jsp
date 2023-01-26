@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<P>${msg}</P>
 <input type="text" id="uiId" placeholder="아이디"><br>
 <input type="password" id="uiPwd" placeholder="비밀번호"><br>
 <button onclick="login()">Login</button>
