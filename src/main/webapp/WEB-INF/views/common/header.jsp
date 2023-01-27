@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<input type="text" id="fesTitle" value="축제명 검색">
-			<button type="button" onclick="loadFestivalList()">검색하기</button>
+			<button type="button" onclick="">검색하기</button>
 		</div>
 		<nav>
 			<ul id="menu">
