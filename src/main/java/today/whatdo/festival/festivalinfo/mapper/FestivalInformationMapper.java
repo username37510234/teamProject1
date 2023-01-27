@@ -21,4 +21,7 @@ public interface FestivalInformationMapper {
 	int updateFestivalInformation(FestivalInformationVO festivalInfo);
 	
 	List<FestivalInformationVO> selectFestivalInformationLists(SearchParameterVO searchParameter);
+	
+	//메인 페이지 조회수 높은 축제 정보 10개 불러오기
+	List<FestivalInformationVO> selectFestivalInformationByReadcount(FestivalInformationVO festivalInfo);
 }

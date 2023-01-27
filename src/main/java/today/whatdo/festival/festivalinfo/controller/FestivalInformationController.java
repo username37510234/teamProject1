@@ -1,5 +1,7 @@
 package today.whatdo.festival.festivalinfo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,5 +33,11 @@ public class FestivalInformationController {
 	@GetMapping("/festival-infos/{fiNum}")
 	public FestivalInformationVO getFestivalInformationToMyList(@PathVariable("fiNum") int fiNum) {
 		return festivalInformationService.selectFestivalInformationByNum(fiNum);
+	}
+	
+	//메인 페이지 조회수 높은 축제 정보 10개 불러오기
+	@GetMapping("/festival-infos/readcount")
+	public List<FestivalInformationVO> getFestivalInformationToIndex(FestivalInformationVO festivalInfo) {
+		return festivalInformationService.selectFestivalInformationByReadcount(festivalInfo);
 	}
 }

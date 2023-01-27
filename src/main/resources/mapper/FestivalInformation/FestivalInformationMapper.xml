@@ -48,6 +48,13 @@
 		FROM FESTIVAL_INFORMATION
 		WHERE FI_NUM = #{fiNum}
 	</select>
+	<select id="selectFestivalInformationByReadcount" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO">
+		SELECT FI_NUM,
+		<include refid="festivalInformationColumns"></include>
+		FROM FESTIVAL_INFORMATION
+		ORDER BY CAST(READCOUNT AS SIGNED) DESC
+		LIMIT 0,10
+	</select>
 	<select id="selectFestivalInformationLists" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO">
 		SELECT FI_NUM,
 		<include refid="festivalInformationColumns"></include>
