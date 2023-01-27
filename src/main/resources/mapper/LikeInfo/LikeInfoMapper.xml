@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.LikeInfoMapper">
 	<sql id="likeInfocols">
-		LI_NUM
-		, LI_ACTIVE, UI_NUM, FI_NUM
+		LI_NUM, UI_NUM, FI_NUM
 	</sql>
 
 	<select id="likeCheck" resultType="today.whatdo.festival.festivalinfo.vo.likeInfo.LikeInfoVO"
