@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import today.whatdo.festival.festivalinfo.api.ApiLinkedOpenData;
 import today.whatdo.festival.festivalinfo.api.ApiNearFestivalInfo;
 import today.whatdo.festival.festivalinfo.mapper.FestivalInformationMapper;
@@ -51,8 +54,9 @@ public class FestivalInformationService {
 		return updateCnt;
 	}
 	
-	public List<FestivalInformationVO> getFestivalInformationListAll(SearchParameterVO searchParameter){
-		return festivalInformationMapper.selectFestivalInformationLists(searchParameter);
+	public PageInfo<FestivalInformationVO> getFestivalInformationListAll(SearchParameterVO searchParameter){
+		PageHelper.startPage(searchParameter.getPage(),10);
+		return PageInfo.of(festivalInformationMapper.selectFestivalInformationLists(searchParameter));
 	}
 	
 	@Autowired
