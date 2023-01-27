@@ -8,9 +8,9 @@ public interface CommentServiceImpl {
 	
 	
 	void CommentRegist(CommentVO vo); //댓글 등록
-	List<CommentVO> getList(int ciNum); //목록 요청
-	int getTotal(int ciNum); //댓글 개수
-	void commentDelete(CommentVO vo);
+	List<CommentVO> getList(int fiNum); //목록 요청
+	int getTotal(int fiNum); //댓글 개수
+	int commentDelete(int ciNum);
 	
 
 }

@@ -40,14 +40,14 @@ public class CommentController {
 		}
 	}
 
-	@GetMapping("/CommentList/{ciNum}")
-	public Map<String, Object> getList(@PathVariable int ciNum, Model model) {
+	@GetMapping("/CommentList/{fiNum}")
+	public Map<String, Object> getList(@PathVariable int fiNum, Model model) {
 		System.out.println("댓글 목록 컨트롤러 동작");
-		List<CommentVO> list = service.getList(ciNum);
-		int total = service.getTotal(ciNum);
+		List<CommentVO> list = service.getList(fiNum);
+		int total = service.getTotal(fiNum);
 		
 		ModelAndView view = new ModelAndView();
-		System.out.println("댓글 갯수 " + service.getTotal(ciNum));
+		System.out.println("댓글 갯수 " + service.getTotal(fiNum));
 		view.setViewName("/board/JBoardList");
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);

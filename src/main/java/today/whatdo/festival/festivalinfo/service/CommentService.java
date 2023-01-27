@@ -32,8 +32,8 @@ public class CommentService implements CommentServiceImpl {
 	}
 
 	@Override
-	public void commentDelete(CommentVO vo) {
-		mapper.commentDelete(vo);
+	public int commentDelete(int ciNum) {
+		return mapper.commentDelete(ciNum);
 
 	}
 
