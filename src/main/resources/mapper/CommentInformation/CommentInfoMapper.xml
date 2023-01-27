@@ -3,16 +3,16 @@
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInfoMapper">
 
 	<insert id="CommentRegist">
-  		INSERT INTO COMMENT_INFO(CI_NUM, CI_WRITER, CI_CONTENT, FI_NUM)
-		values (#{ciNum} ,#{ciWriter},#{ciContent}, #{fiNum})
+  		INSERT INTO COMMENT_INFO(CI_WRITER, CI_CONTENT, CI_REGDATE, FI_NUM)
+		values (#{ciWriter}, #{ciContent}, #{ciRegdate}, #{fiNum})
   	</insert>
   	
-  	<select id="getTotal" resultType="int">
-  		SELECT COUNT(*) FROM COMMENT_INFO WHERE CI_NUM = #{ciNum}
+  	<select id="getTotal" resultType="int">		
+  		SELECT COUNT(*) FROM COMMENT_INFO WHERE FI_NUM = #{fiNum}
   	</select>
   	
   	<select id="getList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
-  		SELECT * FROM COMMENT_INFO WHERE CI_NUM = #{ciNum}
+  		SELECT * FROM COMMENT_INFO WHERE FI_NUM = #{fiNum}
   	</select>
   	
   	<select id="myRecord" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
@@ -22,12 +22,9 @@
 	
 	<delete id="commentDelete">
 		DELETE FROM COMMENT_INFO
-		WHERE CI_WRITER = #{ciWriter} AND CI_CONTENT = #{ciContent}
+		WHERE CI_NUM = #{ciNum}
 	</delete>
 	
-	<select id="getComList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
-        SELECT * FROM COMMENT_INFO WHERE CI_WRITER = #{ciWriter}
-     </select>
 	
 	
 </mapper>
