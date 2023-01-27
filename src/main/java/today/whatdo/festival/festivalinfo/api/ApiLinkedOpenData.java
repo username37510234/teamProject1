@@ -25,7 +25,6 @@ public class ApiLinkedOpenData {
 	
 	public List<LinkedBindingsVO> getLinkedOpenData(String title) {
 		title = title.replaceAll("\"", "");	// 문자에서 따옴표 제거(오류방지)
-		url += "sparql?format=json&query=";
 		String uri = "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\n"
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n"
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
@@ -59,6 +58,7 @@ public class ApiLinkedOpenData {
 				uri = uri.replace("foaf:depiction ?depiction;", "");
 				uri = URLEncoder.encode(uri,"UTF-8"); // 인코딩한 URI에서 이미지 검색문을 지운 후 다시 인코딩
 				result = apiCall.getDataToAPI(url+uri, LinkedResponseVO.class);
+				log.info("결과가 뭔지 보여줘 result=>{}",result);
 				return result.getResults().getBindings(); // 값만 반환
 			}
 		} catch (UnsupportedEncodingException e) {

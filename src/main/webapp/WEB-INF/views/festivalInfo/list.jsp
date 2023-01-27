@@ -87,7 +87,7 @@
                                 html = '';
                                 const body = document.querySelector('#tBody');
                                 for (let data of toJsonData.list) {
-                                    html += '<tr><td><img src="' + data.firstimage + '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
+                                    html += '<tr><td><img src="' + data.firstimage2 + '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
                                     html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
                                 }
                                 body.innerHTML += html;

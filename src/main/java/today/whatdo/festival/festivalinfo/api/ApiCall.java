@@ -21,7 +21,6 @@ public class ApiCall {
 			ResponseEntity<T> response = restTemplate.getForEntity(uri, (Class<T>) clazz);
 			return response.getBody();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

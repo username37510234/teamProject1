@@ -9,5 +9,6 @@ import today.whatdo.festival.festivalinfo.vo.festivalInfo.LinkedData.LinkedBindi
 public class FestivalResponseVO {
 	private FestivalInformationVO festivalInfo;
 	private List<FestivalInformationVO> locationInfo;
+	private List<FestivalInformationVO> festivalImages;
 	private List<LinkedBindingsVO> linkedInfo;
 }

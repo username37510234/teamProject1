@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import today.whatdo.festival.festivalinfo.api.ApiDetailFestivalInfo;
+import today.whatdo.festival.festivalinfo.api.ApiFestivalImage;
 import today.whatdo.festival.festivalinfo.api.ApiLinkedOpenData;
 import today.whatdo.festival.festivalinfo.api.ApiNearFestivalInfo;
 import today.whatdo.festival.festivalinfo.mapper.FestivalInformationMapper;
@@ -62,21 +64,24 @@ public class FestivalInformationService {
 	@Autowired
 	private ApiNearFestivalInfo apiNearFestivalInfo;
 	@Autowired
-	private ApiLinkedOpenData apiLinkedOpenData;
+	private ApiDetailFestivalInfo apiDetailFestivalInfo;
+	@Autowired
+	private ApiFestivalImage apiFestivalImage;
 	
 	public FestivalResponseVO getFestivalInformation(int fiNum) {
 		FestivalResponseVO response = new FestivalResponseVO();
 		FestivalInformationVO festivalInfo = festivalInformationMapper.selectFestivalInformationByNum(fiNum);
-		response.setFestivalInfo(festivalInfo); 
-		try{
-			response.setLinkedInfo(apiLinkedOpenData.getLinkedOpenData(festivalInfo.getTitle())); // API에서 받아온 값을 등록
-		}catch(Exception e) {
-			response.setLinkedInfo(null);	// 접속이 안될경우 null 입력
+		FestivalInformationVO detail = apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo);
+		if(detail!=null) {
+			festivalInfo.setOverview(detail.getOverview());
+			festivalInfo.setHomepage(detail.getHomepage());
 		}
+		response.setFestivalInfo(festivalInfo); 
 		if("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
 			return response;
 		}
 		response.setLocationInfo(apiNearFestivalInfo.getLocationInformationByMap(festivalInfo)); 
+		response.setFestivalImages(apiFestivalImage.getFestivalImages(festivalInfo));
 		return response;
 	}
 }

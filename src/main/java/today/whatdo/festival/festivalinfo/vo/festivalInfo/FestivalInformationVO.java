@@ -27,5 +27,9 @@ public class FestivalInformationVO {
 	private String sigungucode;
 	private String tel;
 	private String title;
-
+	private String telname;
+	private String homepage;
+	private String overview;
+	private String originimgurl;
+	private String imgname;
 }
