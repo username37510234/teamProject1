@@ -77,6 +77,7 @@
                     .then(function (result) {
                         return result.json();
                     }).then(function (toJsonData) {
+                    	console.log(toJsonData);
                         html = '';
                         const body = document.querySelector('#tBody');
                         for (let data of toJsonData) {

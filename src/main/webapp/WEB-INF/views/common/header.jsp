@@ -22,14 +22,14 @@
 			</c:if>
 		</div>
 		<div>
-			<input type="text" value="검색어 입력">
-			<input type="submit" value="검색">
+			<input type="text" id="fesTitle" value="축제명 검색">
+			<button type="button" onclick="loadFestivalList()">검색하기</button>
 		</div>
 		<nav>
 			<ul id="menu">
 				<li><a href="/views/festivalInfo/list">지역별 축제</a>
-				<li><a href="">전국 축제</a>
-				<li><a href="">인기 축제</a>
+				<li><a href="/views/festivalInfo/finishedList">종료된 축제</a>
+				<li><a href="/views/festivalInfo/likesList">인기 축제</a>
 				<li><a href="/views/my-list/list">마이리스트</a>
 			</ul>
 		</nav>		
