@@ -12,10 +12,35 @@
 	
 	<!-- MAIN -->
 	<main>
-		
+		<div>
+			<table>
+				<tBody id="tBody"></tBody>
+			</table>
+		</div>
 	</main>
 
 	<!-- FOOTER -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+	
+<script>
+window.onload = function(){
+	getReadCountFesInfoImg();
+}
+function getReadCountFesInfoImg(){
+	fetch('/festival-infos/readcount')
+	.then(function(res){
+		return res.json();
+	})
+	.then(function(list){
+		console.log(list);
+		let html = '';
+		for(let value of list){
+			const festivalInfo = value;
+			html += '<img src="' + festivalInfo.firstimage + '" height=125px>';
+		}
+		document.querySelector('#tBody').innerHTML = html;
+	})
+}
+</script>
 </body>
 </html>

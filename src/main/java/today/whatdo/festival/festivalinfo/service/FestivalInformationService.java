@@ -35,6 +35,11 @@ public class FestivalInformationService {
 	public FestivalInformationVO selectFestivalInformationByNum(int fiNum) {
 		return festivalInformationMapper.selectFestivalInformationByNum(fiNum);
 	}
+	
+	//메인 페이지 조회수 높은 축제 정보 10개 불러오기
+	public List<FestivalInformationVO> selectFestivalInformationByReadcount(FestivalInformationVO festivalInfo) {
+		return festivalInformationMapper.selectFestivalInformationByReadcount(festivalInfo);
+	}
 
 	// 축제 데이터 업데이트용 서비스
 	// 이미 존재하는 데이터일경우 변경사항을 업데이트만 하고
