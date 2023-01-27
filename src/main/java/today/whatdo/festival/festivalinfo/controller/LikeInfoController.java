@@ -26,7 +26,7 @@ public class LikeInfoController {
 
 	// 좋아요에 대한 상태를 수정하는거니까
 
-	// 호출에 대한 실패
+	// 호출에 대한 실패도 가능성을 열어두고 구현
 
 	@Autowired
 	private LikeInfoService likeInfoService;
@@ -49,12 +49,12 @@ public class LikeInfoController {
 			String resMsg;
 			LikeInfoVO likeCheck = likeInfoService.likeCheck(search); // 좋아요 상태 불러오기
 
-			if (likeCheck == null) { // 좋아요 아님
+			if (likeCheck == null) { // 좋아요상태가  아님
 				// 좋아요 insert
 				likeInfoService.insertLike(search);
 				resMsg = "INSERT";
 			} else {
-				// 좋아요 delete
+				// 좋아요가 체크되어있다면 delete
 				likeInfoService.deleteLike(search);
 				resMsg = "DELETE";
 			}
