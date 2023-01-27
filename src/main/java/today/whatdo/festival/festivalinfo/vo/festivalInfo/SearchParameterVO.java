@@ -7,4 +7,5 @@ public class SearchParameterVO {
 	private String fesMonth;
 	private String fesLocal;
 	private String fesTitle;
+	private int page;
 }

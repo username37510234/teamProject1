@@ -12,7 +12,8 @@
 
     <body>
         <div id="searchOption" class="container">
-            <select name="" id="fesMonth" onchange="loadFestivalList()">
+            <input type="number" id="page" value=1 hidden>
+            <select name="" id="fesMonth" onchange="searchFestivalList()">
                 <option value="">선택</option>
                 <option value="01">1월</option>
                 <option value="02">2월</option>
@@ -27,7 +28,7 @@
                 <option value="11">11월</option>
                 <option value="12">12월</option>
             </select>
-            <select name="" id="fesLocal" onchange="loadFestivalList()">
+            <select name="" id="fesLocal" onchange="searchFestivalList()">
                 <option value="">전국</option>
                 <option value="서울">서울</option>
                 <option value="인천">인천</option>
@@ -47,9 +48,9 @@
                 <option value="제주">제주</option>
             </select>
             축제명 검색
-            <input type="text" id="fesTitle"><button type="button" onclick="loadFestivalList()">검색하기</button>
+            <input type="text" id="fesTitle"><button type="button" onclick="searchFestivalList()">검색하기</button>
         </div>
-        <div class="container">
+        <div id="mainContent" class="container">
             <table>
                 <tr>
                     <th></th>
@@ -60,14 +61,16 @@
                 </tr>
                 <tbody id="tBody"></tbody>
             </table>
+            <div class="paginaiton"></div>
         </div>
         <script>
+            let oneTime = false; // 글로벌 변수
+                
             window.onload = function () {
                 loadFestivalList();
             }
             function loadFestivalList() {
                 const searchObjs = document.querySelectorAll('#searchOption [id]')
-                console.log(searchObjs);
                 let url = '?';
                 for (let searchObj of searchObjs) {
                     url += searchObj.id + '=' + searchObj.value + '&';
@@ -79,12 +82,39 @@
                     }).then(function (toJsonData) {
                         html = '';
                         const body = document.querySelector('#tBody');
-                        for (let data of toJsonData) {
-                            html += '<tr><td><img src="'+data.firstimage+'" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
+                        for (let data of toJsonData.list) {
+                            html += '<tr><td><img src="' + data.firstimage + '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
                             html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
                         }
-                        body.innerHTML = html;
+                        body.innerHTML += html;
+                        oneTime = false;
+                        document.querySelector('#page').value = Number(document.querySelector('#page').value) + 1;
                     });
+            }
+            function YesScroll() {
+                const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
+                const fullContent = document.querySelector('body'); // 전체를 둘러싼 컨텐츠 정보획득
+                const screenHeight = screen.height; // 화면 크기
+                document.addEventListener('scroll', OnScroll, { passive: true }) // 스크롤 이벤트함수정의
+                function OnScroll() { //스크롤 이벤트 함수
+                    const fullHeight = fullContent.clientHeight; // 높이   
+                    const scrollPosition = pageYOffset; // 스크롤 위치
+                    if (fullHeight - screenHeight <= scrollPosition && !oneTime) { // 만약 전체높이-화면높이/2가 스크롤포지션보다 작아진다면, 그리고 oneTime 변수가 거짓이라면
+                        oneTime = true; // oneTime 변수를 true로 변경해주고,
+                        loadFestivalList(); // 컨텐츠를 추가하는 함수를 불러온다.
+                    }
+                }
+            }
+            YesScroll()
+
+            function clearfestivalList(){
+                document.querySelector('#tBody').innerHTML = '';
+                document.querySelector('#page').value = 1;
+            }
+
+            function searchFestivalList(){
+                clearfestivalList();
+                loadFestivalList();
             }
         </script>
     </body>
