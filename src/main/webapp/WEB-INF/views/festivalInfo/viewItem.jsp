@@ -29,6 +29,9 @@
 		</head>
 
 		<body>
+			
+        <!-- HEADER -->
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
 			<div class="float-start" style="width: 65%;">
 				<table style="margin-left: 31%; margin-top: 100px">
 					<tbody id="festivalInfo"></tbody>
@@ -100,6 +103,8 @@
 				</div>
 			</div>
 
+            <!-- FOOTER -->
+            <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 			<script>
 
 				/* 마이리스트 추가 */
