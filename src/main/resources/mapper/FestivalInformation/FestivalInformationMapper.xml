@@ -61,8 +61,8 @@
 		FROM FESTIVAL_INFORMATION
 		<where>
 			<if test='fesMonth!="" and fesMonth!=null'>
-				AND LEFT(EVENTENDDATE,6) >= CONCAT(DATE_FORMAT(NOW(), '%Y%m'),#{fesMonth})
-				AND CONCAT(DATE_FORMAT(NOW(), '%Y%m'),#{fesMonth}) >= LEFT(EVENTSTARTDATE,6)
+				AND LEFT(EVENTENDDATE,6) >= CONCAT(DATE_FORMAT(NOW(), '%Y'),#{fesMonth})
+				AND CONCAT(DATE_FORMAT(NOW(), '%Y'),#{fesMonth}) >= LEFT(EVENTSTARTDATE,6)
 			</if>
 			<if test='fesLocal!="" and fesLocal!=null'>
 				AND ADDR1 LIKE CONCAT(#{fesLocal},'%')
@@ -75,6 +75,27 @@
 			</if>
 		</where>
 		ORDER BY EVENTSTARTDATE ASC
+	</select>
+	<select id="selectFinishedInformationLists" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO">
+		SELECT FI_NUM,
+		<include refid="festivalInformationColumns"></include>
+		FROM FESTIVAL_INFORMATION
+		<where>
+			<if test='fesLocal!="" and fesLocal!=null'>
+				AND ADDR1 LIKE CONCAT(#{fesLocal},'%')
+			</if>
+			<if test='fesTitle!="" and fesTitle!=null'>
+				AND TITLE LIKE CONCAT('%',#{fesTitle},'%')
+			</if>
+			<if test='fesMonth!="" and fesMonth!=null'>
+				((substring(EVENTENDDATE,5,2) >= #{fesMonth}
+				AND  #{fesMonth}>= substring(EVENTSTARTDATE,5,2))
+				OR (substring(EVENTENDDATE,5,2) >= #{fesMonth}
+				AND LEFT(EVENTENDDATE,4) - LEFT(EVENTSTARTDATE,4) >=1))
+			</if>
+			AND DATE_FORMAT(NOW(), '%Y%m%d') > EVENTENDDATE
+		</where>
+		ORDER BY EVENTENDDATE DESC
 	</select>
 	<update id="updateFestivalInformation">
 		UPDATE FESTIVAL_INFORMATION

@@ -261,8 +261,12 @@
 									const fest = toJsonData.festivalInfo;
 									html += '<tr><td colspan=2><img src="' + fest.firstimage + '" height=600px width=100%></td></tr>';
 									html += '<tr><td>축제명</td><td>' + fest.title + '</td></tr>';
-									html += '<tr><td>위치</td><td>' + fest.addr1 + '</td></tr>';
-									html += '<tr><td>시작일</td><td>' + fest.eventstartdate + '</td></tr>';
+									html += '<tr><td>위치</td><td>' + fest.addr1;
+									if(fest.addr2){
+										html+= ' ' + fest.addr2;
+									}
+									html +=	'</td></tr>';
+									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0,4)+'년 '+fest.eventstartdate.substr(5,2)+'월 '+fest.eventstartdate.substr(7,2)+'일' + '</td></tr>';
 									html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
 									if (fest.homepage) {
 										html += '<tr><td>홈페이지</td><td>' + fest.homepage + '</td></tr>';

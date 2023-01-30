@@ -40,4 +40,10 @@ public class FestivalInformationController {
 	public List<FestivalInformationVO> getFestivalInformationToIndex(FestivalInformationVO festivalInfo) {
 		return festivalInformationService.selectFestivalInformationByReadcount(festivalInfo);
 	}
+	
+	//과거 축제 정보 리스트
+	@GetMapping("/festival-infos-last")
+	public PageInfo<FestivalInformationVO> getFinsihedInformations(SearchParameterVO searchParameter){
+		return festivalInformationService.getFinishedInformationList(searchParameter);
+	}
 }
