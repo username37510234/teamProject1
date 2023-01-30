@@ -76,6 +76,27 @@
 		</where>
 		ORDER BY EVENTSTARTDATE ASC
 	</select>
+	<select id="selectFinishedFestivalInformationLists" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO">
+		SELECT
+		<include refid="festivalInformationColumns"></include>
+		FROM FESTIVAL_INFORMATION
+		<where>
+			<if test='fesMonth!="" and fesMonth!=null'>
+				((substring(EVENTENDDATE,5,2) >= #{fesMonth}
+				AND  #{fesMonth}>= substring(EVENTSTARTDATE,5,2))
+				OR (substring(EVENTENDDATE,5,2) >= #{fesMonth}
+				AND LEFT(EVENTENDDATE,4) - LEFT(EVENTSTARTDATE,4) >=1))
+			</if>
+			<if test='fesLocal!="" and fesLocal!=null'>
+				AND ADDR1 LIKE CONCAT(#{fesLocal},'%')
+			</if>
+			<if test='fesTitle!="" and fesTitle!=null'>
+				AND TITLE LIKE CONCAT('%',#{fesTitle},'%')
+			</if>
+			AND DATE_FORMAT(NOW(), '%Y%m%d') > EVENTENDDATE
+		</where>
+		ORDER BY EVENTENDDATE DESC
+	</select>
 	<update id="updateFestivalInformation">
 		UPDATE FESTIVAL_INFORMATION
 		SET

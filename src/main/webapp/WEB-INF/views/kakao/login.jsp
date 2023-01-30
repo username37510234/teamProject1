@@ -8,7 +8,8 @@
 </head>
 <body>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous">
+</script>
 <script>
   Kakao.init('82febca4b29e4327a47c30d8e9856913'); // <-- app KEY!!(사용하려는 앱의 JavaScript 키 입력)
 </script>
@@ -22,6 +23,7 @@
 <script>
   function loginWithKakao() {
     Kakao.Auth.authorize({
+    	/* 나중에 localhost를 엘라스틱IP로 변경해야한다. */
       redirectUri: 'http://localhost/oauth',
     });
   }
