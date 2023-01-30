@@ -75,35 +75,38 @@
 				<div id="map" class="container" style="width:500px;height:400px;">
 				</div>
 
-				<!-- 댓글 추가 -->
-				<div class="comment-box container">
+				<!-- 댓글 시작 -->
+				<hr />
 
-					<div class="comment-count">
-						댓글 <span id="count">0</span>
-					</div>
+				<ul>
+					<c:forEach items="${comment}" var="comment">
+					<li>
+						<div>
+							<p>${comment.ciWriter} / ${comment.ciRegdate}</p>
+							<p>${comment.ciContent }</p>
+						</div>
+					</li>	
+					</c:forEach>
+				</ul>
 
+				<div>
 
-					<div class="comment-name">
-						<span class="anonym">작성자 : <input type="text" class="form-control" id="com_writer"
-								placeholder="이름" name="com_writer" value='${userInfo.uiId}' readonly
-								style="width: 100px; border: none;">
-						</span>
-					</div>
-
-
-					<div class="comment-sbox">
-						<textarea class="comment-input" id="com_content" cols="80" rows="2"
-							name="com_content"></textarea>
-
-					</div>
-					<div class="regBtn">
-						<button id="Comment_regist">댓글등록</button>
-					</div>
-
-					<div class="comment_Box" style="border: 1px solid gray;">
-						<!-- 댓글이 들어갈 박스 -->
-					</div>
+					<form method="post" action="/reply/write">
+					
+						<p>
+							<label>댓글 작성자</label> <input type="text" name="writer">
+						</p>
+						<p>
+							<textarea rows="5" cols="50" name="content"></textarea>
+						</p>
+						<p>
+							<input type="hidden" name="fiNum" value="${param.fiNum}">
+							<button type="submit">댓글 작성</button>
+						</p>
+					</form>
+					
 				</div>
+				<!-- 댓글 끝 -->
 
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
