@@ -49,6 +49,7 @@
      <input type="text" id="fesTitle"><button type="button" onclick="searchFestivalList()">검색하기</button>
  </div>
  <div id="mainContent" class="container">
+    <div id="totalNum"></div>
      <table>
          <tr>
              <th></th>
@@ -87,6 +88,7 @@
                          html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
                      }
                      body.innerHTML += html;
+                     document.querySelector('#totalNum').innerHTML = '총 ' + toJsonData.total + ' 개의 축제가 검색되었습니다.';
                      oneTime = false;
                      document.querySelector('#page').value = Number(document.querySelector('#page').value) + 1;
                  });
