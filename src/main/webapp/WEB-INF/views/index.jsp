@@ -14,7 +14,7 @@
 	<main>
 		<div>
 			<table>
-				<tBody id="tBody"></tBody>
+				<tBody id="tBody">test</tBody>
 			</table>
 		</div>
 	</main>
