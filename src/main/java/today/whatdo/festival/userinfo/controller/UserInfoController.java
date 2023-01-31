@@ -20,7 +20,6 @@ import today.whatdo.festival.userinfo.vo.UserInfoVO;
 
 @Controller
 @Slf4j
-//@RequestMapping("/user-infos")
 public class UserInfoController {
 
 	@Autowired
