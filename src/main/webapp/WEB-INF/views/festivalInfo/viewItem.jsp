@@ -33,6 +33,7 @@
 			<!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<div class="float-start" style="width: 65%;">
+					<div id="readyState" class="text-center"></div>
 					<table style="margin-left: 31%; margin-top: 100px">
 						<tbody id="festivalInfo"></tbody>
 					</table>
@@ -255,7 +256,8 @@
 						})
 
 						window.onload = function () {
-
+							const ready = document.querySelector('#readyState');
+							ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
 							fetch("/festival-info/${param.fiNum}")
 								.then(function (result) {
 									return result.json();
@@ -298,6 +300,7 @@
 										html += '" width="100px"><br>관광지명 :' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
 									}
 									html += '</ul>';
+									ready.innerHTML = '';
 									document.querySelector('#location').innerHTML += html;
 									var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 									if (fest.mlevel != "") {
