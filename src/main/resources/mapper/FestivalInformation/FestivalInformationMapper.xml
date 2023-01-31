@@ -97,6 +97,17 @@
 		</where>
 		ORDER BY EVENTENDDATE DESC
 	</select>
+	<select id="selectMostLikedfestivalLists" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO">
+		SELECT FI.FI_NUM, FI.ADDR1, FI.ADDR2, FI.CAT1, FI.CAT2,
+		FI.CAT3, FI.CONTENTID, FI.CONTENTTYPEID, FI.EVENTSTARTDATE, FI.EVENTENDDATE,
+		FI.FIRSTIMAGE, FI.FIRSTIMAGE2, FI.MAPX, FI.MAPY, FI.MLEVEL,
+		FI.READCOUNT, FI.SIGUNGUCODE, FI.AREACODE, FI.CREATEDTIME, FI.MODIFIEDTIME,
+		FI.TITLE, FI.TEL, COUNT(LI.LI_NUM) AS LI_LIKE
+		FROM FESTIVAL_INFORMATION AS FI 
+		INNER JOIN LIKE_INFO AS LI ON LI.FI_NUM = FI.FI_NUM 
+		GROUP BY FI.FI_NUM 
+		ORDER BY LI_LIKE DESC
+	</select>
 	<update id="updateFestivalInformation">
 		UPDATE FESTIVAL_INFORMATION
 		SET

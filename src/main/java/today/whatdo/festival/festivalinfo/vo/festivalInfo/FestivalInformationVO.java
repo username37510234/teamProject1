@@ -32,4 +32,5 @@ public class FestivalInformationVO {
 	private String overview;
 	private String originimgurl;
 	private String imgname;
+	private int liLike;
 }

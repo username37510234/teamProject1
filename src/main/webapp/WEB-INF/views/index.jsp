@@ -56,14 +56,14 @@
 									for (let value of list) {
 										if (i == 0) {
 											indicatorshtml += '<button type="button" data-bs-target="#carouselFestivalCaptions"  class="active" aria-current="true" data-bs-interval="2000" data-bs-slide-to="' + i + '" aria-label="Slide ' + (i+1) + '"></button>';
-											innerhtml += '<div class="carousel-item active"><img src="' + value.firstimage + '" class="d-block w-100" alt="'+value.title+'" style="height:600px;"><div class="carousel-caption d-none d-md-block"><h5>' + value.title + '</h5></div></div>';
+											innerhtml += '<div class="carousel-item active"><img src="' + value.firstimage + '" class="d-block w-100" alt="'+value.title+'" style="height:600px;"><div class="carousel-caption d-none d-md-block"><h4 style="text-shadow:1px 1px black;color:skyblue;">' + value.title + '</h4></div></div>';
 
 											document.querySelector('.carousel-indicators').innerHTML = indicatorshtml;
 											document.querySelector('.carousel-inner').innerHTML = innerhtml;
 											i++;
 										} else {
 											indicatorshtml += '<button type="button" data-bs-target="#carouselFestivalCaptions" data-bs-slide-to="' + i + '"  data-bs-interval="2000" aria-label="Slide ' + (i+1) + '"></button>';
-											innerhtml += '<div class="carousel-item"><img src="' + value.firstimage + '" class="d-block w-100" alt="'+value.title+'" style="height:600px;"><div class="carousel-caption d-none d-md-block"><h5>' + value.title + '</h5></div></div>';
+											innerhtml += '<div class="carousel-item"><img src="' + value.firstimage + '" class="d-block w-100" alt="'+value.title+'" style="height:600px;"><div class="carousel-caption d-none d-md-block"><h4 style="text-shadow:1px 1px black;color:skyblue;">' + value.title + '</h4></div></div>';
 											document.querySelector('.carousel-indicators').innerHTML = indicatorshtml;
 											document.querySelector('.carousel-inner').innerHTML = innerhtml;
 											i++;
