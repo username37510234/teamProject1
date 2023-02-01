@@ -1,6 +1,6 @@
 package today.whatdo.festival.festivalinfo.vo.commentInfo;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -8,9 +8,11 @@ import lombok.Data;
 public class CommentVO {
 	
 	private int ciNum;
-	private String ciWriter;
-	private String ciContent;
-	private Timestamp ciRegdate;
 	private int fiNum;
+	private String ciWriter;
+	private Date ciRegdate;
+	private String ciContent;
+	private  double rating;
+	
 }
 

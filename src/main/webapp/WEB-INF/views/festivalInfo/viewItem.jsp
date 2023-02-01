@@ -75,40 +75,19 @@
 				</div>
 				<div id="map" class="container" style="width:500px;height:400px;">
 				</div>
-
+				
 				<!-- 댓글 시작 -->
 				<hr />
-
-				<ul>
-					<c:forEach items="${comment}" var="comment">
-					<li>
-						<div>
-							<p>${comment.ciWriter} / ${comment.ciRegdate}</p>
-							<p>${comment.ciContent }</p>
-						</div>
-					</li>	
-					</c:forEach>
-				</ul>
-
-				<div>
-
-					<form method="post" action="/reply/write">
-					
-						<p>
-							<label>댓글 작성자</label> <input type="text" name="writer">
-						</p>
-						<p>
-							<textarea rows="5" cols="50" name="content"></textarea>
-						</p>
-						<p>
-							<input type="hidden" name="fiNum" value="${param.fiNum}">
-							<button type="submit">댓글 작성</button>
-						</p>
-					</form>
-					
+				
+				<div class="comment_subject">
+					<h2>리뷰</h2>
 				</div>
+				
+				<button onclick="showPopup();">리뷰 쓰기</button>
+					
+				
 				<!-- 댓글 끝 -->
-
+				
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 					<script>
@@ -339,6 +318,9 @@
 
 						}
 
+						//리뷰쓰기 
+						function showPopup() { window.open("commentRegist","a", "width=600, height=700, left=300, top=300, scrollbars=yes"); }
+						
 					</script>
 		</body>
 
