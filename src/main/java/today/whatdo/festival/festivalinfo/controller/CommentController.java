@@ -33,8 +33,8 @@ public class CommentController {
 	}
 	
 	//댓글 삭제
-	@PostMapping("/delete")
-	public void commentDeletePOST(CommentVO vo) {
-		commentService.CommentDelete(vo);
-	}
+//	@PostMapping("/delete")
+//	public void commentDeletePOST(CommentVO vo) {
+//		commentService.CommentDelete(vo);
+//	}
 }
