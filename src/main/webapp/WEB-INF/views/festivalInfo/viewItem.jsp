@@ -92,7 +92,7 @@
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 					<script>
 
-						<%@include file = "/WEB-INF/resources/js/common.js" %>
+						<%@include file = "/resources/js/common.js" %>
 							/* 마이리스트 추가 */
 							function insertMyList() {
 								const param = {};
