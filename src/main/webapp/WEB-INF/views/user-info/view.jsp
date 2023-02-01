@@ -8,11 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-번호 : ${userInfo.uiNum}<br>
 이름 : ${userInfo.uiName}<br>
-아이디 : ${userInfo.uiId}<br>
 닉네임 : ${userInfo.uiNickname}<br>
-전화번호 : ${userInfo.uiPhone}<br>
 
 <div id="confirm" style="display:none">
 	<input type="password" id="uiPwd" placeholder="비밀번호"><button onclick="passwordConfirm()">확인</button>
@@ -48,7 +45,7 @@ function passwordConfirm(){
 				location.href='/views/user-info/update';
 			}else if(_type==='delete'){
 				alert('삭제완료!');
-				location.href='/';
+				location.href='/auth/logout';
 			}
 		}else{
 			alert('비밀번호를 확인해주세요');

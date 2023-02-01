@@ -14,11 +14,11 @@
 		<div>
 			<c:if test="${userInfo eq null}">
 			<a href="/views/user-info/login">로그인</a>
-			<a href="/views/user-info/join">회원가입</a>
+			<a href="/views/user-info/login">회원가입</a>
 			</c:if>
 			<c:if test="${userInfo ne null}">
 			<a href="/auth/logout">로그아웃</a>
-			<a href="/views/user-info/view">회원정보</a>
+			<a href="/auth/view">회원정보</a>
 			</c:if>
 		</div>
 		<div>

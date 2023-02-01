@@ -18,10 +18,8 @@
 
 function join(){
 	const param = {
-			uiId : document.querySelector('#uiId').value,
 			uiName : document.querySelector('#uiName').value,
 			uiNickname : document.querySelector('#uiNickname').value,
-			uiPhone : document.querySelector('#uiPhone').value
 	}
 	fetch('/user-infos/${userInfo.uiNum}',{
 		method : 'PATCH',
