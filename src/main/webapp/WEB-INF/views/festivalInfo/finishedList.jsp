@@ -7,6 +7,9 @@
         <title>Insert title here</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body>
         <!-- HEADER -->
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
             <div id="searchOption" class="container">
@@ -39,6 +42,7 @@
                 <script>
             <%@include file = "/resources/js/common.js" %>
             <%@include file = "/resources/js/searchOption.js" %>
+            <%@include file = "/resources/js/createFestivalList.js" %>
 
                         let oneTime = false; // 글로벌 변수
 
@@ -50,22 +54,7 @@
                     function loadFestivalList() {
                         fe("/festival-infos-last" + searchUrl())
                             .then(jsonData => {
-                                html = '';
-                                const body = document.querySelector('#tBody');
-                                for (let data of jsonData.list) {
-                                    html += '<tr><td><img src="';
-                                        if(data.firstimage2){
-                                            html += data.firstimage2;
-                                        } else {
-                                            html += '/resources/images/noimg.jpg'
-                                        }
-                                        html += '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
-                                        html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
-                                }
-                                body.innerHTML += html;
-                                document.querySelector('#totalNum').innerHTML = '총 ' + jsonData.total + ' 개의 축제가 검색되었습니다.';
-                                oneTime = false;
-                                document.querySelector('#page').value = Number(document.querySelector('#page').value) + 1;
+                                createList(jsonData);
                             });
                     }
                     function YesScroll() {
@@ -83,21 +72,7 @@
                         }
                     }
                     YesScroll()
-
-                    function clearfestivalList() {
-                        document.querySelector('#tBody').innerHTML = '';
-                        document.querySelector('#page').value = 1;
-                    }
-
-                    function searchFestivalList() {
-                        clearfestivalList();
-                        loadFestivalList();
-                    }
                 </script>
-    </head>
-
-    <body>
-
     </body>
 
     </html>
