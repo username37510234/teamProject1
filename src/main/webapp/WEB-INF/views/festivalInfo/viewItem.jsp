@@ -113,6 +113,7 @@
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 					<script>
 
+						<%@ include file = "/WEB-INF/resources/common.js" %>
 						/* 마이리스트 추가 */
 						function insertMyList() {
 							const param = {};
@@ -258,10 +259,8 @@
 						window.onload = function () {
 							const ready = document.querySelector('#readyState');
 							ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
-							fetch("/festival-info/${param.fiNum}")
-								.then(function (result) {
-									return result.json();
-								}).then(function (toJsonData) {
+							fe("/festival-info/${param.fiNum}")
+							.then(function (toJsonData) {
 									let html = '';
 									const fest = toJsonData.festivalInfo;
 									html += '<tr><td colspan=2><img src="' + fest.firstimage + '" height=600px width=100%></td></tr>';

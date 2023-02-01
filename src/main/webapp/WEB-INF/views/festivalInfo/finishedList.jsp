@@ -65,30 +65,23 @@
  <!-- FOOTER -->
  <%@ include file="/WEB-INF/views/common/footer.jsp" %>
      <script>
+        <%@ include file = "/WEB-INF/resources/common.js" %>
          let oneTime = false; // 글로벌 변수
 
          window.onload = function () {
              loadFestivalList();
          }
          function loadFestivalList() {
-             const searchObjs = document.querySelectorAll('#searchOption [id]')
-             let url = '?';
-             for (let searchObj of searchObjs) {
-                 url += searchObj.id + '=' + searchObj.value + '&';
-             }
-             console.log(url);
-             fetch("/festival-infos-last" + url)
-                 .then(function (result) {
-                     return result.json();
-                 }).then(function (toJsonData) {
+             fe("/festival-infos-last" + searchUrl())
+             .then(jsonData => {
                      html = '';
                      const body = document.querySelector('#tBody');
-                     for (let data of toJsonData.list) {
+                     for (let data of jsonData.list) {
                          html += '<tr><td><img src="' + data.firstimage2 + '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
                          html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
                      }
                      body.innerHTML += html;
-                     document.querySelector('#totalNum').innerHTML = '총 ' + toJsonData.total + ' 개의 축제가 검색되었습니다.';
+                     document.querySelector('#totalNum').innerHTML = '총 ' + jsonData.total + ' 개의 축제가 검색되었습니다.';
                      oneTime = false;
                      document.querySelector('#page').value = Number(document.querySelector('#page').value) + 1;
                  });
