@@ -73,12 +73,6 @@ public class FestivalInformationService {
 		PageHelper.startPage(searchParameter.getPage(),10);
 		return PageInfo.of(festivalInformationMapper.selectFinishedInformationLists(searchParameter));
 	}
-
-	
-	public PageInfo<FestivalInformationVO> getFestivalInfo(SearchParameterVO searchParameter){
-		PageHelper.startPage(searchParameter.getPage(),10);
-		return PageInfo.of(festivalInformationMapper.selectFestivalInformationLists(searchParameter));
-	}
 	
 	public PageInfo<FestivalInformationVO> getMostLikeFestival(SearchParameterVO searchParameter){
 		PageHelper.startPage(searchParameter.getPage(),10);

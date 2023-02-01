@@ -35,9 +35,9 @@ public class ApiDetailFestivalInfo {
 			return null;
 		}
 
-		FestivalResultVO result2 = om.convertValue(result, FestivalResultVO.class);
-		if(result2 != null && result2.getResponse().getBody().getNumOfRows()!=0) {
-		return result2.getResponse().getBody().getItems().getItem().get(0);
+		FestivalResultVO finalResult = om.convertValue(result, FestivalResultVO.class);
+		if(finalResult != null && finalResult.getResponse().getBody().getNumOfRows()!=0) {
+		return finalResult.getResponse().getBody().getItems().getItem().get(0);
 		}
 		return null;
 	}

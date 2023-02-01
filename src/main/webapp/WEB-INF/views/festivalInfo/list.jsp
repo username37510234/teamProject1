@@ -16,10 +16,10 @@
             <div id="searchOption" class="container">
                 <input type="number" id="page" value=1 hidden>
                 <select name="" id="fesMonth" onchange="searchFestivalList()">
-                    <option value="">선택</option>
+                    
                 </select>
                 <select name="" id="fesLocal" onchange="searchFestivalList()">
-                    <option value="">전국</option>
+                    
                 </select>
                 축제명 검색
                 <input type="text" id="fesTitle"><button type="button" onclick="searchFestivalList()">검색하기</button>
@@ -54,10 +54,10 @@
                         loadFestivalList();
                     }
                     const textObject = document.querySelector('#searchOption #fesTitle');
-                    textObject.addEventListener('keyup', event =>{
-                       if(event.keyCode===13){
-                        searchFestivalList();
-                       }
+                    textObject.addEventListener('keyup', event => {
+                        if (event.keyCode === 13) {
+                            searchFestivalList();
+                        }
                     })
                     function loadFestivalList() {
                         fe("/festival-infos" + searchUrl())
@@ -80,17 +80,6 @@
                         }
                     }
                     YesScroll()
-
-                    function clearfestivalList() {
-                        document.querySelector('#tBody').innerHTML = '';
-                        document.querySelector('#page').value = 1;
-                    }
-
-                    function searchFestivalList() {
-                        clearfestivalList();
-                        loadFestivalList();
-                    }
-                    
                 </script>
     </body>
 

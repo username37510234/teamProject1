@@ -15,10 +15,10 @@
             <div id="searchOption" class="container">
                 <input type="number" id="page" value=1 hidden>
                 <select name="" id="fesMonth" onchange="searchFestivalList()">
-                    <option value="">선택</option>
+                    
                 </select>
                 <select name="" id="fesLocal" onchange="searchFestivalList()">
-                    <option value="">전국</option>
+                    
                 </select>
                 축제명 검색
                 <input type="text" id="fesTitle"><button type="button" onclick="searchFestivalList()">검색하기</button>

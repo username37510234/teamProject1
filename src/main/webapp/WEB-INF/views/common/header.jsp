@@ -32,7 +32,10 @@
 				<li><a href="/views/festivalInfo/likesList">인기 축제</a>
 				<li><a href="/views/my-list/list">마이리스트</a>
 			</ul>
-		</nav>		
+		</nav>
+		<script>
+			document.querySelector('title').innerHTML = '오늘 뭐하지';
+		</script>		
 	</header>
 	<!-- HEADER END -->
 </body>

@@ -33,6 +33,7 @@
 			<!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<div class="float-start" style="width: 65%;">
+					<div id="modal"></div>
 					<div id="readyState" class="text-center"></div>
 					<table style="margin-left: 31%; margin-top: 100px">
 						<tbody id="festivalInfo"></tbody>
@@ -84,7 +85,6 @@
 				</div>
 
 				<button onclick="showPopup();">리뷰 쓰기</button>
-
 
 				<!-- 댓글 끝 -->
 
@@ -240,22 +240,21 @@
 							ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
 							fe("/festival-info/${param.fiNum}")
 								.then(jsonData => {
-									if(jsonData.status===500){
+									if (jsonData.status === 500) {
 										alert('잘못된 요청입니다.');
 										location.replace("/");
 										return;
 									}
 									let html = '';
 									const fest = jsonData.festivalInfo;
-									if(!fest){
-										alert('페이지를 불러오는 데 실패하였습니다. 접속한 페이지의 주소가 맞다면, 새로고침 해주세요.');
-										ready.innerHTML = '<a href="'+ document.location.href + '">새로고침</a>';
+									if (!fest) {
+										ready.insertAdjacentHTML("afterbegin", '<div class="alert alert-danger" role="alert" onclick="location.reload()">페이지를 불러오는 데 실패하였습니다. 접속한 페이지의 주소가 맞다면, <b>새로고침</b> 해주세요.</div>');
 										return;
 									}
-									if(fest.firstimage){
-									html += '<tr><td colspan=2><img src="' + fest.firstimage + '" height=600px width=100%></td></tr>';
+									if (fest.firstimage) {
+										html += '<tr><td colspan=2><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
 									}
-									html += '<tr><td>축제명</td><td>' + fest.title + '</td></tr>';
+									html += '<tr><td width="200px">축제명</td><td>' + fest.title + '</td></tr>';
 									html += '<tr><td>위치</td><td>' + fest.addr1;
 									if (fest.addr2) {
 										html += ' ' + fest.addr2;
@@ -277,13 +276,13 @@
 										const fesPictures = jsonData.festivalImages;
 										if (fesPictures.length >= 1) {
 											for (let fesPicture of fesPictures) {
-												html += '<img src="' + fesPicture.originimgurl + '" width=200px height=200px title="' + fesPicture.imgname + '">';
+												html += '<img src="' + fesPicture.originimgurl + '" width=200px title="' + fesPicture.imgname + '" class="img-thumbnail">';
 											}
 										}
 									}
 									document.querySelector('#festivalInfo').innerHTML = html;
 									html = '<ul class="list-group">';
-									document.querySelector('title').innerText = fest.title;
+									document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
 									const locations = jsonData.locationInfo;
 									for (let location of locations) {
 										html += '<li class="list-group-item"><img src="' + location.firstimage2;
@@ -291,7 +290,7 @@
 									}
 									html += '</ul>';
 									ready.innerHTML = '';
-									document.querySelector('#location').innerHTML += html;
+									document.querySelector('#location').insertAdjacentHTML('beforeend', html);
 									var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 									if (fest.mlevel != "") {
 										mlevel = fest.mlevel;
