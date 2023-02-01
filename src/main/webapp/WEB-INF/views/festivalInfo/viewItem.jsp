@@ -243,6 +243,7 @@
 									if(jsonData.status===500){
 										alert('잘못된 요청입니다.');
 										location.replace("/");
+										return;
 									}
 									let html = '';
 									const fest = jsonData.festivalInfo;
@@ -260,7 +261,7 @@
 										html += ' ' + fest.addr2;
 									}
 									html += '</td></tr>';
-									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(5, 2) + '월 ' + fest.eventstartdate.substr(7, 2) + '일' + '</td></tr>';
+									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td></tr>';
 									html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
 									if (fest.homepage) {
 										html += '<tr><td>홈페이지</td><td>' + fest.homepage + '</td></tr>';
