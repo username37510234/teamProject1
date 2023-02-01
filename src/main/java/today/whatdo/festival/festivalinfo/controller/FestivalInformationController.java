@@ -46,4 +46,10 @@ public class FestivalInformationController {
 	public PageInfo<FestivalInformationVO> getFinsihedInformations(SearchParameterVO searchParameter){
 		return festivalInformationService.getFinishedInformationList(searchParameter);
 	}
+	
+	//인기 축제
+	@GetMapping("/festival-infos-likes")
+	public PageInfo<FestivalInformationVO> getMostLikeFestival(SearchParameterVO searchParameter){
+		return festivalInformationService.getMostLikeFestival(searchParameter);
+	}
 }

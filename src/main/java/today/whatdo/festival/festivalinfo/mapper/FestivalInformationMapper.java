@@ -27,5 +27,5 @@ public interface FestivalInformationMapper {
 
 	List<FestivalInformationVO> selectFinishedInformationLists(SearchParameterVO searchParameter);
 
-	List<FestivalInformationVO> selectMostLikedfestivalLists(SearchParameterVO serarchParameter);
+	List<FestivalInformationVO> selectMostLikedfestivalLists(SearchParameterVO searchParameter);
 }

@@ -40,6 +40,9 @@ public class FestivalInformationService {
 	public List<FestivalInformationVO> selectFestivalInformationByReadcount(FestivalInformationVO festivalInfo) {
 		return festivalInformationMapper.selectFestivalInformationByReadcount(festivalInfo);
 	}
+	
+
+		
 
 	// 축제 데이터 업데이트용 서비스
 	// 이미 존재하는 데이터일경우 변경사항을 업데이트만 하고
@@ -71,6 +74,17 @@ public class FestivalInformationService {
 		return PageInfo.of(festivalInformationMapper.selectFinishedInformationLists(searchParameter));
 	}
 
+	
+	public PageInfo<FestivalInformationVO> getFestivalInfo(SearchParameterVO searchParameter){
+		PageHelper.startPage(searchParameter.getPage(),10);
+		return PageInfo.of(festivalInformationMapper.selectFestivalInformationLists(searchParameter));
+	}
+	
+	public PageInfo<FestivalInformationVO> getMostLikeFestival(SearchParameterVO searchParameter){
+		PageHelper.startPage(searchParameter.getPage(),10);
+		return PageInfo.of(festivalInformationMapper.selectMostLikedfestivalLists(searchParameter));
+	}
+	
 	@Autowired
 	private ApiNearFestivalInfo apiNearFestivalInfo;
 	@Autowired
