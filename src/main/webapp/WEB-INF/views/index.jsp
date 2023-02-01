@@ -45,10 +45,10 @@
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 					<script>
-						<%@ include file = "/WEB-INF/resources/common.js" %>
-						window.onload = function () {
-							getReadCountFesInfoImg();
-						}
+						<%@include file = "/WEB-INF/resources/js/common.js" %>
+							window.onload = function () {
+								getReadCountFesInfoImg();
+							}
 						function getReadCountFesInfoImg() {
 							fe('/festival-infos/readcount')
 								.then(function (list) {

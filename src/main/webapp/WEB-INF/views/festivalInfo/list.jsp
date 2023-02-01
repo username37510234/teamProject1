@@ -70,19 +70,32 @@
             <%@ include file="/WEB-INF/views/common/footer.jsp" %>
                 <script>
 
-                <%@ include file = "/WEB-INF/resources/common.js" %>
-                    let oneTime = false; // 글로벌 변수
+                <%@include file = "/WEB-INF/resources/js/common.js" %>
+
+                        let oneTime = false; // 글로벌 변수
 
                     window.onload = function () {
                         loadFestivalList();
                     }
+                    const textObject = document.querySelector('#searchOption #fesTitle');
+                    textObject.addEventListener('keyup', event =>{
+                       if(event.keyCode===13){
+                        searchFestivalList();
+                       }
+                    })
                     function loadFestivalList() {
                         fe("/festival-infos" + searchUrl())
-                        .then(jsonData=> {
+                            .then(jsonData => {
                                 html = '';
                                 const body = document.querySelector('#tBody');
                                 for (let data of jsonData.list) {
-                                    html += '<tr><td><img src="' + data.firstimage2 + '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
+                                    html += '<tr><td><img src="';
+                                    if(data.firstimage2){
+                                        html += data.firstimage2;
+                                    } else {
+                                        html += '/resources/images/noimg.jpg'
+                                    }
+                                    html += '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
                                     html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td></tr>';
                                 }
                                 body.innerHTML += html;

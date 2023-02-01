@@ -75,49 +75,49 @@
 				</div>
 				<div id="map" class="container" style="width:500px;height:400px;">
 				</div>
-				
+
 				<!-- 댓글 시작 -->
 				<hr />
-				
+
 				<div class="comment_subject">
 					<h2>리뷰</h2>
 				</div>
-				
+
 				<button onclick="showPopup();">리뷰 쓰기</button>
-					
-				
+
+
 				<!-- 댓글 끝 -->
-				
+
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 					<script>
 
-						<%@ include file = "/WEB-INF/resources/common.js" %>
-						/* 마이리스트 추가 */
-						function insertMyList() {
-							const param = {};
-							param.uiNum = ${ userInfo.uiNum }
-							param.fiNum = ${ param.fiNum }
-							fetch('/my-lists', {
-								method: 'POST',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify(param)
-							})
-								.then(function (res) {
-									return res.json();
+						<%@include file = "/WEB-INF/resources/js/common.js" %>
+							/* 마이리스트 추가 */
+							function insertMyList() {
+								const param = {};
+								param.uiNum = ${ userInfo.uiNum }
+								param.fiNum = ${ param.fiNum }
+								fetch('/my-lists', {
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify(param)
 								})
-								.then(function (data) {
-									console.log(data);
-									if (data === 1) {
-										alert('등록 완료');
-									} else {
-										alert('등록 취소');
-										deleteMyList();
-									}
-								})
-						}
+									.then(function (res) {
+										return res.json();
+									})
+									.then(function (data) {
+										console.log(data);
+										if (data === 1) {
+											alert('등록 완료');
+										} else {
+											alert('등록 취소');
+											deleteMyList();
+										}
+									})
+							}
 
 						/* 마이리스트 삭제 */
 						function deleteMyList() {
@@ -239,17 +239,28 @@
 							const ready = document.querySelector('#readyState');
 							ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
 							fe("/festival-info/${param.fiNum}")
-							.then(function (toJsonData) {
+								.then(jsonData => {
+									if(jsonData.status===500){
+										alert('잘못된 요청입니다.');
+										location.replace("/");
+									}
 									let html = '';
-									const fest = toJsonData.festivalInfo;
+									const fest = jsonData.festivalInfo;
+									if(!fest){
+										alert('페이지를 불러오는 데 실패하였습니다. 접속한 페이지의 주소가 맞다면, 새로고침 해주세요.');
+										ready.innerHTML = '<a href="'+ document.location.href + '">새로고침</a>';
+										return;
+									}
+									if(fest.firstimage){
 									html += '<tr><td colspan=2><img src="' + fest.firstimage + '" height=600px width=100%></td></tr>';
+									}
 									html += '<tr><td>축제명</td><td>' + fest.title + '</td></tr>';
 									html += '<tr><td>위치</td><td>' + fest.addr1;
-									if(fest.addr2){
-										html+= ' ' + fest.addr2;
+									if (fest.addr2) {
+										html += ' ' + fest.addr2;
 									}
-									html +=	'</td></tr>';
-									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0,4)+'년 '+fest.eventstartdate.substr(5,2)+'월 '+fest.eventstartdate.substr(7,2)+'일' + '</td></tr>';
+									html += '</td></tr>';
+									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(5, 2) + '월 ' + fest.eventstartdate.substr(7, 2) + '일' + '</td></tr>';
 									html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
 									if (fest.homepage) {
 										html += '<tr><td>홈페이지</td><td>' + fest.homepage + '</td></tr>';
@@ -261,8 +272,8 @@
 									if (fest.overview) {
 										html += '<tr><td colspan=2>' + fest.overview + '</td></tr>';
 									}
-									if (toJsonData.festivalImages != null && toJsonData.festivalImages.length !== 0) {
-										const fesPictures = toJsonData.festivalImages;
+									if (jsonData.festivalImages != null && jsonData.festivalImages.length !== 0) {
+										const fesPictures = jsonData.festivalImages;
 										if (fesPictures.length >= 1) {
 											for (let fesPicture of fesPictures) {
 												html += '<img src="' + fesPicture.originimgurl + '" width=200px height=200px title="' + fesPicture.imgname + '">';
@@ -272,7 +283,7 @@
 									document.querySelector('#festivalInfo').innerHTML = html;
 									html = '<ul class="list-group">';
 									document.querySelector('title').innerText = fest.title;
-									const locations = toJsonData.locationInfo;
+									const locations = jsonData.locationInfo;
 									for (let location of locations) {
 										html += '<li class="list-group-item"><img src="' + location.firstimage2;
 										html += '" width="100px"><br>관광지명 :' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
@@ -319,8 +330,8 @@
 						}
 
 						//리뷰쓰기 
-						function showPopup() { window.open("commentRegist","a", "width=600, height=700, left=300, top=300, scrollbars=yes"); }
-						
+						function showPopup() { window.open("commentRegist", "a", "width=600, height=700, left=300, top=300, scrollbars=yes"); }
+
 					</script>
 		</body>
 
