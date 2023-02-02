@@ -15,10 +15,10 @@
             <div id="searchOption" class="container">
                 <input type="number" id="page" value=1 hidden>
                 <select name="" id="fesMonth" onchange="searchFestivalList()">
-                    
+
                 </select>
                 <select name="" id="fesLocal" onchange="searchFestivalList()">
-                    
+
                 </select>
                 축제명 검색
                 <input type="text" id="fesTitle"><button type="button" onclick="searchFestivalList()">검색하기</button>
@@ -39,12 +39,10 @@
             <div class="paginaiton"></div>
             <!-- FOOTER -->
             <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+                <script src="/resources/js/createFestivalList.js"></script>
+                <script src="/resources/js/searchOption.js"></script>
+                <script src="/resources/js/common.js"></script>
                 <script>
-            <%@include file = "/resources/js/common.js" %>
-            <%@include file = "/resources/js/searchOption.js" %>
-            <%@include file = "/resources/js/createFestivalList.js" %>
-
-                        let oneTime = false; // 글로벌 변수
 
                     window.onload = function () {
                         addMonthOption();
@@ -56,20 +54,6 @@
                             .then(jsonData => {
                                 createList(jsonData);
                             });
-                    }
-                    function YesScroll() {
-                        const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
-                        const fullContent = document.querySelector('body'); // 전체를 둘러싼 컨텐츠 정보획득
-                        const screenHeight = screen.height; // 화면 크기
-                        document.addEventListener('scroll', OnScroll, { passive: true }) // 스크롤 이벤트함수정의
-                        function OnScroll() { //스크롤 이벤트 함수
-                            const fullHeight = fullContent.clientHeight; // 높이   
-                            const scrollPosition = pageYOffset; // 스크롤 위치
-                            if (fullHeight - screenHeight <= scrollPosition && !oneTime) { // 만약 전체높이-화면높이/2가 스크롤포지션보다 작아진다면, 그리고 oneTime 변수가 거짓이라면
-                                oneTime = true; // oneTime 변수를 true로 변경해주고,
-                                loadFestivalList(); // 컨텐츠를 추가하는 함수를 불러온다.
-                            }
-                        }
                     }
                     YesScroll()
                 </script>

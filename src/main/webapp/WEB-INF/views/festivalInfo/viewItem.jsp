@@ -92,9 +92,8 @@
 
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+				<script src="/resources/js/common.js"></script>
 					<script>
-						<%@include file = "/resources/js/common.js" %>
-
 							/* 마이리스트 추가 */
 							function insertMyList() {
 								const param = {};
@@ -271,7 +270,7 @@
 									document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
 									ready.remove();
 									const readyLoc = document.querySelector('#readyStateLoc');
-									
+
 									//상세정보 불러오기
 									readyLoc.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
 									let url = "contentid=" + fest.contentid + "&mapx=" + fest.mapx + "&mapy=" + fest.mapy

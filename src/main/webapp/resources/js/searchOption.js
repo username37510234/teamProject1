@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-// 검색 옵션에 1~12월 추가
-function addMonthOption() {
-    let monthHtml = '<option value="">선택</option>';
-    for (let i = 1; i <= 12; i++) {
-        monthHtml += '<option value="' + String(i).padStart(2, "0") + '">' + i + '월</option>';
+    // 검색 옵션에 1~12월 추가
+    function addMonthOption() {
+        let monthHtml = '<option value="">선택</option>';
+        for (let i = 1; i <= 12; i++) {
+            monthHtml += '<option value="' + String(i).padStart(2, "0") + '">' + i + '월</option>';
+        }
+        document.querySelector('#fesMonth').innerHTML += monthHtml;
     }
-    document.querySelector('#fesMonth').innerHTML += monthHtml;
-}
 
 //검색 옵션에 지역 추가
 function addLocalOption() {
@@ -22,10 +20,10 @@ function addLocalOption() {
 }
 
 function searchUrl() {
-	const searchObjs = document.querySelectorAll('#searchOption [id]')
-	let url = '?';
-	for (let searchObj of searchObjs) {
-		url += searchObj.id + '=' + searchObj.value + '&';
-	}
-	return url;
+    const searchObjs = document.querySelectorAll('#searchOption [id]')
+    let url = '?';
+    for (let searchObj of searchObjs) {
+        url += searchObj.id + '=' + searchObj.value + '&';
+    }
+    return url;
 }
