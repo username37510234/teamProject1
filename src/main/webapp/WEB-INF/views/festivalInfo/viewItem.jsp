@@ -6,14 +6,13 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
 
 			<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
 				integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 			<style>
 				.like_btn {
 					width: 40px;
@@ -32,93 +31,100 @@
 
 			<!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
-				<div class="float-start" style="width: 65%;">
-					<div id="readyState" class="text-center"></div>
-					<div id="mainContent" class="container text-center">
-						<table style="margin-top: 100px; width: 100%;">
-							<tbody id="festivalInfo"></tbody>
-						</table>
-						<br>
-						<div id="thumbImgs"></div>
-						<div id="map" class="container" style="width:500px;height:400px;">
+				<main>
+					<div id="mainContent">
+						<div class="float-start" style="width: 65%;">
+							<div id="readyState" class="text-center"></div>
+							<div id="mainContent" class="container text-center">
+								<!-- 축제 정보 파트 -->
+								<table style="margin-top: 100px; width: 80%; margin-left: 15%;">
+									<tbody id="festivalInfo"></tbody>
+								</table>
+								<br>
+								<!-- 썸네일 이미지 파트 -->
+								<div id="thumbImgs"></div>
+								<!-- 카카오 맵 파트 -->
+								<div id="map" class="container" style="width:500px;height:400px;">
+								</div>
+							</div>
+							<div>
+
+								<button id="like" class="like_btn">
+									<svg aria-label="좋아요" class="love" color="#262626" fill="#262626" height="24"
+										role="img" viewBox="0 0 24 24" width="24">
+										<path
+											d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
+										</path>
+									</svg>
+								</button>
+
+								<span id="like_cnt">
+									0
+								</span>
+
+							</div>
+
+							<!-- 마이리스트 추가 -->
+							<c:if test="${userInfo eq null}">
+								<div>
+									<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
+									<button onclick="location.href='/views/my-list/'">마이리스트 추가</button>
+								</div>
+							</c:if>
+							<c:if test="${userInfo ne null}">
+								<div>
+									<button onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
+								</div>
+							</c:if>
+
 						</div>
+						<!-- 관광지 파트 -->
+						<div id="location" class="float-end container" style="width: 35%; margin-top:100px">
+							<h2> 추천 주변 관광지</h2>
+							<div id="readyStateLoc" class="text-center"></div>
+						</div>
+						<div style="clear: both;"></div>
 					</div>
-					<div>
+					<!-- 댓글 시작 -->
+					<hr />
 
-						<button id="like" class="like_btn">
-							<svg aria-label="좋아요" class="love" color="#262626" fill="#262626" height="24" role="img"
-								viewBox="0 0 24 24" width="24">
-								<path
-									d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
-								</path>
-							</svg>
-						</button>
-
-						<span id="like_cnt">
-							0
-						</span>
-
+					<div class="comment_subject">
+						<h2>리뷰</h2>
 					</div>
 
-					<!-- 마이리스트 추가 -->
-					<c:if test="${userInfo eq null}">
-						<div>
-							<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
-							<button onclick="location.href='/views/my-list/'">마이리스트 추가</button>
-						</div>
-					</c:if>
-					<c:if test="${userInfo ne null}">
-						<div>
-							<button onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
-						</div>
-					</c:if>
+					<button onclick="showPopup();">리뷰 쓰기</button>
 
-				</div>
-				<div id="location" class="float-end container" style="width: 35%; margin-top:100px">
-					<h2> 추천 주변 관광지</h2>
-					<div id="readyStateLoc" class="text-center"></div>
-				</div>
-
-				<!-- 댓글 시작 -->
-				<hr />
-
-				<div class="comment_subject">
-					<h2>리뷰</h2>
-				</div>
-
-				<button onclick="showPopup();">리뷰 쓰기</button>
-
-				<!-- 댓글 끝 -->
-
+					<!-- 댓글 끝 -->
+				</main>
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-				<script src="/resources/js/common.js"></script>
+					<script src="/resources/js/common.js"></script>
 					<script>
-							/* 마이리스트 추가 */
-							function insertMyList() {
-								const param = {};
-								param.uiNum = ${ userInfo.uiNum }
-								param.fiNum = ${ param.fiNum }
-								fetch('/my-lists', {
-									method: 'POST',
-									headers: {
-										'Content-Type': 'application/json'
-									},
-									body: JSON.stringify(param)
+						/* 마이리스트 추가 */
+						function insertMyList() {
+							const param = {};
+							param.uiNum = ${ userInfo.uiNum }
+							param.fiNum = ${ param.fiNum }
+							fetch('/my-lists', {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify(param)
+							})
+								.then(function (res) {
+									return res.json();
 								})
-									.then(function (res) {
-										return res.json();
-									})
-									.then(function (data) {
-										console.log(data);
-										if (data === 1) {
-											alert('등록 완료');
-										} else {
-											alert('등록 취소');
-											deleteMyList();
-										}
-									})
-							}
+								.then(function (data) {
+									console.log(data);
+									if (data === 1) {
+										alert('등록 완료');
+									} else {
+										alert('등록 취소');
+										deleteMyList();
+									}
+								})
+						}
 
 						/* 마이리스트 삭제 */
 						function deleteMyList() {
@@ -278,16 +284,18 @@
 										.then(detailData => {
 											const deatilFest = detailData.festivalInfo;
 											html = '';
-											if (deatilFest.telname) {
-												html += '<tr><td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+											if (deatilFest) {
+												if (deatilFest.telname) {
+													html += '<tr><td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+												}
+												if (deatilFest.homepage) {
+													html += '<tr><td>홈페이지</td><td>' + deatilFest.homepage + '</td></tr>';
+												}
+												if (deatilFest.overview) {
+													html += '<tr><td colspan=2>' + deatilFest.overview + '</td></tr>';
+												}
+												document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
 											}
-											if (deatilFest.homepage) {
-												html += '<tr><td>홈페이지</td><td>' + deatilFest.homepage + '</td></tr>';
-											}
-											if (deatilFest.overview) {
-												html += '<tr><td colspan=2>' + deatilFest.overview + '</td></tr>';
-											}
-											document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
 											if (detailData.festivalImages != null && detailData.festivalImages.length !== 0) {
 												const fesPictures = detailData.festivalImages;
 												let imghtml = '';

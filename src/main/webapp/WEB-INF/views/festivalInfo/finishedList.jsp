@@ -12,31 +12,33 @@
     <body>
         <!-- HEADER -->
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
-            <div id="searchOption" class="container">
-                <input type="number" id="page" value=1 hidden>
-                <select name="" id="fesMonth" onchange="searchFestivalList()">
+            <main>
+                <div id="searchOption" class="container">
+                    <input type="number" id="page" value=1 hidden>
+                    <select name="" id="fesMonth" onchange="searchFestivalList()">
 
-                </select>
-                <select name="" id="fesLocal" onchange="searchFestivalList()">
+                    </select>
+                    <select name="" id="fesLocal" onchange="searchFestivalList()">
 
-                </select>
-                축제명 검색
-                <input type="text" id="fesTitle"><button type="button" onclick="searchFestivalList()">검색하기</button>
-            </div>
-            <div id="mainContent" class="container">
-                <div id="totalNum"></div>
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>축제 이름</th>
-                        <th>위치</th>
-                        <th>시작일</th>
-                        <th>종료일</th>
-                    </tr>
-                    <tbody id="tBody"></tbody>
-                </table>
-            </div>
-            <div class="paginaiton"></div>
+                    </select>
+                    축제명 검색
+                    <input type="text" id="fesTitle"><button type="button" onclick="searchFestivalList()">검색하기</button>
+                </div>
+                <div id="mainContent" class="container">
+                    <div id="totalNum"></div>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>축제 이름</th>
+                            <th>위치</th>
+                            <th>시작일</th>
+                            <th>종료일</th>
+                        </tr>
+                        <tbody id="tBody"></tbody>
+                    </table>
+                </div>
+                <div class="paginaiton"></div>
+            </main>
             <!-- FOOTER -->
             <%@ include file="/WEB-INF/views/common/footer.jsp" %>
                 <script src="/resources/js/createFestivalList.js"></script>

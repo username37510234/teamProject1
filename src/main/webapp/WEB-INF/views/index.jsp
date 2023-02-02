@@ -20,7 +20,7 @@
 
 				<!-- MAIN -->
 				<main>
-					<div>
+					<div class="container align-items-center">
 						<div id="carouselFestivalCaptions" class="carousel slide" data-bs-ride="carousel"
 							style="width: 600px;height:600px;">
 							<div class="carousel-indicators">
