@@ -8,17 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${uiId eq null}">
-	<input type="text" id="uiNickname" placeholder="닉네임"><button onclick="checkId()">중복확인</button><br>
+	<a>추가 정보를 입력해주세요.</a>
+	<c:if test="${uiId ne null}"><br>
 	<input type="text" id="uiName" placeholder="이름"><br>
+	<input type="text" id="uiNickname" placeholder="닉네임"><button onclick="checkUiNickname()">중복확인</button><br>
 	<input type="password" id="uiPwd" placeholder="비밀번호"><br>
 	<input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
 	<button onclick="join()">회원가입</button>
 	</c:if>
 	
-	<script type="text/javascript">
-	let isCheckedId = '${uiId}'? true : false;
-	
+	<script>
+	let isCheckedNickname = '${uiNickname}'? true : false;
 	function checkUiNickname() {
 		const uiNickname = document.querySelector('#uiNickname').value;
 		if(uiNickname.trim().length<=2){
@@ -50,7 +50,7 @@
 	}
 	
 	function join() {
-		if(!isCheckedId){
+		if(!checkUiNickname){
 			alert('중복확인 해주세요.');
 			return false;
 		}
@@ -93,7 +93,7 @@
 		.then(function(data){
 			console.log(data);
 			alert('회원가입이 완료되었습니다.')
-			location.href='/'
+			location.href='/views/index'
 		})
 	}
 	</script>

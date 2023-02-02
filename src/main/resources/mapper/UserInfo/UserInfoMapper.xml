@@ -12,15 +12,19 @@
 		<include refid="userInfoCols"></include>
 		FROM USER_INFO
 	</select>
-	<!-- 카카오 로그인 -->
-	<select id="selectUserInfoByUiId" resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
+	<!-- 카카오 로그인 코드 받아오기 -->
+	<select id="selectUserInfoByKakaoId" resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
+		SELECT
+		UI_ID
+		FROM USER_INFO
+		WHERE UI_ID=#{uiId}
+	</select>
+	<select id="selectUserInfoByIdAndPwd" resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
 		SELECT
 		<include refid="userInfoCols"></include>
 		FROM USER_INFO
-		WHERE UI_ID=#{uiId}
-		<where>
-			UI_ID = null
-		</where>
+		WHERE UI_ID = #{uiId}
+		AND UI_PWD = #{uiPwd}
 	</select>
 	<select id="selectUserInfoByNickName" resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
 		SELECT
@@ -33,13 +37,6 @@
 		<include refid="userInfoCols"></include>
 		FROM USER_INFO
 		WHERE UI_NUM=#{uiNum}
-	</select>
-	<select id="selectUserInfoByIdAndPwd" resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
-		SELECT
-		<include refid="userInfoCols"></include>
-		FROM USER_INFO
-		WHERE UI_ID = #{uiId}
-		AND UI_PWD = #{uiPwd}
 	</select>
 	<insert id="insertUserInfo">
 		INSERT INTO USER_INFO(
@@ -60,12 +57,8 @@
 		UI_PWD=#{uiPwd}
 		WHERE UI_NUM=#{uiNum}
 	</update>
-	<!-- 회원 탈퇴시 ID, 생성일자를 제외한 개인 정보 삭제 후 계정 비활성화 -->
-	<delete id="updateUserInfoActive">
-		UPDATE USER_INFO
-		SET UI_NAME='0',
-		UI_NICKNAME='0',
-		UI_PWD='0'
+	<delete id="deleteUserInfo">
+		DELETE FROM USER_INFO 
 		WHERE UI_NUM=#{uiNum}
 	</delete>
 </mapper>

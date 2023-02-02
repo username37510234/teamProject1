@@ -97,6 +97,20 @@
 		</where>
 		ORDER BY EVENTENDDATE DESC
 	</select>
+	<select id="selectMostLikedfestivalLists" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO">
+		
+	 SELECT COUNT(LI.FI_NUM) AS LIKECNT,
+      F.*
+      FROM FESTIVAL_INFORMATION AS F
+      LEFT JOIN LIKE_INFO LI ON F.FI_NUM = LI.FI_NUM
+      GROUP BY F.FI_NUM
+      HAVING LIKECNT > 0
+      AND EVENTENDDATE >  DATE_FORMAT(NOW(), '%Y%m%d')  
+      ORDER BY LIKECNT DESC
+     
+		
+		
+	</select>
 	<update id="updateFestivalInformation">
 		UPDATE FESTIVAL_INFORMATION
 		SET

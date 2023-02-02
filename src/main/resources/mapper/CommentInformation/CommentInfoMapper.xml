@@ -2,29 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInfoMapper">
 
-	<!-- 댓글 작성 -->
+	<!-- 댓글 등록 -->
 	<insert id="CommentRegist">
-  		INSERT INTO COMMENT_INFO(CI_WRITER, CI_CONTENT, CI_REGDATE, FI_NUM)
-		values (#{ciWriter}, #{ciContent}, #{ciRegdate}, #{fiNum})
+  		INSERT INTO COMMENT_INFO(FI_NUM, CI_WRITER, CI_CONTENT, CI_RATING)
+			VALUES(#{fiNum}, #{ciWriter}, #{ciContent}, #{ciRating})
   	</insert>
   	
   	<!-- 댓글 조회 -->
-  	<select id="getList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+  	<select id="CommentSelectList" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
   		SELECT * FROM COMMENT_INFO WHERE FI_NUM = #{fiNum}
   	</select>
   	
-  	<update id="CommentUpdate" parameterType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+  	<select id="CommentSelect" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+  		SELECT * FROM COMMENT_INFO WHERE FI_NUM = #{fiNum}
+  	</select>
+  	
+  	<!-- 댓글 수정 -->
+  	<update id="CommentUpdate">
   		UPDATE COMMENT_INFO SET
   			CI_WRITER = #{ciWriter},
   			CI_CONTENT = #{ciContent}
   		WHERE CI_NUM = #{ciNum}
-  			and FI_NUM = #{fiNum}
   	</update>
-	
+  	
+	<!-- 댓글 삭제 -->
 	<delete id="CommentDelete" parameterType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
 		DELETE FROM COMMENT_INFO
 			WHERE CI_NUM = #{ciNum}
-				and FI_NUM = #{fiNum}
 	</delete>
 	
 	

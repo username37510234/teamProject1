@@ -13,7 +13,6 @@ public interface UserInfoMapper {
 	UserInfoVO selectUserInfoByIdAndPwd(UserInfoVO userInfo);
 	int insertUserInfo(UserInfoVO userInfo);
 	int updateUserInfo(UserInfoVO userInfo);
-	int updateUserInfoActive(int uiNum);
+	int deleteUserInfo(int uiNum);
 	
 }
-

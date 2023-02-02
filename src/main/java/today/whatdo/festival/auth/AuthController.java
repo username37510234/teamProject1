@@ -91,13 +91,13 @@ public class AuthController {
 		kakaoLogin = res.getBody();
 
 		UserInfoVO loginUserInfo = userInfoService.selectUserInfoByKakaoId(kakaoLogin.getId());
-		//값이 null이면 회원가입 화면으로 이동
-		//값이 null이 아니면 가입처리
+		//값이 null이면(처음 가입한 회원) 회원가입 화면으로 이동
 		if (loginUserInfo == null) {
 			model.addAttribute("uiId", kakaoLogin.getId());
 			return "views/user-info/join";
 		}
+		//값이 null이 아니면(이미 가입한 회원) 로그인
 		session.setAttribute("userInfo", loginUserInfo);
-		return "/";
+		return "views/kakao/login";
 	}
 }

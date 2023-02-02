@@ -67,12 +67,10 @@ public class UserInfoService {
 	}
 	public boolean removeUserInfo(UserInfoVO userInfo, int uiNum) {
 		if(checkPassword(userInfo,uiNum)) {
-			if(userInfoMapper.updateUserInfoActive(uiNum)==1) {
+			if(userInfoMapper.deleteUserInfo(uiNum)==1) {
 				return true;
 			}
 		}
 		return false;
 	}
 }
-
-

@@ -64,13 +64,4 @@ public class UserInfoController {
 		return userInfoService.removeUserInfo(userInfo, uiNum);
 	}
 	
-	@PostMapping("/login")
-	public @ResponseBody UserInfoVO login(@RequestBody UserInfoVO userInfo, HttpSession session) {
-		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
-		if (loginUserInfo != null) {
-			session.setAttribute("userInfo", loginUserInfo);
-			loginUserInfo.setUiPwd(null);
-		}
-		return loginUserInfo;
-	}
 }

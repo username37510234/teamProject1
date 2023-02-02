@@ -9,7 +9,7 @@
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 			<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab2b2200ac883488e69cf3fa876c5f25"></script>
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
 
 			<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
 				integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
@@ -33,6 +33,8 @@
 			<!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<div class="float-start" style="width: 65%;">
+					<div id="modal"></div>
+					<div id="readyState" class="text-center"></div>
 					<table style="margin-left: 31%; margin-top: 100px">
 						<tbody id="festivalInfo"></tbody>
 					</table>
@@ -78,65 +80,44 @@
 				<!-- 댓글 시작 -->
 				<hr />
 
-				<ul>
-					<c:forEach items="${comment}" var="comment">
-					<li>
-						<div>
-							<p>${comment.ciWriter} / ${comment.ciRegdate}</p>
-							<p>${comment.ciContent }</p>
-						</div>
-					</li>	
-					</c:forEach>
-				</ul>
-
-				<div>
-
-					<form method="post" action="/reply/write">
-					
-						<p>
-							<label>댓글 작성자</label> <input type="text" name="writer">
-						</p>
-						<p>
-							<textarea rows="5" cols="50" name="content"></textarea>
-						</p>
-						<p>
-							<input type="hidden" name="fiNum" value="${param.fiNum}">
-							<button type="submit">댓글 작성</button>
-						</p>
-					</form>
-					
+				<div class="comment_subject">
+					<h2>리뷰</h2>
 				</div>
+
+				<button onclick="showPopup();">리뷰 쓰기</button>
+
 				<!-- 댓글 끝 -->
 
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 					<script>
 
-						/* 마이리스트 추가 */
-						function insertMyList() {
-							const param = {};
-							param.uiNum = ${ userInfo.uiNum }
-							param.fiNum = ${ param.fiNum }
-							fetch('/my-lists', {
-								method: 'POST',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify(param)
-							})
-								.then(function (res) {
-									return res.json();
+						<%@include file = "/resources/js/common.js" %>
+							/* 마이리스트 추가 */
+							function insertMyList() {
+								const param = {};
+								param.uiNum = ${ userInfo.uiNum }
+								param.fiNum = ${ param.fiNum }
+								fetch('/my-lists', {
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify(param)
 								})
-								.then(function (data) {
-									console.log(data);
-									if (data === 1) {
-										alert('등록 완료');
-									} else {
-										alert('등록 취소');
-										deleteMyList();
-									}
-								})
-						}
+									.then(function (res) {
+										return res.json();
+									})
+									.then(function (data) {
+										console.log(data);
+										if (data === 1) {
+											alert('등록 완료');
+										} else {
+											alert('등록 취소');
+											deleteMyList();
+										}
+									})
+							}
 
 						/* 마이리스트 삭제 */
 						function deleteMyList() {
@@ -255,21 +236,31 @@
 						})
 
 						window.onload = function () {
-
-							fetch("/festival-info/${param.fiNum}")
-								.then(function (result) {
-									return result.json();
-								}).then(function (toJsonData) {
-									let html = '';
-									const fest = toJsonData.festivalInfo;
-									html += '<tr><td colspan=2><img src="' + fest.firstimage + '" height=600px width=100%></td></tr>';
-									html += '<tr><td>축제명</td><td>' + fest.title + '</td></tr>';
-									html += '<tr><td>위치</td><td>' + fest.addr1;
-									if(fest.addr2){
-										html+= ' ' + fest.addr2;
+							const ready = document.querySelector('#readyState');
+							ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+							fe("/festival-info/${param.fiNum}")
+								.then(jsonData => {
+									if (jsonData.status === 500) {
+										alert('잘못된 요청입니다.');
+										location.replace("/");
+										return;
 									}
-									html +=	'</td></tr>';
-									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0,4)+'년 '+fest.eventstartdate.substr(5,2)+'월 '+fest.eventstartdate.substr(7,2)+'일' + '</td></tr>';
+									let html = '';
+									const fest = jsonData.festivalInfo;
+									if (!fest) {
+										ready.insertAdjacentHTML("afterbegin", '<div class="alert alert-danger" role="alert" onclick="location.reload()">페이지를 불러오는 데 실패하였습니다. 접속한 페이지의 주소가 맞다면, <b>새로고침</b> 해주세요.</div>');
+										return;
+									}
+									if (fest.firstimage) {
+										html += '<tr><td colspan=2><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
+									}
+									html += '<tr><td width="200px">축제명</td><td>' + fest.title + '</td></tr>';
+									html += '<tr><td>위치</td><td>' + fest.addr1;
+									if (fest.addr2) {
+										html += ' ' + fest.addr2;
+									}
+									html += '</td></tr>';
+									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td></tr>';
 									html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
 									if (fest.homepage) {
 										html += '<tr><td>홈페이지</td><td>' + fest.homepage + '</td></tr>';
@@ -281,24 +272,25 @@
 									if (fest.overview) {
 										html += '<tr><td colspan=2>' + fest.overview + '</td></tr>';
 									}
-									if (toJsonData.festivalImages != null && toJsonData.festivalImages.length !== 0) {
-										const fesPictures = toJsonData.festivalImages;
+									if (jsonData.festivalImages != null && jsonData.festivalImages.length !== 0) {
+										const fesPictures = jsonData.festivalImages;
 										if (fesPictures.length >= 1) {
 											for (let fesPicture of fesPictures) {
-												html += '<img src="' + fesPicture.originimgurl + '" width=200px height=200px title="' + fesPicture.imgname + '">';
+												html += '<img src="' + fesPicture.originimgurl + '" width=200px title="' + fesPicture.imgname + '" class="img-thumbnail">';
 											}
 										}
 									}
 									document.querySelector('#festivalInfo').innerHTML = html;
 									html = '<ul class="list-group">';
-									document.querySelector('title').innerText = fest.title;
-									const locations = toJsonData.locationInfo;
+									document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
+									const locations = jsonData.locationInfo;
 									for (let location of locations) {
 										html += '<li class="list-group-item"><img src="' + location.firstimage2;
 										html += '" width="100px"><br>관광지명 :' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
 									}
 									html += '</ul>';
-									document.querySelector('#location').innerHTML += html;
+									ready.innerHTML = '';
+									document.querySelector('#location').insertAdjacentHTML('beforeend', html);
 									var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 									if (fest.mlevel != "") {
 										mlevel = fest.mlevel;
@@ -336,6 +328,9 @@
 								});
 
 						}
+
+						//리뷰쓰기 
+						function showPopup() { window.open("commentRegist", "a", "width=600, height=700, left=300, top=300, scrollbars=yes"); }
 
 					</script>
 		</body>
