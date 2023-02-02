@@ -25,6 +25,9 @@ function createList(jsonData) {
     }
     body.insertAdjacentHTML('beforeend', html);
     document.querySelector('#totalNum').innerHTML = '총 ' + jsonData.total + ' 개의 축제가 검색되었습니다.';
+    if(Number(document.querySelector('#page').value)===jsonData.pages){
+        return;
+    }
     oneTime = false;
     document.querySelector('#page').value = Number(document.querySelector('#page').value) + 1;
 }
