@@ -53,8 +53,7 @@
 	<update id="updateUserInfo">
 		UPDATE USER_INFO
 		SET UI_NAME=#{uiName},
-		UI_NICKNAME=#{uiNickname},
-		UI_PWD=#{uiPwd}
+		UI_NICKNAME=#{uiNickname}
 		WHERE UI_NUM=#{uiNum}
 	</update>
 	<delete id="deleteUserInfo">
