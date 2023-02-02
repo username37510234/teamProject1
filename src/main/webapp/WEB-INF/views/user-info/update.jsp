@@ -10,7 +10,7 @@
 	<div>
 		이름 : <input type="text" id="uiName" value="${userInfo.uiName}"><br>
 		닉네임 : <input type="text" id="uiNickname" value="${userInfo.uiNickname}"><br>
-	</div>
+	</div> 
 	<button onclick="update()">회원수정</button>
 	<script>
 	function update(){
