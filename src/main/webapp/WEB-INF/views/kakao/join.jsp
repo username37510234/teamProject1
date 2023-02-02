@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,37 +8,95 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<!-- 카카오 로그인 -->
-	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-	  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous">
-	</script>
-	<script>
-	  Kakao.init('82febca4b29e4327a47c30d8e9856913'); // <-- app KEY!!(사용하려는 앱의 JavaScript 키 입력)
-	</script>
-	
-		<div>
-			<a>
-				저희 사이트는 카카오 간편 가입을 지원하고 있습니다.<br>
-			</a>
-		</div>
-	
-	<!-- 카카오 로그인 -->
-	<a id="kakao-login-btn" href="javascript:loginWithKakao()">
-	  <br><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-	    alt="카카오 가입 버튼" />
-	</a>
-	<p id="token-result"></p>
+	<a>추가 정보를 입력해주세요.</a>
+	<c:if test="${uiId ne null}"><br>
+	<input type="text" id="uiName" placeholder="이름"><br>
+	<input type="text" id="uiNickname" placeholder="닉네임"><button onclick="checkUiNickname()">중복확인</button><br>
+	<input type="password" id="uiPwd" placeholder="비밀번호"><br>
+	<input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
+	<button onclick="join()">회원가입</button>
+	</c:if>
 	
 	<script>
-	/* 카카오 로그인 */
-	function loginWithKakao() {
-	    Kakao.Auth.authorize({
-	    	/* 나중에 localhost를 엘라스틱IP로 변경해야한다. */
-	      redirectUri: 'http://localhost/auth/oauth',
-	    });
-	  }
-	</script>
 	
+	let isCheckedNickname = false;
+	function checkUiNickname() {
+		const uiNickname = document.querySelector('#uiNickname').value;
+		if(uiNickname.trim().length<=2){
+			alert('닉네임은 2글자 이상입니다.');
+			return;
+		}
+		fetch('/user-infos/check-nickname/' + uiNickname)
+		.then(function(data){
+			return data.json();
+		})
+		.then(function(res){
+			if(res===false){
+				alert('이용이 가능한 닉네임 입니다.');
+				isCheckedNickname = true;
+			}else{
+				alert('이미 등록되어 있는 닉네임 입니다.');
+				isCheckedNickname = false;
+			}
+		});
+	}
+	
+	function getParam(){
+		const objs = document.querySelectorAll('input');
+		const param = {};
+		for(const obj of objs){
+			param[obj.id] = obj.value;
+		}
+		return param;
+	}
+	
+	function join() {
+		if(!isCheckedNickname){
+			alert('닉네임 중복확인 해주세요.');
+			return false;
+		}
+		const uiNickname = document.querySelector('#uiNickname')
+		if(uiNickname && uiNickname.value.trim().length<=2){
+			alert('닉네임은 2글자 이상입니다.');
+			uiId.value='';
+			uiId.focus();
+			return;
+		}
+		const uiPwd = document.querySelector('#uiPwd');
+		if(uiPwd && uiPwd.value.trim().length<6){
+			alert('비밀번호는 6글자 이상입니다.');
+			uiPwd.value='';
+			uiPwd.focus();
+			return;
+		}
+		const uiPwdCheck = document.querySelector('#uiPwdCheck');
+		if(uiPwdCheck && uiPwd.value != uiPwdCheck.value){
+			alert('비밀번호와 비밀번호 확인이 다릅니다.');
+			uiPwdCheck.value='';
+			uipwdCheck.focus();
+			return;
+		}
+		
+		const param = getParam();
+		//카카오 코드 받아오기
+		param.uiId= '${uiId}';
+		
+		fetch('/user-infos',{
+			method : 'POST',
+			headers : {
+				'Content-Type' : 'application/json'
+			},
+			body : JSON.stringify(param)
+		})
+		.then(function(res){
+			return res.json()
+		})
+		.then(function(data){
+			console.log(data);
+			alert('회원가입이 완료되었습니다.')
+			location.href='/views/index'
+		})
+	}
+	</script>
 </body>
 </html>

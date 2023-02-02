@@ -31,8 +31,14 @@ public class UserInfoController {
 		model.addAttribute("userList", userInfoService.getUserInfos(userInfo));
 		return "views/user-info/list";
 	}
+	
+	@GetMapping("/user-infos/check/{uiId}")
+	@ResponseBody
+	public boolean existsUserId(@PathVariable("uiId") String uiId) {
+		return userInfoService.existsUserId(uiId);
+	}
 
-	@GetMapping("/user-infos/check/{uiNickname}")
+	@GetMapping("/user-infos/check-nickname/{uiNickname}")
 	@ResponseBody
 	public boolean existsUserNickname(@PathVariable("uiNickname") String uiNickname) {
 		return userInfoService.existsUserNickname(uiNickname);

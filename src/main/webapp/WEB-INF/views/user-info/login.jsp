@@ -19,11 +19,17 @@
 	<!-- 로그인이 안됐을 때 나오는 메시지 -->
 	<P>${msg}</P>
 	
-		<div>
-			<a>
-				저희 사이트는 카카오 간편 로그인을 지원하고 있습니다.<br>
-			</a>
-		</div>
+	<div>
+		<input type="text" id="uiId" placeholder="아이디"><br>
+		<input type="password" id="uiPwd" placeholder="비밀번호"><br>
+		<button onclick="login()">Login</button><br><br>
+	</div>
+	
+	<div>
+		<a>
+			카카오 간편 로그인으로도 가입이 가능합니다.<br>
+		</a>
+	</div>
 	
 	<!-- 카카오 로그인 -->
 	<a id="kakao-login-btn" href="javascript:loginWithKakao()">
@@ -39,7 +45,37 @@
 	    	/* 나중에 localhost를 엘라스틱IP로 변경해야한다. */
 	      redirectUri: 'http://localhost/auth/oauth',
 	    });
-	  }
+	}
+	
+	/* 일반 로그인 */
+	function login(){
+		let param = {
+				uiId : document.querySelector('#uiId').value,
+				uiPwd : document.querySelector('#uiPwd').value
+		}
+		fetch('/auth/login',{
+			method:'POST',
+			headers:{
+				'Content-Type':'application/json'
+			},
+			body:JSON.stringify(param)
+		})
+		.then(function(res){
+			return res.text();
+		})
+		.then(function(data){
+			if(data ){
+				data=JSON.parse(data);
+				if(data.uiName){
+					alert(data.uiName + '님 로그인 완료!');
+					location.href='/';
+					return;
+				}
+			}
+		alert('아이디 비번을 확인해주세요.');
+		})
+	}
+	
 	</script>
 	
 </body>

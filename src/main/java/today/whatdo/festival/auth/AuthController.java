@@ -94,7 +94,7 @@ public class AuthController {
 		//값이 null이면(처음 가입한 회원) 회원가입 화면으로 이동
 		if (loginUserInfo == null) {
 			model.addAttribute("uiId", kakaoLogin.getId());
-			return "views/user-info/join";
+			return "views/kakao/join";
 		}
 		//값이 null이 아니면(이미 가입한 회원) 로그인
 		session.setAttribute("userInfo", loginUserInfo);

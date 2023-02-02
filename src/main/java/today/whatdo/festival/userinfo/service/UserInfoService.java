@@ -21,6 +21,13 @@ public class UserInfoService {
 		return userInfoMapper.selectUserInfoList(userInfo);
 	}
 	
+	public boolean existsUserId(String uiId) {
+		if(userInfoMapper.selectUserInfoByUiId(uiId)==null) {
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean existsUserNickname(String uiNickname) {
 		if(userInfoMapper.selectUserInfoByNickName(uiNickname)==null) {
 			return false;

@@ -23,7 +23,7 @@
 					<c:if test="${userInfo eq null}">
 						<button class="btn btn-outline-primary me-2"
 							onclick='location.href="/views/user-info/login"'>로그인</button>
-						<button class="btn btn-outline-primary me-2" onclick='location.href="/views/kakao/join"''>회원가입</button>
+						<button class="btn btn-outline-primary me-2" onclick='location.href="/views/user-info/join"''>회원가입</button>
 					</c:if>
 					<c:if test="${userInfo ne null}">
 					<button class="btn btn-outline-primary me-2" onclick=' location.href="/auth/logout"''>로그아웃</button>

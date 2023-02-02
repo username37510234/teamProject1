@@ -26,6 +26,12 @@
 		WHERE UI_ID = #{uiId}
 		AND UI_PWD = #{uiPwd}
 	</select>
+	<select id="selectUserInfoByUiId" resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
+		SELECT
+		<include refid="userInfoCols"></include>
+		FROM USER_INFO
+		WHERE UI_ID = #{uiId}
+	</select>
 	<select id="selectUserInfoByNickName" resultType="today.whatdo.festival.userinfo.vo.UserInfoVO">
 		SELECT
 		<include refid="userInfoCols"></include>
