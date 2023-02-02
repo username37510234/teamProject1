@@ -58,21 +58,21 @@
                                 if (jsonData.prePage === 0) {
                                     html += '< ';
                                 } else {
-                                    html += '<a href="/views/festivalInfo/searchlist?page=1&fesTitle=${param.search}">' + '\<</a> ';
+                                    html += '<a href="/views/festivalInfo/searchlist?page=1&fesTitle=${param.fesTitle}">' + '\<</a> ';
                                 }
                                 for (pageNum of jsonData.navigatepageNums) {
                                     if (pageNum === jsonData.pageNum) {
                                         html += pageNum + ' ';
                                     } else {
-                                        html += '<a href="/views/festivalInfo/searchlist?page=' + pageNum + '&fesTitle=${param.search}">';
+                                        html += '<a href="/views/festivalInfo/searchlist?page=' + pageNum + '&fesTitle=${param.fesTitle}">';
                                         html += pageNum + "</a> ";
                                     }
                                 }
                                 if (jsonData.pageNum === jsonData.pages) {
                                     html += '> ' + jsonData.pageNum;
                                 } else {
-                                    html += '<a href="/views/festivalInfo/searchlist?page=' + jsonData.nextPage + '&fesTitle=${param.search}">' + '\></a> ';
-                                    html += '<a href="/views/festivalInfo/searchlist?page=' + jsonData.pages + '&fesTitle=${param.search}">' + jsonData.pages + '</a>'
+                                    html += '<a href="/views/festivalInfo/searchlist?page=' + jsonData.nextPage + '&fesTitle=${param.fesTitle}">' + '\></a> ';
+                                    html += '<a href="/views/festivalInfo/searchlist?page=' + jsonData.pages + '&fesTitle=${param.fesTitle}">' + jsonData.pages + '</a>'
                                 }
                                 html += '</h5></div>'
                                 paging.insertAdjacentHTML("beforeend", html);
