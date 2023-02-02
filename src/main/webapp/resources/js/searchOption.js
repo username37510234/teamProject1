@@ -20,7 +20,7 @@ function addLocalOption() {
 }
 
 function searchUrl() {
-    const searchObjs = document.querySelectorAll('#searchOption [id]')
+    const searchObjs = document.querySelectorAll('#searchOption input,select[id]')
     let url = '?';
     for (let searchObj of searchObjs) {
         url += searchObj.id + '=' + searchObj.value + '&';

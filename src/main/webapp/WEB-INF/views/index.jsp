@@ -2,7 +2,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 		<!DOCTYPE html>
 		<html lang="ko">
-		
+
 		<head>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
@@ -12,7 +12,7 @@
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 				integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 				crossorigin="anonymous"></script>
-				<link rel="stylesheet" href="/resources/css/common.css">				
+			<link rel="stylesheet" href="/resources/css/common.css">
 		</head>
 
 		<body>
@@ -44,12 +44,11 @@
 
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
+					<script src="/resources/js/common.js"></script>
 					<script>
-						<%@include file = "/resources/js/common.js" %>
-							window.onload = function () {
-								getReadCountFesInfoImg();
-							}
+						window.onload = function () {
+							getReadCountFesInfoImg();
+						}
 						function getReadCountFesInfoImg() {
 							fe('/festival-infos/readcount')
 								.then(function (list) {

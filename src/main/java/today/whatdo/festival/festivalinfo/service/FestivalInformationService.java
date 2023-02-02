@@ -40,9 +40,6 @@ public class FestivalInformationService {
 	public List<FestivalInformationVO> selectFestivalInformationByReadcount(FestivalInformationVO festivalInfo) {
 		return festivalInformationMapper.selectFestivalInformationByReadcount(festivalInfo);
 	}
-	
-
-		
 
 	// 축제 데이터 업데이트용 서비스
 	// 이미 존재하는 데이터일경우 변경사항을 업데이트만 하고
@@ -68,21 +65,27 @@ public class FestivalInformationService {
 		PageHelper.startPage(searchParameter.getPage(), 10);
 		return PageInfo.of(festivalInformationMapper.selectFestivalInformationLists(searchParameter));
 	}
-	
-	public PageInfo<FestivalInformationVO> getFinishedInformationList(SearchParameterVO searchParameter){
-		PageHelper.startPage(searchParameter.getPage(),10);
+
+	public PageInfo<FestivalInformationVO> getFinishedInformationList(SearchParameterVO searchParameter) {
+		PageHelper.startPage(searchParameter.getPage(), 10);
 		return PageInfo.of(festivalInformationMapper.selectFinishedInformationLists(searchParameter));
 	}
-	
-	public PageInfo<FestivalInformationVO> getMostLikeFestival(SearchParameterVO searchParameter){
-		PageHelper.startPage(searchParameter.getPage(),10);
+
+	public PageInfo<FestivalInformationVO> getMostLikeFestival(SearchParameterVO searchParameter) {
+		PageHelper.startPage(searchParameter.getPage(), 10);
 		return PageInfo.of(festivalInformationMapper.selectMostLikedfestivalLists(searchParameter));
 	}
+
 	public FestivalInformationVO getFestivalInformation(int fiNum) {
 		return festivalInformationMapper.selectFestivalInformationByNum(fiNum);
 	}
 
-	//api 호출을 위한 api 선언
+	public PageInfo<FestivalInformationVO> getFestvalInformationsBySearch(SearchParameterVO searchParameter) {
+		PageHelper.startPage(searchParameter.getPage(), 10);
+		return PageInfo.of(festivalInformationMapper.selectFestivalInformationBySearch(searchParameter));
+	}
+
+	// api 호출을 위한 api 선언
 	private final ApiNearFestivalInfo apiNearFestivalInfo;
 	private final ApiDetailFestivalInfo apiDetailFestivalInfo;
 	private final ApiFestivalImage apiFestivalImage;
@@ -91,7 +94,7 @@ public class FestivalInformationService {
 		FestivalResponseVO response = new FestivalResponseVO();
 		FestivalInformationVO detail = apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo);
 		response.setFestivalInfo(detail);
-		if("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
+		if ("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
 			return response;
 		}
 		response.setFestivalImages(apiFestivalImage.getFestivalImages(festivalInfo));

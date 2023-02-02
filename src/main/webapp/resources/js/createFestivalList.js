@@ -8,6 +8,10 @@ function createList(jsonData) {
     }
     html = '';
     const body = document.querySelector('#tBody');
+    if (jsonData.endRow == 0) {
+        body.innerHTML = '<td colspan="5"> <h3>검색 결과가 없습니다.</h3> </td>';
+        return;
+    }
     for (let data of jsonData.list) {
         html += '<tr><td><img src="';
         if (data.firstimage2) {
@@ -21,6 +25,9 @@ function createList(jsonData) {
     }
     body.insertAdjacentHTML('beforeend', html);
     document.querySelector('#totalNum').innerHTML = '총 ' + jsonData.total + ' 개의 축제가 검색되었습니다.';
+    if(Number(document.querySelector('#page').value)===jsonData.pages){
+        return;
+    }
     oneTime = false;
     document.querySelector('#page').value = Number(document.querySelector('#page').value) + 1;
 }
