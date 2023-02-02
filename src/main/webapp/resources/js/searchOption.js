@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 // 검색 옵션에 1~12월 추가
 function addMonthOption() {
     let monthHtml = '<option value="">선택</option>';
@@ -19,4 +17,13 @@ function addLocalOption() {
         localHtml += '<option value="' + local + '">' + local + '</option>';
     }
     document.querySelector("#fesLocal").innerHTML += localHtml;
+}
+
+function searchUrl() {
+    const searchObjs = document.querySelectorAll('#searchOption [id]')
+    let url = '?';
+    for (let searchObj of searchObjs) {
+        url += searchObj.id + '=' + searchObj.value + '&';
+    }
+    return url;
 }

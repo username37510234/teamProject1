@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class FestivalInformationController {
 	}
 	
 	@GetMapping("/festival-info/{fiNum}")
-	public FestivalResponseVO getFestivalInformation(@PathVariable("fiNum") int fiNum) {
+	public FestivalInformationVO getFestivalInformation(@PathVariable("fiNum") int fiNum) {
 		return festivalInformationService.getFestivalInformation(fiNum);
 	}
 	
@@ -51,5 +52,10 @@ public class FestivalInformationController {
 	@GetMapping("/festival-infos-likes")
 	public PageInfo<FestivalInformationVO> getMostLikeFestival(SearchParameterVO searchParameter){
 		return festivalInformationService.getMostLikeFestival(searchParameter);
+	}
+	
+	@GetMapping("/festival-details")
+	public FestivalResponseVO getFestvailDetails(@ModelAttribute FestivalInformationVO festivalInfo) {
+		return festivalInformationService.getFestivalDetails(festivalInfo);
 	}
 }
