@@ -33,13 +33,16 @@
 			<!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<div class="float-start" style="width: 65%;">
-					<div id="modal"></div>
 					<div id="readyState" class="text-center"></div>
-					<table style="margin-left: 31%; margin-top: 100px">
-						<tbody id="festivalInfo"></tbody>
-					</table>
-					<br>
-
+					<div id="mainContent" class="container text-center">
+						<table style="margin-top: 100px; width: 100%;">
+							<tbody id="festivalInfo"></tbody>
+						</table>
+						<br>
+						<div id="thumbImgs"></div>
+						<div id="map" class="container" style="width:500px;height:400px;">
+						</div>
+					</div>
 					<div>
 
 						<button id="like" class="like_btn">
@@ -73,8 +76,7 @@
 				</div>
 				<div id="location" class="float-end container" style="width: 35%; margin-top:100px">
 					<h2> 추천 주변 관광지</h2>
-				</div>
-				<div id="map" class="container" style="width:500px;height:400px;">
+					<div id="readyStateLoc" class="text-center"></div>
 				</div>
 
 				<!-- 댓글 시작 -->
@@ -91,8 +93,8 @@
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 					<script>
-
 						<%@include file = "/resources/js/common.js" %>
+
 							/* 마이리스트 추가 */
 							function insertMyList() {
 								const param = {};
@@ -240,13 +242,14 @@
 							ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
 							fe("/festival-info/${param.fiNum}")
 								.then(jsonData => {
+									console.log(jsonData)
 									if (jsonData.status === 500) {
 										alert('잘못된 요청입니다.');
 										location.replace("/");
 										return;
 									}
 									let html = '';
-									const fest = jsonData.festivalInfo;
+									const fest = jsonData;
 									if (!fest) {
 										ready.insertAdjacentHTML("afterbegin", '<div class="alert alert-danger" role="alert" onclick="location.reload()">페이지를 불러오는 데 실패하였습니다. 접속한 페이지의 주소가 맞다면, <b>새로고침</b> 해주세요.</div>');
 										return;
@@ -262,35 +265,55 @@
 									html += '</td></tr>';
 									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td></tr>';
 									html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
-									if (fest.homepage) {
-										html += '<tr><td>홈페이지</td><td>' + fest.homepage + '</td></tr>';
-									}
 									html += '<tr><td>전화번호</td><td>' + fest.tel + '</td></tr>';
-									if (fest.telname) {
-										html += '<tr><td>받는 이</td><td>' + fest.telname + '</td></tr>';
-									}
-									if (fest.overview) {
-										html += '<tr><td colspan=2>' + fest.overview + '</td></tr>';
-									}
-									if (jsonData.festivalImages != null && jsonData.festivalImages.length !== 0) {
-										const fesPictures = jsonData.festivalImages;
-										if (fesPictures.length >= 1) {
-											for (let fesPicture of fesPictures) {
-												html += '<img src="' + fesPicture.originimgurl + '" width=200px title="' + fesPicture.imgname + '" class="img-thumbnail">';
-											}
-										}
-									}
+
 									document.querySelector('#festivalInfo').innerHTML = html;
-									html = '<ul class="list-group">';
 									document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
-									const locations = jsonData.locationInfo;
-									for (let location of locations) {
-										html += '<li class="list-group-item"><img src="' + location.firstimage2;
-										html += '" width="100px"><br>관광지명 :' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
-									}
-									html += '</ul>';
-									ready.innerHTML = '';
-									document.querySelector('#location').insertAdjacentHTML('beforeend', html);
+									ready.remove();
+									const readyLoc = document.querySelector('#readyStateLoc');
+									
+									//상세정보 불러오기
+									readyLoc.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+									let url = "contentid=" + fest.contentid + "&mapx=" + fest.mapx + "&mapy=" + fest.mapy
+									fe("/festival-details?" + url)
+										.then(detailData => {
+											const deatilFest = detailData.festivalInfo;
+											html = '';
+											if (deatilFest.telname) {
+												html += '<tr><td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+											}
+											if (deatilFest.homepage) {
+												html += '<tr><td>홈페이지</td><td>' + deatilFest.homepage + '</td></tr>';
+											}
+											if (deatilFest.overview) {
+												html += '<tr><td colspan=2>' + deatilFest.overview + '</td></tr>';
+											}
+											document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
+											if (detailData.festivalImages != null && detailData.festivalImages.length !== 0) {
+												const fesPictures = detailData.festivalImages;
+												let imghtml = '';
+												if (fesPictures.length >= 1) {
+													for (let fesPicture of fesPictures) {
+														imghtml += '<img src="' + fesPicture.originimgurl + '" width="180px" height="180px" title="' + fesPicture.imgname + '" class="img-thumbnail">';
+													}
+												}
+												document.querySelector('#thumbImgs').insertAdjacentHTML('beforeend', imghtml);
+											}
+											html = '<ul class="list-group">';
+											const locations = detailData.locationInfo;
+											for (let location of locations) {
+												html += '<li class="list-group-item"><img src="'
+												if (location.firstimage2) {
+													html += location.firstimage2;
+												} else {
+													html += '/resources/images/noimg.jpg'
+												}
+												html += '" width="100px"><br>관광지명 :' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
+											}
+											html += '</ul>';
+											document.querySelector('#location').insertAdjacentHTML('beforeend', html);
+											readyLoc.remove();
+										})
 									var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 									if (fest.mlevel != "") {
 										mlevel = fest.mlevel;

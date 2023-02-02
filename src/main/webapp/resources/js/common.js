@@ -5,12 +5,3 @@ const fe = async function(url, config) {
 	};
 	return await res.json();
 };
-
-function searchUrl() {
-	const searchObjs = document.querySelectorAll('#searchOption [id]')
-	let url = '?';
-	for (let searchObj of searchObjs) {
-		url += searchObj.id + '=' + searchObj.value + '&';
-	}
-	return url;
-}

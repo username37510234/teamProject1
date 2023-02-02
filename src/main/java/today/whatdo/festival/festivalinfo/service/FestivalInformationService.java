@@ -2,12 +2,12 @@ package today.whatdo.festival.festivalinfo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import lombok.AllArgsConstructor;
 import today.whatdo.festival.festivalinfo.api.ApiDetailFestivalInfo;
 import today.whatdo.festival.festivalinfo.api.ApiFestivalImage;
 import today.whatdo.festival.festivalinfo.api.ApiNearFestivalInfo;
@@ -18,9 +18,9 @@ import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalResultVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
 
 @Service
+@AllArgsConstructor
 public class FestivalInformationService {
-	@Autowired
-	private FestivalInformationMapper festivalInformationMapper;
+	private final FestivalInformationMapper festivalInformationMapper;
 
 	public int insertFestivalInformationList(FestivalResultVO festivalInfos) {
 		return festivalInformationMapper
@@ -78,27 +78,23 @@ public class FestivalInformationService {
 		PageHelper.startPage(searchParameter.getPage(),10);
 		return PageInfo.of(festivalInformationMapper.selectMostLikedfestivalLists(searchParameter));
 	}
-	
-	@Autowired
-	private ApiNearFestivalInfo apiNearFestivalInfo;
-	@Autowired
-	private ApiDetailFestivalInfo apiDetailFestivalInfo;
-	@Autowired
-	private ApiFestivalImage apiFestivalImage;
+	public FestivalInformationVO getFestivalInformation(int fiNum) {
+		return festivalInformationMapper.selectFestivalInformationByNum(fiNum);
+	}
 
-	public FestivalResponseVO getFestivalInformation(int fiNum) {
+	//api 호출을 위한 api 선언
+	private final ApiNearFestivalInfo apiNearFestivalInfo;
+	private final ApiDetailFestivalInfo apiDetailFestivalInfo;
+	private final ApiFestivalImage apiFestivalImage;
+
+	public FestivalResponseVO getFestivalDetails(FestivalInformationVO festivalInfo) {
 		FestivalResponseVO response = new FestivalResponseVO();
-		FestivalInformationVO festivalInfo = festivalInformationMapper.selectFestivalInformationByNum(fiNum);
 		FestivalInformationVO detail = apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo);
-		if (detail != null) {
-			festivalInfo.setOverview(detail.getOverview());
-			festivalInfo.setHomepage(detail.getHomepage());
-		}
-		response.setFestivalInfo(festivalInfo);
-		response.setFestivalImages(apiFestivalImage.getFestivalImages(festivalInfo));
-		if ("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
+		response.setFestivalInfo(detail);
+		if("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
 			return response;
 		}
+		response.setFestivalImages(apiFestivalImage.getFestivalImages(festivalInfo));
 		response.setLocationInfo(apiNearFestivalInfo.getLocationInformationByMap(festivalInfo));
 		return response;
 	}
