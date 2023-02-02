@@ -8,6 +8,10 @@ function createList(jsonData) {
     }
     html = '';
     const body = document.querySelector('#tBody');
+    if (jsonData.endRow == 0) {
+        body.innerHTML = '<td colspan="5"> <h3>검색 결과가 없습니다.</h3> </td>';
+        return;
+    }
     for (let data of jsonData.list) {
         html += '<tr><td><img src="';
         if (data.firstimage2) {

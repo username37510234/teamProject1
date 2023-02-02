@@ -111,6 +111,13 @@
 		
 		
 	</select>
+	<select id="selectFestivalInformationBySearch" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO" parameterType="today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO">
+		SELECT FI_NUM,
+		<include refid="festivalInformationColumns"></include>
+		FROM FESTIVAL_INFORMATION 
+		WHERE TITLE LIKE CONCAT('%',#{fesTitle},'%')
+		ORDER BY EVENTENDDATE DESC
+	</select>
 	<update id="updateFestivalInformation">
 		UPDATE FESTIVAL_INFORMATION
 		SET

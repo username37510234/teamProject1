@@ -58,4 +58,9 @@ public class FestivalInformationController {
 	public FestivalResponseVO getFestvailDetails(@ModelAttribute FestivalInformationVO festivalInfo) {
 		return festivalInformationService.getFestivalDetails(festivalInfo);
 	}
+	
+	@GetMapping("/festival-search")
+	public PageInfo<FestivalInformationVO> getFestivalInfomationsBySearch(SearchParameterVO searchParameter){
+		return festivalInformationService.getFestvalInformationsBySearch(searchParameter);
+	}
 }
