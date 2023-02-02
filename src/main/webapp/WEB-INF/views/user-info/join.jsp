@@ -8,40 +8,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${uiKakaoId eq null}">
-	<input type="text" id="uiId" placeholder="아이디"><button onclick="checkId()">중복확인</button><br>
+	<a>추가 정보를 입력해주세요.</a>
+	<c:if test="${uiId ne null}"><br>
+	<input type="text" id="uiName" placeholder="이름"><br>
+	<input type="text" id="uiNickname" placeholder="닉네임"><button onclick="checkUiNickname()">중복확인</button><br>
 	<input type="password" id="uiPwd" placeholder="비밀번호"><br>
 	<input type="password" id="uiPwdCheck" placeholder="비밀번호 확인"><br>
-	</c:if>
-	<input type="text" id="uiName" placeholder="이름"><br>
-	<input type="text" id="uiNickname" placeholder="닉네임"><br>
-	<input type="text" id="uiPhone" placeholder="전화번호"><br>
-	<input type="checkbox" id="uiActive" name="agree" value="y">개인정보 활용에 동의합니다(필수)<br>
 	<button onclick="join()">회원가입</button>
+	</c:if>
 	
-	<script type="text/javascript">
-	let isCheckedId = '${uiKakaoId}'? true : false;
-	
-	function checkId() {
-		const uiId = document.querySelector('#uiId').value;
-		if(uiId.trim().length<4){
-			alert('아이디는 4글자 이상입니다.');
+	<script>
+	let isCheckedNickname = '${uiNickname}'? true : false;
+	function checkUiNickname() {
+		const uiNickname = document.querySelector('#uiNickname').value;
+		if(uiNickname.trim().length<=2){
+			alert('닉네임은 2글자 이상입니다.');
 			return;
 		}
-		fetch('/user-infos/check/' + uiId)
+		fetch('/user-infos/check/' + uiNickname)
 		.then(function(data){
 			return data.json();
 		})
 		.then(function(res){
 			if(res===false){
-				alert('이용이 가능한 아이디 입니다.');
-				isCheckedId = true;
+				alert('이용이 가능한 닉네임 입니다.');
+				isCheckedNickname = true;
 			}else{
-				alert('이미 등록되어 있는 아이디입니다.');
-				isCheckedId = false;
+				alert('이미 등록되어 있는 닉네임 입니다.');
+				isCheckedNickname = false;
 			}
 		});
 	}
+	
 	function getParam(){
 		const objs = document.querySelectorAll('input');
 		const param = {};
@@ -50,14 +48,15 @@
 		}
 		return param;
 	}
+	
 	function join() {
-		if(!isCheckedId){
+		if(!checkUiNickname){
 			alert('중복확인 해주세요.');
 			return false;
 		}
-		const uiId = document.querySelector('#uiId')
-		if(uiId && uiId.value.trim().length<4){
-			alert('아이디는 4글자 이상입니다.');
+		const uiNickname = document.querySelector('#uiNickname')
+		if(uiNickname && uiNickname.value.trim().length<=2){
+			alert('닉네임은 2글자 이상입니다.');
 			uiId.value='';
 			uiId.focus();
 			return;
@@ -76,15 +75,10 @@
 			uipwdCheck.focus();
 			return;
 		}
-		const uiActive = document.querySelector('#uiActive');
-		if(uiActive.checked != true){
-			alert('개인정보 활용에 동의해주셔야 합니다.')
-			uiActive.focus();
-			return false;
-		}
 		
+		//카카오 코드 받아오기
 		const param = getParam();
-		param.uiKakaoId= '${uiKakaoId}';
+		param.uiId= '${uiId}';
 		
 		fetch('/user-infos',{
 			method : 'POST',
@@ -99,7 +93,7 @@
 		.then(function(data){
 			console.log(data);
 			alert('회원가입이 완료되었습니다.')
-			location.href='/'
+			location.href='/views/index'
 		})
 	}
 	</script>

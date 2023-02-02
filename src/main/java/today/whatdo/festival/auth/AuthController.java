@@ -56,12 +56,11 @@ public class AuthController {
 		return "views/user-info/view";
 	}
 
-	
+	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		System.out.println("session :: " + session);
 		session.invalidate(); //세션무효화
-		
 		return "redirect:/";
 	}
 	
@@ -76,9 +75,9 @@ public class AuthController {
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("grant_type", "authorization_code");
 		map.add("client_id", "175423f05591ec33e1712c6cdb8ee97b"); //REST API 키
-		map.add("redirect_uri", "http://localhost/oauth"); //EC2로 하면 도메인 또는 IP로 바꿀 것
+		map.add("redirect_uri", "http://localhost/auth/oauth"); //EC2로 하면 도메인 또는 IP로 바꿀 것
 		map.add("code", code); //일회용 코드
-		log.debug("code=>{}",code);
+		log.info("code=>{}",code);
 
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
@@ -91,12 +90,14 @@ public class AuthController {
 		res = restTemplate.postForEntity(uri, request, KakaoLoginVO.class);
 		kakaoLogin = res.getBody();
 
-		UserInfoVO loginUserInfo = userInfoService.selectUserInfoByUiKakaoID(kakaoLogin.getId());
+		UserInfoVO loginUserInfo = userInfoService.selectUserInfoByKakaoId(kakaoLogin.getId());
+		//값이 null이면(처음 가입한 회원) 회원가입 화면으로 이동
 		if (loginUserInfo == null) {
-			model.addAttribute("uiKakaoId", kakaoLogin.getId());
+			model.addAttribute("uiId", kakaoLogin.getId());
 			return "views/user-info/join";
 		}
+		//값이 null이 아니면(이미 가입한 회원) 로그인
 		session.setAttribute("userInfo", loginUserInfo);
-		return "/";
+		return "views/kakao/login";
 	}
 }

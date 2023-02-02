@@ -21,8 +21,8 @@ public class UserInfoService {
 		return userInfoMapper.selectUserInfoList(userInfo);
 	}
 	
-	public boolean existsUserId(String uiId) {
-		if(userInfoMapper.selectUserInfoById(uiId)==null) {
+	public boolean existsUserNickname(String uiNickname) {
+		if(userInfoMapper.selectUserInfoByNickName(uiNickname)==null) {
 			return false;
 		}
 		return true;
@@ -49,8 +49,9 @@ public class UserInfoService {
 		return userInfoMapper.selectUserInfoByIdAndPwd(userInfo);
 	}
 	
-	public UserInfoVO selectUserInfoByUiKakaoID(String uiKakaoId) {
-		return userInfoMapper.selectUserInfoByUiKakaoID(uiKakaoId);
+	//카카오 로그인 코드 받아오기
+	public UserInfoVO selectUserInfoByKakaoId(String uiId) {
+		return userInfoMapper.selectUserInfoByKakaoId(uiId);
 	}
 	
 	public boolean checkPassword(UserInfoVO userInfo, int uiNum) {
@@ -73,5 +74,3 @@ public class UserInfoService {
 		return false;
 	}
 }
-
-

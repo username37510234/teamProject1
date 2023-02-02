@@ -32,10 +32,10 @@ public class UserInfoController {
 		return "views/user-info/list";
 	}
 
-	@GetMapping("/user-infos/check/{uiId}")
+	@GetMapping("/user-infos/check/{uiNickname}")
 	@ResponseBody
-	public boolean existUserId(@PathVariable("uiId") String uiId) {
-		return userInfoService.existsUserId(uiId);
+	public boolean existsUserNickname(@PathVariable("uiNickname") String uiNickname) {
+		return userInfoService.existsUserNickname(uiNickname);
 	}
 
 	@PostMapping("/user-infos")
@@ -64,23 +64,4 @@ public class UserInfoController {
 		return userInfoService.removeUserInfo(userInfo, uiNum);
 	}
 	
-	@PostMapping("/login")
-	public @ResponseBody UserInfoVO login(@RequestBody UserInfoVO userInfo, HttpSession session) {
-		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
-		if (loginUserInfo != null) {
-			session.setAttribute("userInfo", loginUserInfo);
-			loginUserInfo.setUiPwd(null);
-		}
-		return loginUserInfo;
-	}
-
-	@PostMapping("/logout")
-	public @ResponseBody UserInfoVO logout(@RequestBody UserInfoVO userInfo, HttpSession session) {
-		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
-		if(loginUserInfo != null) {
-			session.invalidate();
-
-		}
-		return null;
-	}
 }

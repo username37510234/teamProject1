@@ -16,19 +16,16 @@
 	  Kakao.init('82febca4b29e4327a47c30d8e9856913'); // <-- app KEY!!(사용하려는 앱의 JavaScript 키 입력)
 	</script>
 	
-	<!-- 로그인이 안됐을 때 나오는 메시지 -->
-	<P>${msg}</P>
-	
 		<div>
 			<a>
-				저희 사이트는 카카오 간편 로그인을 지원하고 있습니다.<br>
+				저희 사이트는 카카오 간편 가입을 지원하고 있습니다.<br>
 			</a>
 		</div>
 	
 	<!-- 카카오 로그인 -->
 	<a id="kakao-login-btn" href="javascript:loginWithKakao()">
 	  <br><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-	    alt="카카오 로그인 버튼" />
+	    alt="카카오 가입 버튼" />
 	</a>
 	<p id="token-result"></p>
 	

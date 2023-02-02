@@ -7,26 +7,46 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous">
-</script>
+<P>${msg}</P>
+<a>비밀번호 입력</a><br>
+<input type="hidden" id="uiId" value="${userInfo.uiId}" readonly>
+<input type="password" id="uiPwd" placeholder="비밀번호"><br>
+<button onclick="login()">Login</button>
 <script>
-  Kakao.init('82febca4b29e4327a47c30d8e9856913'); // <-- app KEY!!(사용하려는 앱의 JavaScript 키 입력)
-</script>
+function getParam(){
+	const objs = document.querySelectorAll('input');
+	const param = {};
+	for(const obj of objs){
+		param[obj.id] = obj.value;
+	}
+	return param;
+}
 
-<a id="kakao-login-btn" href="javascript:loginWithKakao()">
-  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-    alt="카카오 로그인 버튼" />
-</a>
-<p id="token-result"></p>
-
-<script>
-  function loginWithKakao() {
-    Kakao.Auth.authorize({
-    	/* 나중에 localhost를 엘라스틱IP로 변경해야한다. */
-      redirectUri: 'http://localhost/oauth',
-    });
-  }
+function login(){
+	const param = getParam();
+	param.uiId = document.querySelector('#uiId').value;
+	param.uiPwd = document.querySelector('#uiPwd').value;
+	fetch('/auth/login',{
+		method:'POST',
+		headers:{
+			'Content-Type':'application/json'
+		},
+		body:JSON.stringify(param)
+	})
+	.then(function(res){
+		return res.text();
+	})
+	.then(function(data){
+		if(data){
+			data=JSON.parse(data);
+			if(data.uiId){
+				location.href='/';
+				return;
+			}
+		}
+		alert('비번을 확인해주세요.');
+	})
+}
 </script>
 </body>
 </html>
