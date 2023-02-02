@@ -13,6 +13,7 @@
 			<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
 				integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+			<link rel="stylesheet" href="/resources/css/common.css">
 			<style>
 				.like_btn {
 					width: 40px;
@@ -37,7 +38,8 @@
 							<div id="readyState" class="text-center"></div>
 							<div id="mainContent" class="container text-center">
 								<!-- 축제 정보 파트 -->
-								<table style="margin-top: 100px; width: 80%; margin-left: 15%;">
+								<table class="table-borderless"
+									style="margin-top: 100px; width: 80%; margin-left: 15%;">
 									<tbody id="festivalInfo"></tbody>
 								</table>
 								<br>
@@ -83,6 +85,7 @@
 							<h2> 추천 주변 관광지</h2>
 							<div id="readyStateLoc" class="text-center"></div>
 						</div>
+						<!-- float clear -->
 						<div style="clear: both;"></div>
 					</div>
 					<!-- 댓글 시작 -->
@@ -269,7 +272,7 @@
 									}
 									html += '</td></tr>';
 									html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td></tr>';
-									html += '<tr><td>종료일</td><td>' + fest.eventenddate + '</td></tr>';
+									html += '<tr><td>종료일</td><td>' + fest.eventenddate.substr(0, 4) + '년 ' + fest.eventenddate.substr(4, 2) + '월 ' + fest.eventenddate.substr(6, 2) + '일' + '</td></tr>';
 									html += '<tr><td>전화번호</td><td>' + fest.tel + '</td></tr>';
 
 									document.querySelector('#festivalInfo').innerHTML = html;
@@ -306,55 +309,63 @@
 												}
 												document.querySelector('#thumbImgs').insertAdjacentHTML('beforeend', imghtml);
 											}
-											html = '<ul class="list-group">';
-											const locations = detailData.locationInfo;
-											for (let location of locations) {
-												html += '<li class="list-group-item"><img src="'
-												if (location.firstimage2) {
-													html += location.firstimage2;
-												} else {
-													html += '/resources/images/noimg.jpg'
+											if (detailData.locationInfo) {
+												html = '<ul class="list-group">';
+												const locations = detailData.locationInfo;
+												for (let location of locations) {
+													html += '<li class="list-group-item"><img src="'
+													if (location.firstimage2) {
+														html += location.firstimage2;
+													} else {
+														html += '/resources/images/noimg.jpg'
+													}
+													html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
 												}
-												html += '" width="100px"><br>관광지명 :' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
+												html += '</ul>';
+											} else {
+												html = '<br><h3>해당하는 관광지를 찾을 수 없습니다.</h3>';
 											}
-											html += '</ul>';
 											document.querySelector('#location').insertAdjacentHTML('beforeend', html);
 											readyLoc.remove();
 										})
 									var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-									if (fest.mlevel != "") {
-										mlevel = fest.mlevel;
+									if (fest.mapx != 0) {
+										if (fest.mlevel != "") {
+											mlevel = fest.mlevel;
+										} else {
+											mlevel = 4;
+										}
+										var options = { //지도를 생성할 때 필요한 기본 옵션
+											center: new kakao.maps.LatLng(fest.mapy, fest.mapx), //지도의 중심좌표.
+											level: mlevel //지도의 레벨(확대, 축소 정도)
+										};
+
+										var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+										// 마커가 표시될 위치입니다 
+										var markerPosition = new kakao.maps.LatLng(fest.mapy, fest.mapx);
+
+										// 마커를 생성합니다
+										var marker = new kakao.maps.Marker({
+											position: markerPosition
+										});
+
+										// 마커가 지도 위에 표시되도록 설정합니다
+										marker.setMap(map);
+										var iwContent = '<div style="padding:5px;">' + fest.title + ' <br><a href="https://map.kakao.com/link/to/' + fest.title + ',' + fest.mapy + ',' + fest.mapx + '" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+											iwPosition = new kakao.maps.LatLng(fest.mapy, fest.mapx); //인포윈도우 표시 위치입니다
+
+										// 인포윈도우를 생성합니다
+										var infowindow = new kakao.maps.InfoWindow({
+											position: iwPosition,
+											content: iwContent
+										});
+
+										// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+										infowindow.open(map, marker);
 									} else {
-										mlevel = 4;
+										document.querySelector('#map').remove();
 									}
-									var options = { //지도를 생성할 때 필요한 기본 옵션
-										center: new kakao.maps.LatLng(fest.mapy, fest.mapx), //지도의 중심좌표.
-										level: mlevel //지도의 레벨(확대, 축소 정도)
-									};
-
-									var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-									// 마커가 표시될 위치입니다 
-									var markerPosition = new kakao.maps.LatLng(fest.mapy, fest.mapx);
-
-									// 마커를 생성합니다
-									var marker = new kakao.maps.Marker({
-										position: markerPosition
-									});
-
-									// 마커가 지도 위에 표시되도록 설정합니다
-									marker.setMap(map);
-									var iwContent = '<div style="padding:5px;">' + fest.title + ' <br><a href="https://map.kakao.com/link/to/' + fest.title + ',' + fest.mapy + ',' + fest.mapx + '" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-										iwPosition = new kakao.maps.LatLng(fest.mapy, fest.mapx); //인포윈도우 표시 위치입니다
-
-									// 인포윈도우를 생성합니다
-									var infowindow = new kakao.maps.InfoWindow({
-										position: iwPosition,
-										content: iwContent
-									});
-
-									// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-									infowindow.open(map, marker);
 								});
 
 						}

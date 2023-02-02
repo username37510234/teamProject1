@@ -1,3 +1,16 @@
-main{
-    clear:both;
+th,
+td {
+    padding: 5px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: aliceblue;
+}
+
+main {
+    padding-top: 150px;
 }
