@@ -3,7 +3,9 @@
 
 		<!-- HEADER -->
 		<header>
+			<link rel="stylesheet" href="/resources/css/main.css">
 			<link rel="stylesheet" href="/resources/css/common.css">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 			<div id="headerDiv"
 				class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom container">
 				<a href="/" class="d-flex align-items-center col-md-2 mb-2 mb-md-0 text-dark text-decoration-none"><img
