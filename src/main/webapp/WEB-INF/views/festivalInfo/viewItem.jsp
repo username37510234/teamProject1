@@ -6,6 +6,7 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
+			<link rel="stylesheet" href="/resources/css/main.css">
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
@@ -13,7 +14,6 @@
 			<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
 				integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-			<link rel="stylesheet" href="/resources/css/common.css">
 			<style>
 				.like_btn {
 					width: 40px;
