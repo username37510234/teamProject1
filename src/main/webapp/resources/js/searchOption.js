@@ -19,6 +19,12 @@ function addLocalOption() {
     document.querySelector("#fesLocal").innerHTML += localHtml;
 }
 
+const textObject = document.querySelector('#searchOption #fesTitle');
+textObject.addEventListener('keyup', event => {
+    if (event.keyCode === 13) {
+        searchFestivalList();
+    }
+})
 function searchUrl() {
     const searchObjs = document.querySelectorAll('#searchOption input,select[id]')
     let url = '?';
