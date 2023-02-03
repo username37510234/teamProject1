@@ -2,14 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentInfoMapper">
 
+	<!-- 댓글 조회 -->
+	<select id="selectCommentInfoList"  parameterType="int" resultType="today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO">
+		SELECT FI_NUM, UI_ID, CI_CONTENT, CI_REGDATE
+		FROM COMMENT_INFO
+		WHERE FI_NUM = #{fiNum}
+	</select>
+
 	<!-- 댓글 등록 -->
-	<insert id="enrollReply">
+	<insert id="inserCommentInfo">
   		INSERT INTO COMMENT_INFO(FI_NUM, UI_ID, CI_CONTENT)
 			VALUES(#{fiNum}, #{uiId}, #{ciContent})
   	</insert>
   	
+  	<!-- 댓글 수정 -->
+  	<update id="updateCommentInfo">
+  		UPDATE COMMENT_INFO 
+  		SET FI_NUM = #{fiNum}, 
+  		UI_ID = #{uiId}, 
+  		CI_CONTENT = #{ciContent}
+  		WHERE CI_NUM = #{ciNum}
+  	</update>  	
   	
-	
-	
+  	<!-- 댓글 삭제 -->
+  	<delete id="deleteCommentInfo">
+  		DELETE FROM COMMENT_INFO
+  		WHERE CI_NUM = #{ciNum}
+  	</delete>	
 	
 </mapper>
