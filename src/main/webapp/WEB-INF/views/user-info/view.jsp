@@ -5,9 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+
+<link rel="stylesheet" href="/css/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
 </head>
 <body>
+<!-- HEADER -->
+			<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<!-- main -->
+<main>
 	<div>
 		이름 : ${userInfo.uiName}<br>
 		닉네임 : ${userInfo.uiNickname}<br>
@@ -16,7 +26,9 @@
 		<input type="password" id="uiPwd" placeholder="비밀번호"><button onclick="passwordConfirm()">확인</button>
 	</div>
 	<button onclick="showConfirm('update')">수정</button><button onclick="showConfirm('delete')">탈퇴</button>
-	
+</main>
+<!-- FOOTER -->
+				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
 	let _type;
 	function showConfirm(type){
