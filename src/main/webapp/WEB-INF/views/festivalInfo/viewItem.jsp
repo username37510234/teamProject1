@@ -319,7 +319,7 @@
 													} else {
 														html += '/resources/images/noimg.jpg'
 													}
-													html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank"> 위치 :' + location.addr1 + '</a></li>';
+													html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank">' + location.addr1 + '</a></li>';
 												}
 												html += '</ul>';
 											} else {

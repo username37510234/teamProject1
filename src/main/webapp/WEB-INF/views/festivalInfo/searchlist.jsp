@@ -53,28 +53,33 @@
                                     return;
                                 }
                                 const paging = document.querySelector('.paginaiton');
-                                html = '<div class="container text-center"><h5>';
-                                html += '1 ';
-                                if (jsonData.prePage === 0) {
-                                    html += '< ';
+                                html = '<div class="container d-flex justify-content-center"><ul class="pagination">';
+                                if (jsonData.pageNum === 1) {
+                                    html += '<li class="page-item disabled"><a class="page-link" href="#">첫 페이지</a></li>';
                                 } else {
-                                    html += '<a href="/views/festivalInfo/searchlist?page=1&fesTitle=${param.fesTitle}">' + '\<</a> ';
+                                    html += '<li class="page-item"><a class="page-link" href="/views/festivalInfo/searchlist?fesTitle=${param.fesTitle}&page=1">첫 페이지</a></li>';
+                                }
+                                if (jsonData.prePage === 0) {
+                                    html += '<li class="page-item disabled"><a class="page-link" href="#">&lt;</a></li>';
+                                } else {
+                                    html += '<li class="page-item"><a class="page-link" href="/views/festivalInfo/searchlist?fesTitle=${param.fesTitle}&page=' + jsonData.prePage + '">&lt;</a></li> ';
                                 }
                                 for (pageNum of jsonData.navigatepageNums) {
                                     if (pageNum === jsonData.pageNum) {
-                                        html += pageNum + ' ';
+                                        html += '<li class="page-item disabled"><a class="page-link" href="#">' + pageNum + '</a></li>';
                                     } else {
-                                        html += '<a href="/views/festivalInfo/searchlist?page=' + pageNum + '&fesTitle=${param.fesTitle}">';
-                                        html += pageNum + "</a> ";
+                                        html += '<li class="page-item"><a class="page-link" href="/views/festivalInfo/searchlist?page=' + pageNum + '&fesTitle=${param.fesTitle}">';
+                                        html += pageNum + "</a><li> ";
                                     }
                                 }
                                 if (jsonData.pageNum === jsonData.pages) {
-                                    html += '> ' + jsonData.pageNum;
+                                    html += '<li class="page-item disabled"><a class="page-link" href="#">&gt;</a></li>';
+                                    html += '<li class="page-item disabled"><a class="page-link" href="#">마지막 페이지</a></li>';
                                 } else {
-                                    html += '<a href="/views/festivalInfo/searchlist?page=' + jsonData.nextPage + '&fesTitle=${param.fesTitle}">' + '\></a> ';
-                                    html += '<a href="/views/festivalInfo/searchlist?page=' + jsonData.pages + '&fesTitle=${param.fesTitle}">' + jsonData.pages + '</a>'
+                                    html += '<li class="page-item"><a class="page-link" href="/views/festivalInfo/searchlist?page=' + jsonData.nextPage + '&fesTitle=${param.fesTitle}">&gt;</a></li>';
+                                    html += '<li class="page-item"><a class="page-link" href="/views/festivalInfo/searchlist?page=' + jsonData.pages + '&fesTitle=${param.fesTitle}">마지막 페이지</a></li>';
                                 }
-                                html += '</h5></div>'
+                                html += '</ul></div>'
                                 paging.insertAdjacentHTML("beforeend", html);
                             });
                     }
