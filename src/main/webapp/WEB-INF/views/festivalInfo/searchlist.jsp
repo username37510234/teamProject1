@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <title>Insert title here</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/resources/css/festival.css">
     </head>
 
     <body>
@@ -33,12 +34,6 @@
                     window.onload = function () {
                         loadFestivalList();
                     }
-                    const textObject = document.querySelector('#searchOption #fesTitle');
-                    textObject.addEventListener('keyup', event => {
-                        if (event.keyCode === 13) {
-                            searchFestivalList();
-                        }
-                    })
                     function loadFestivalList() {
                         if (!document.querySelector('#page').value) {
                             document.querySelector('#page').value = 1;;
@@ -66,7 +61,7 @@
                                         html += '<li class="page-item disabled"><a class="page-link" href="#">' + pageNum + '</a></li>';
                                     } else {
                                         html += '<li class="page-item"><a class="page-link" href="/views/festivalInfo/searchlist?page=' + pageNum + '&fesTitle=${param.fesTitle}">';
-                                        html += pageNum + "</a><li> ";
+                                        html += pageNum + '</a></li>';
                                     }
                                 }
                                 if (jsonData.pageNum === jsonData.pages) {

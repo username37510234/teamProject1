@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <title>Insert title here</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/resources/css/festival.css">
     </head>
 
     <body>
@@ -29,12 +30,6 @@
                         addLocalOption();
                         loadFestivalList();
                     }
-                    const textObject = document.querySelector('#searchOption #fesTitle');
-                    textObject.addEventListener('keyup', event => {
-                        if (event.keyCode === 13) {
-                            searchFestivalList();
-                        }
-                    })
                     function loadFestivalList() {
                         fe("/festival-infos" + searchUrl())
                             .then(jsonData => {
