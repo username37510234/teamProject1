@@ -14,23 +14,27 @@ public class CommentService {
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	//댓글 리스트
-	public List<CommentVO> getCommentInfos(CommentVO vo){
-		return commentMapper.selectCommentInfoList(vo);
-	}
-	
 	//댓글 등록
-	public int insertCommentInfo(CommentVO vo) {
-		return commentMapper.insertCommentInfo(vo);
+	public int CommentRegist(CommentVO commentVO) {
+		return commentMapper.CommentRegist(commentVO);
 	}
 	
-	//댓글 수정
-	public int updateCommentInfo(int ciNum) {
-		return commentMapper.updateCommentInfo(ciNum);
+	//댓글 갯수
+	public int getTotal(int fiNum) {
+		return commentMapper.getTotal(fiNum);
+	}
+	
+	//목록 요청
+	public List<CommentVO> getList(int fiNum) {
+		return commentMapper.getList(fiNum);
 	}
 	
 	//댓글 삭제
-	public int deleteCommentInfo(int ciNum) {
-		return commentMapper.deleteCommentInfo(ciNum);
+	public void commentDelete(CommentVO commentVO) {
+		commentMapper.commentDelete(commentVO);
+		
 	}
+	
+	
+	
 }
