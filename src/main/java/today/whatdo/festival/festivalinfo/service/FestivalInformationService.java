@@ -60,12 +60,12 @@ public class FestivalInformationService {
 	}
 
 	public PageInfo<FestivalInformationVO> getFestivalInformationListAll(SearchParameterVO searchParameter) {
-		PageHelper.startPage(searchParameter.getPage(), 10);
+		PageHelper.startPage(searchParameter.getPage(), searchParameter.getRows());
 		return PageInfo.of(festivalInformationMapper.selectFestivalInformationLists(searchParameter));
 	}
 
 	public PageInfo<FestivalInformationVO> getFinishedInformationList(SearchParameterVO searchParameter) {
-		PageHelper.startPage(searchParameter.getPage(), 10);
+		PageHelper.startPage(searchParameter.getPage(), searchParameter.getRows());
 		return PageInfo.of(festivalInformationMapper.selectFinishedInformationLists(searchParameter));
 	}
 
@@ -79,7 +79,7 @@ public class FestivalInformationService {
 	}
 
 	public PageInfo<FestivalInformationVO> getFestvalInformationsBySearch(SearchParameterVO searchParameter) {
-		PageHelper.startPage(searchParameter.getPage(), 10);
+		PageHelper.startPage(searchParameter.getPage(), searchParameter.getRows());
 		return PageInfo.of(festivalInformationMapper.selectFestivalInformationBySearch(searchParameter));
 	}
 
@@ -88,12 +88,11 @@ public class FestivalInformationService {
 
 	public FestivalResponseVO getFestivalDetails(FestivalInformationVO festivalInfo) {
 		FestivalResponseVO response = new FestivalResponseVO();
-		FestivalInformationVO detail = apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo);
-		response.setFestivalInfo(detail);
+		response.setFestivalInfo(apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo));
+		response.setFestivalImages(apiDetailFestivalInfo.getFestivalImages(festivalInfo));
 		if ("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
 			return response;
 		}
-		response.setFestivalImages(apiDetailFestivalInfo.getFestivalImages(festivalInfo));
 		response.setLocationInfo(apiDetailFestivalInfo.getLocationInformationByMap(festivalInfo));
 		return response;
 	}

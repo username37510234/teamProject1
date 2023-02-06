@@ -12,7 +12,7 @@
 
 			<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
 				integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-				<link rel="stylesheet" href="/resources/css/festival.css">
+			<link rel="stylesheet" href="/resources/css/festival.css">
 			<style>
 				.like_btn {
 					width: 40px;
@@ -89,30 +89,33 @@
 					</div>
 					<!-- 댓글 시작 -->
 					<hr />
-						 <div class="comment-box">
-                    
-   		                 <div class="comment-count">댓글 <span id="count">0</span></div>
+					<div class="comment-box">
 
-   		                 	   
-   		                 <div class="comment-name">
-	                        <span class="anonym">작성자 : 
-	                    	    <input type="text" class="form-control" id="com_writer" placeholder="이름" name ="com_writer" value='${userInfo.uiNickname}' readonly  style="width: 100px; border:none;">
-	                        </span>
-	                      </div>   
-	                        	
-	                  
-                    <div class="comment-sbox">
-                        <textarea class="comment-input" id="com_content" cols="80" rows="2" name="com_content" ></textarea>
-                       
-                    </div>
-                    	<div class="regBtn">
-                    		<button id="Comment_regist"> 댓글등록</button>
-                    	 </div>
-   		                 </div>
-   		                 
-   		                 <div class="comment_Box" style="border:1px solid gray;"> <!-- 댓글이 들어갈 박스 -->
+						<div class="comment-count">댓글 <span id="count">0</span></div>
 
-	                </div>
+
+						<div class="comment-name">
+							<span class="anonym">작성자 :
+								<input type="text" class="form-control" id="com_writer" placeholder="이름"
+									name="com_writer" value='${userInfo.uiNickname}' readonly
+									style="width: 100px; border:none;">
+							</span>
+						</div>
+
+
+						<div class="comment-sbox">
+							<textarea class="comment-input" id="com_content" cols="80" rows="2"
+								name="com_content"></textarea>
+
+						</div>
+						<div class="regBtn">
+							<button id="Comment_regist"> 댓글등록</button>
+						</div>
+					</div>
+
+					<div class="comment_Box" style="border:1px solid gray;"> <!-- 댓글이 들어갈 박스 -->
+
+					</div>
 					<!-- 댓글 끝 -->
 				</main>
 				<!-- FOOTER -->
@@ -330,11 +333,7 @@
 												const locations = detailData.locationInfo;
 												for (let location of locations) {
 													html += '<li class="list-group-item"><img src="'
-													if (location.firstimage2) {
-														html += location.firstimage2;
-													} else {
-														html += '/resources/images/noimg.jpg'
-													}
+													html += (location.firstimage2) ? location.firstimage2 : '/resources/images/noimg.jpg';
 													html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank">' + location.addr1 + '</a></li>';
 												}
 												html += '</ul>';
@@ -346,11 +345,7 @@
 										})
 									var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 									if (fest.mapx != 0) {
-										if (fest.mlevel != "") {
-											mlevel = fest.mlevel;
-										} else {
-											mlevel = 4;
-										}
+										let mlevel = (fest.mlevel != "") ? fest.mlevel : 4;
 										var options = { //지도를 생성할 때 필요한 기본 옵션
 											center: new kakao.maps.LatLng(fest.mapy, fest.mapx), //지도의 중심좌표.
 											level: mlevel //지도의 레벨(확대, 축소 정도)
@@ -386,100 +381,100 @@
 
 						}
 
-			//댓글쓰기 
-			$('#Comment_regist').click(function() {
-			
-   			//Json으로 전달할 파라미터 변수선언
-   			const fiNum = ${param.fiNum};
-   			const ciWriter = $('#com_writer').val();
-   			const ciContent = $('#com_content').val();
-   			
-   			console.log(fiNum);
-   			console.log(ciWriter);
-   			console.log(ciContent);
-   		
-   			if(ciWriter == ''){
-   				alert('로그인 후 이용해주세요');
-   				return;
-   			}else if(ciContent == '') {
-   				alert('내용을 입력하세요');
-   			}
-   			
-   			$.ajax({
-   				type:'post',
-   				url:'<c:url value="/Comment/InsertComment"/>',
-   				data: JSON.stringify(
-   					{
-   						"fiNum":fiNum,
-   						"ciWriter":ciWriter,
-   						"ciContent":ciContent
-   					}		
-   				),
-   				contentType: 'application/json',
-   				success:function(data){
-   					console.log('통신성공' + data);
-   					if(data === 'InsertSuccess') {
-   						alert('댓글 등록이 완료되었습니다.');
-   						console.log('댓글 등록 완료');
-   						$('#com_writer').val(ciWriter);
-   	   					$('#com_content').val('');
-   	   					getList();
-   					} else {
-   						alert('로그인 이후 이용해주시기 바랍니다.');
-   						console.log('댓글 등록 실패');
-   					}
-   				},
-   				error:function(){
-   					alert('통신실패');
-   				}
-   			});// 댓글 비동기 끝
-   			
-		});// 댓글등록 이벤트 끝
-		
-		getList();
-		
-function getList() {
-			
-			const fiNum = ${param.fiNum};
-			const ciWriter= $('#com_writer').val();
-   			const ciContent = $('#com_content').val();
-   			
-			$.getJSON(
-				"<c:url value='/Comment/CommentList/'/>" + fiNum,
-				function(data) {
-					if(data.total > 0){
-						var list = data.list;
-						
-						var comment_html = "<div>";
-						
-						$('#count').html(data.total);
-						for(i = 0;i < list.length;i++){
-							var content = list[i].ciContent;
-							var writer = list[i].ciWriter;
-							comment_html += "<div><span id='com_writer'><strong>" + writer + "</strong></span><br/>";
-							comment_html += "<span id='com-content'>" + content + "</span><br>";
-							if(writer === $("#com_writer").val()){
-								 comment_html += "<span id='delete' style='cursor:pointer;' data-id ="+content+">[삭제]</span><br></div><hr>";
-								 
+						//댓글쓰기 
+						$('#Comment_regist').click(function () {
+
+							//Json으로 전달할 파라미터 변수선언
+							const fiNum = ${ param.fiNum };
+							const ciWriter = $('#com_writer').val();
+							const ciContent = $('#com_content').val();
+
+							console.log(fiNum);
+							console.log(ciWriter);
+							console.log(ciContent);
+
+							if (ciWriter == '') {
+								alert('로그인 후 이용해주세요');
+								return;
+							} else if (ciContent == '') {
+								alert('내용을 입력하세요');
 							}
-							else{
-								comment_html += "</div><hr>";
-							}
+
+							$.ajax({
+								type: 'post',
+								url: '<c:url value="/Comment/InsertComment"/>',
+								data: JSON.stringify(
+									{
+										"fiNum": fiNum,
+										"ciWriter": ciWriter,
+										"ciContent": ciContent
+									}
+								),
+								contentType: 'application/json',
+								success: function (data) {
+									console.log('통신성공' + data);
+									if (data === 'InsertSuccess') {
+										alert('댓글 등록이 완료되었습니다.');
+										console.log('댓글 등록 완료');
+										$('#com_writer').val(ciWriter);
+										$('#com_content').val('');
+										getList();
+									} else {
+										alert('로그인 이후 이용해주시기 바랍니다.');
+										console.log('댓글 등록 실패');
+									}
+								},
+								error: function () {
+									alert('통신실패');
+								}
+							});// 댓글 비동기 끝
+
+						});// 댓글등록 이벤트 끝
+
+						getList();
+
+						function getList() {
+
+							const fiNum = ${ param.fiNum };
+							const ciWriter = $('#com_writer').val();
+							const ciContent = $('#com_content').val();
+
+							$.getJSON(
+								"<c:url value='/Comment/CommentList/'/>" + fiNum,
+								function (data) {
+									if (data.total > 0) {
+										var list = data.list;
+
+										var comment_html = "<div>";
+
+										$('#count').html(data.total);
+										for (i = 0; i < list.length; i++) {
+											var content = list[i].ciContent;
+											var writer = list[i].ciWriter;
+											comment_html += "<div><span id='com_writer'><strong>" + writer + "</strong></span><br/>";
+											comment_html += "<span id='com-content'>" + content + "</span><br>";
+											if (writer === $("#com_writer").val()) {
+												comment_html += "<span id='delete' style='cursor:pointer;' data-id =" + content + ">[삭제]</span><br></div><hr>";
+
+											}
+											else {
+												comment_html += "</div><hr>";
+											}
+										}
+
+										$(".comment_Box").html(comment_html);
+
+
+									}
+									else {
+										var comment_html = "<div>등록된 댓글이 없습니다.</div>";
+										$(".comment_Box").html(comment_html);
+									}
+
+
+								}
+							);//getJson
 						}
-						
-						$(".comment_Box").html(comment_html);
-						
-						
-					}
-					else{
-						var comment_html = "<div>등록된 댓글이 없습니다.</div>";
-						$(".comment_Box").html(comment_html);
-					}
-			
-				
-				}
-				);//getJson
-			}
 					</script>
 		</body>
 

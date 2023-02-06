@@ -8,4 +8,5 @@ public class SearchParameterVO {
 	private String fesLocal;
 	private String fesTitle;
 	private int page;
+	private int rows;
 }

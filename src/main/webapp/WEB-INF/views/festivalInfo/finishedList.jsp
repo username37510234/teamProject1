@@ -36,7 +36,7 @@
                                 createList(jsonData);
                             });
                     }
-                    YesScroll()
+                    yesScroll()
                 </script>
     </body>
 

@@ -3,6 +3,7 @@
     <nav id="searchNav">
         <div id="searchOption" class="container">
             <input type="number" id="page" value=1 hidden>
+            <input type="number" id="rows" value=15 hidden>
             <div class="row">
                 <div class="col-auto">
                     <select name="" id="fesMonth" onchange="searchFestivalList()" class="form-select">

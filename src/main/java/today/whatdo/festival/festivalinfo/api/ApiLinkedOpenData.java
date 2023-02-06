@@ -62,7 +62,6 @@ public class ApiLinkedOpenData {
 				return result.getResults().getBindings(); // 값만 반환
 			}
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

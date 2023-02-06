@@ -15,6 +15,7 @@
             <main>
                 <div id="searchOption" class="container">
                     <input type="number" id="page" value="${param.page}" hidden>
+                    <input type="number" id="rows" value="${param.rows}" hidden>
                     <input type="text" id="fesTitle" value="${param.fesTitle}" hidden>
                     <div id="totalNum"></div>
                 </div>
@@ -36,7 +37,10 @@
                     }
                     function loadFestivalList() {
                         if (!document.querySelector('#page').value) {
-                            document.querySelector('#page').value = 1;;
+                            document.querySelector('#page').value = 1;
+                        }
+                        if (!document.querySelector('#rows').value) {
+                            document.querySelector('#rows').value = 15;
                         }
                         fe("/festival-search" + searchUrl())
                             .then(jsonData => {
