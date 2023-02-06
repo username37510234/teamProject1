@@ -386,8 +386,8 @@
 
 						}
 
-						//댓글쓰기 
-						$('#Comment_regist').click(function() {
+			//댓글쓰기 
+			$('#Comment_regist').click(function() {
 			
    			//Json으로 전달할 파라미터 변수선언
    			const fiNum = ${param.fiNum};
