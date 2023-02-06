@@ -479,7 +479,7 @@ function getList() {
 				
 				}
 				);//getJson
-
+			}
 					</script>
 		</body>
 
