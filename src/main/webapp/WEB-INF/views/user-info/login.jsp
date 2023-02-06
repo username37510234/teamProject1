@@ -4,42 +4,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
 <link rel="stylesheet" href="/resources/css/main.css">
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/css/login.css" >
 </head>
-<body>
-
-	<!-- 카카오 로그인 -->
-	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-	  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous">
-	</script>
-	<script>
-	  Kakao.init('82febca4b29e4327a47c30d8e9856913'); // <-- app KEY!!(사용하려는 앱의 JavaScript 키 입력)
-	</script>
-	
-	<!-- 로그인이 안됐을 때 나오는 메시지 -->
-	<P>${msg}</P>
-	
-	<div>
-		<input type="text" id="uiId" placeholder="아이디"><br>
-		<input type="password" id="uiPwd" placeholder="비밀번호"><br>
-		<button onclick="login()">Login</button><br><br>
-	</div>
-	
-	<div>
-		<a>
-			카카오 간편 로그인으로도 가입이 가능합니다.<br>
-		</a>
-	</div>
-	
-	<!-- 카카오 로그인 -->
-	<a id="kakao-login-btn" href="javascript:loginWithKakao()">
-	  <br><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-	    alt="카카오 로그인 버튼" />
-	</a>
-	<p id="token-result"></p>
+<body class="text-center">
+	<main class="form-signin w-100 m-auto">
+		<!-- 로고 이미지 -->
+		<img class="mb-4" src="" alt="" width="72" height="57">
+		
+		<!-- 비로그인 상태에서 나오는 메시지 -->
+		<P>${msg}</P>
+		
+		<!-- 일반 회원가입 -->
+		<h1 class="h4 mb-3 fw-normal">일반 로그인</h1>
+		<div class="form-floating">
+			<input class="form-control" type="text" id="uiId" placeholder="아이디">
+			<label for="floatingInput">아이디</label>
+		</div>
+		<div class="form-floating">
+			<input class="form-control" type="password" id="uiPwd" placeholder="비밀번호">
+			<label for="floatingPassword">비밀번호</label>
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" onclick="login()">로그인</button><br><br>
+		
+		<!-- 카카오 로그인 -->
+		<div>
+			<br><h2 class="h4 mb-3 fw-normal">간편 로그인</h2>
+			<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+			  <img src="/resources/images/kakao_login_large_narrow.png" width="200"
+			    alt="카카오 로그인 버튼" />
+			</a>
+			<p id="token-result"></p>
+		</div>
+		
+	</main>
 	
 	<script>
 	/* 카카오 로그인 */
@@ -78,8 +79,14 @@
 		alert('아이디 비번을 확인해주세요.');
 		})
 	}
-	
 	</script>
 	
+	<!-- 카카오 로그인 -->
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+	  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous">
+	</script>
+	<script>
+	  Kakao.init('82febca4b29e4327a47c30d8e9856913'); // <-- app KEY!!(사용하려는 앱의 JavaScript 키 입력)
+	</script>
 </body>
 </html>
