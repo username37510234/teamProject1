@@ -23,10 +23,6 @@
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!-- main -->
 <main>
-	<div>
-		이름 : ${userInfo.uiName}<br>
-		닉네임 : ${userInfo.uiNickname}<br>
-	</div>
 	<div class="mb-3 row">
     <label for="staticEmail" class="col-sm-2 col-form-label">이름</label>
     <div class="col-sm-10">
