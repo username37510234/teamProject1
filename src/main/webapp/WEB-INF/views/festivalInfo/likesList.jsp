@@ -1,35 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
- <!-- HEADER -->
- <%@ include file="/WEB-INF/views/common/header.jsp" %>
- <div id="searchOption" class="container">
-     <input type="number" id="page" value=1 hidden>
-     </div>
- <div id="mainContent" class="container">
-    <div id="totalNum"></div>
-     <table>
-         <tr>
-             <th></th>
-             <th>축제명</th>
-             <th>위치</th>
-             <th>시작일</th>
-             <th>종료일</th>
-             <th>좋아요</th>
-         </tr>
-         <tbody id="tBody"></tbody>
-     </table>
- </div>
- <div class="paginaiton"></div>
- <!-- FOOTER -->
- <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-     <script>
+<link href="/resources/css/likestyle.css" rel="stylesheet" type="text/css">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
+
+<!-- HEADER -->
+
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
+<div id="features-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-4 col-12-medium"></div>
+
+			<div id="searchOption" class="container">
+				<input type="number" id="page" value=1 hidden>
+			</div>
+
+			<div id="mainContent" class="container">
+				<div>
+
+					<div class="container">
+						<div class="row" id="popularList"></div>
+					</div>
+				</div>
+
+
+				<div class="paginaiton"></div>
+				<!-- FOOTER -->
+				<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+
+
+				<script>
     
          let oneTime = false; // 글로벌 변수
 
@@ -48,14 +55,27 @@
                      return result.json();
                  }).then(function (toJsonData) {
                      html = '';
-                     const body = document.querySelector('#tBody');
+                     const body = document.querySelector('#popularList');
                      for (let data of toJsonData.list) {
-                         html += '<tr><td><img src="' + data.firstimage2 + '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
-                         html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td>' + '<td>' + data.likecnt + '</td></tr>';
+                         // html += '<tr><td><img src="' + data.firstimage2 + '" height=125px></td><td><a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '">' + data.title + '</a></td><td>' + data.addr1 + '</td>';
+                         // html += '<td>' + data.eventstartdate + '</td><td>' + data.eventenddate + '</td>' + '<td>' + data.likecnt + '</td></tr>';
+                    	 html += '<div class="col-4 col-12-medium">\n' +
+						'    <section class="box feature">\n' +
+						'        <a href="/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '" class="image featured"><img\n' +
+						'            src="' + data.firstimage2 + '" height=300px\n' +
+						'             /></a>\n' +
+						'        <div class="inner">\n' +
+						'            <div>\n' +
+						'                <div class="title">' + data.title + '</div>\n' +
+						'                <p>' + data.addr1 + '</p>\n' +
+						'				 <div class="date">' + data.eventstartdate + " - " + data.eventenddate + '</div>\n' +				
+						' 				 <p align="right"><img src="/resources/images/like_img.jpg" width="23" height="23">' + " " + data.likecnt + '</p>\n' +
+						'            </div>\n' +						
+						'    </section>\n' +
+						'</div>';
                      }
-                     body.innerHTML += html;
-                     document.querySelector('#totalNum').innerHTML = '총 ' + toJsonData.total + ' 개의 축제가 검색되었습니다.';
-                     oneTime = false;
+                     body.innerHTML += html;               
+                    
                      document.querySelector('#page').value = Number(document.querySelector('#page').value) + 1;
                  });
          }
@@ -84,7 +104,7 @@
              clearfestivalList();
              loadFestivalList();
          }
-     </script>
+</script>
 </head>
 <body>
 
