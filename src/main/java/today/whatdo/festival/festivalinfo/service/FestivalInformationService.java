@@ -9,8 +9,6 @@ import com.github.pagehelper.PageInfo;
 
 import lombok.AllArgsConstructor;
 import today.whatdo.festival.festivalinfo.api.ApiDetailFestivalInfo;
-import today.whatdo.festival.festivalinfo.api.ApiFestivalImage;
-import today.whatdo.festival.festivalinfo.api.ApiNearFestivalInfo;
 import today.whatdo.festival.festivalinfo.mapper.FestivalInformationMapper;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalResponseVO;
@@ -86,9 +84,7 @@ public class FestivalInformationService {
 	}
 
 	// api 호출을 위한 api 선언
-	private final ApiNearFestivalInfo apiNearFestivalInfo;
 	private final ApiDetailFestivalInfo apiDetailFestivalInfo;
-	private final ApiFestivalImage apiFestivalImage;
 
 	public FestivalResponseVO getFestivalDetails(FestivalInformationVO festivalInfo) {
 		FestivalResponseVO response = new FestivalResponseVO();
@@ -97,8 +93,8 @@ public class FestivalInformationService {
 		if ("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
 			return response;
 		}
-		response.setFestivalImages(apiFestivalImage.getFestivalImages(festivalInfo));
-		response.setLocationInfo(apiNearFestivalInfo.getLocationInformationByMap(festivalInfo));
+		response.setFestivalImages(apiDetailFestivalInfo.getFestivalImages(festivalInfo));
+		response.setLocationInfo(apiDetailFestivalInfo.getLocationInformationByMap(festivalInfo));
 		return response;
 	}
 }

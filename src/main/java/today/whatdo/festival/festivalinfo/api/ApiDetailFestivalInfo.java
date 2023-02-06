@@ -1,5 +1,6 @@
 package today.whatdo.festival.festivalinfo.api;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +24,27 @@ public class ApiDetailFestivalInfo {
 	private String festivalKey;
 	@Autowired
 	private ObjectMapper om;
-	
+	@Autowired
+	private DatagoApiConnect datagoApiConnect;
+
 	public FestivalInformationVO getFestivalInformationDetail(FestivalInformationVO festivalInfo) {
-		String url = dataUrl+"/detailCommon?";
+		String url = dataUrl + "/detailCommon?";
 		url += "&contentTypeId=15&_type=json&MobileOS=ETC&MobileApp=APPTest&overviewYN=Y&defaultYN=Y&serviceKey=";
-		url += festivalKey+"&contentId="+festivalInfo.getContentid();
-		Map<String,Object> result = apiCall.getDataToAPI(url, Map.class);
+		url += festivalKey + "&contentId=" + festivalInfo.getContentid();
+		return datagoApiConnect.datagoApi(url).get(0);
+	}
 
-		int numOfRows = (int)((Map<String,Object>)((Map<String,Object>)result.get("response")).get("body")).get("numOfRows");
-		if(numOfRows==0) {
-			return null;
-		}
+	public List<FestivalInformationVO> getFestivalImages(FestivalInformationVO festivalInfo) {
+		String url = dataUrl + "/detailImage?";
+		url += "_type=json&MobileOS=ETC&MobileApp=APPTest&subImageYN=Y&serviceKey=";
+		url += festivalKey + "&contentId=" + festivalInfo.getContentid();
+		return datagoApiConnect.datagoApi(url);
+	}
 
-		FestivalResultVO finalResult = om.convertValue(result, FestivalResultVO.class);
-		if(finalResult != null && finalResult.getResponse().getBody().getNumOfRows()!=0) {
-		return finalResult.getResponse().getBody().getItems().getItem().get(0);
-		}
-		return null;
+	public List<FestivalInformationVO> getLocationInformationByMap(FestivalInformationVO festivalInfo) {
+		String url = dataUrl + "/locationBasedList?";
+		url += "&radius=5000&contentTypeId=12&arrange=E&numOfRows=10&_type=json&MobileOS=ETC&MobileApp=APPTest&serviceKey=";
+		url += festivalKey + "&mapX=" + festivalInfo.getMapx() + "&mapY=" + festivalInfo.getMapy();
+		return datagoApiConnect.datagoApi(url);
 	}
 }

@@ -13,7 +13,7 @@ function createList(jsonData) {
         return;
     }
     for (let data of jsonData.list) {
-        html += '<tr class="table-active" style="cursor:pointer" onclick="location.href=\'/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '\'"><td><img src="';
+        html += '<tr class="table-active" onclick="location.href=\'/views/festivalInfo/viewItem?fiNum=' + data.fiNum + '\'"><td><img src="';
         if (data.firstimage2) {
             html += data.firstimage2;
         } else {
