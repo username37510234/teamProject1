@@ -7,7 +7,7 @@ import today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO;
 public interface CommentMapper {
 
 	//댓글 등록
-	int CommentRegist(CommentVO commentVO);
+	int commentRegist(CommentVO commentVO);
 	//댓글 개수
 	int getTotal(int fiNum);
 	//목록 요청

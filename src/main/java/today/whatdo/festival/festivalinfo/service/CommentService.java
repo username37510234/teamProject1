@@ -15,8 +15,8 @@ public class CommentService {
 	private CommentMapper commentMapper;
 	
 	//댓글 등록
-	public int CommentRegist(CommentVO commentVO) {
-		return commentMapper.CommentRegist(commentVO);
+	public int commentRegist(CommentVO commentVO) {
+		return commentMapper.commentRegist(commentVO);
 	}
 	
 	//댓글 갯수

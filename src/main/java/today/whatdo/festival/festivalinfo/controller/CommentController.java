@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
 import today.whatdo.festival.festivalinfo.service.CommentService;
 import today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO;
 
 @RestController
+@Slf4j
 @RequestMapping("/Comment")
 public class CommentController {
 	
@@ -26,15 +28,15 @@ public class CommentController {
 	private CommentService commentService;
 
 	@PostMapping("/InsertComment")
-	public String InsertComment(@RequestBody CommentVO vo) {
-		System.out.println("댓글 등록 통신 성공");
-		commentService.CommentRegist(vo);
+	public String insertComment(@RequestBody CommentVO vo) {
+		log.info("댓글 등록 통신 성공");
+		commentService.commentRegist(vo);
 		return "InsertSuccess";
 	}
 
 	@GetMapping("/CommentList/{fiNum}")
 	public Map<String, Object> getList(@PathVariable int fiNum) {
-		System.out.println("댓글 목록 컨트롤러 동작");
+		log.info("댓글 목록 컨트롤러 동작");
 		List<CommentVO> list = commentService.getList(fiNum);
 		int total = commentService.getTotal(fiNum);
 		

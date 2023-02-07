@@ -12,7 +12,9 @@
 
 			<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
 				integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-			<link rel="stylesheet" href="/resources/css/festival.css">
+			<!--  <link rel="stylesheet" href="/resources/css/festival.css">-->
+			<link rel="stylesheet" href="/resources/css/main.css">
+			<link rel="stylesheet" href="/resources/css/common.css">
 			<style>
 				.like_btn {
 					width: 40px;
