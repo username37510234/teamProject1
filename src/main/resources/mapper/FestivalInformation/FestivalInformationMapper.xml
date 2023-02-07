@@ -114,6 +114,7 @@
 		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION 
 		WHERE TITLE LIKE CONCAT('%',#{fesTitle},'%')
+		   OR ADDR1 LIKE CONCAT('%',#{fesTitle},'%')
 		ORDER BY EVENTENDDATE DESC
 	</select>
 	<update id="updateFestivalInformation">

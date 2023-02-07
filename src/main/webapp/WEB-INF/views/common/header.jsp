@@ -20,7 +20,7 @@
 					</ul>
 				</nav>
 				<div class="col-md-2">
-					<input type="text" id="search" placeholder="축제명 검색(Enter)" class="form-control">
+					<input type="text" id="search" placeholder="축제 검색(Enter)" class="form-control">
 				</div>
 				<div class="col-md-3">
 					<div class="btn-group" role="group" aria-label="Basic example">
