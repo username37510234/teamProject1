@@ -22,4 +22,5 @@ public class CommentController {
 		return "redirect:/views/festivalInfo/viewItem?fiNum=" + vo.getFiNum();
 	}
 	
+
 }

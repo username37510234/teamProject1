@@ -14,4 +14,5 @@ public interface CommentMapper {
 	int commentModify(CommentVO vo);
 	//댓글 삭제
 	int commentDelete(CommentVO vo);
+	
 }

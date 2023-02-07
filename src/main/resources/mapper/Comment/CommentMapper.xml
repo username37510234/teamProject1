@@ -31,5 +31,7 @@
 		WHERE CI_NUM = #{ciNum}
 			AND FI_NUM = #{fiNum}	
 	</delete>
+	
+
 
 </mapper>

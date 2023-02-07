@@ -95,11 +95,16 @@
 		<!-- 댓글 시작 -->
 		<hr />
 		<ul>
-			<c:forEach items="${param}" var="param">
+			<c:forEach items="${comment}" var="comment">
 				<li>
 					<div>
-						<p>${param.ciWriter}/${param.ciRegdate}</p>
-						<p>${param.ciContent }</p>
+						<p>${comment.ciWriter}/${comment.ciRegdate}</p>
+						<p>${comment.ciContent }</p>
+						<p>
+							<a href="">수정</a> / <a href="">삭제</a>
+						</p>
+
+						<hr />
 					</div>
 				</li>
 			</c:forEach>
