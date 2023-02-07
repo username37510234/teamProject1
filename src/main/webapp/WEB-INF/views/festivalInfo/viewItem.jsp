@@ -86,14 +86,6 @@
 			</div>
 			<!-- float clear -->
 			<div style="clear: both;"></div>
-		</div>
-			<!-- 관광지 파트 -->
-							<div id="location" class="float-end container" style="width: 25%; margin-top: 100px;">
-								<h2>추천 주변 관광지</h2>
-								<div id="readyStateLoc" class="text-center"></div>
-							</div>
-							<!-- float clear -->
-							<div style="clear: both;"></div>
 							
 						<!-- 댓글 시작 -->
 						<hr />
