@@ -33,60 +33,59 @@
 
 <body>
 
-			<!-- HEADER -->
-			<%@ include file="/WEB-INF/views/common/header.jsp" %>
-				<main>
-					<div id="mainContent">
-						<div class="float-start" style="width: 75%;">
-							<div id="readyState" class="text-center"></div>
-							<div id="mainContent" class="container text-center">
-								<!-- 축제 정보 파트 -->
-								<table class="table-borderless"
-									style="margin-top: 100px; width: 80%; margin-left: 15%;">
-									<tbody id="festivalInfo"></tbody>
-								</table>
-								<br>
-								<!-- 썸네일 이미지 파트 -->
-								<div id="thumbImgs"></div>
-								<!-- 카카오 맵 파트 -->
-								<div id="map" class="container" style="width:500px;height:400px;">
-								</div>
-							</div>
-							<div>
+	<!-- HEADER -->
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<main>
+		<div id="mainContent">
+			<div class="float-start" style="width: 75%;">
+				<div id="readyState" class="text-center"></div>
+				<div id="mainContent" class="container text-center">
+					<!-- 축제 정보 파트 -->
+					<table class="table-borderless"
+						style="margin-top: 100px; width: 80%; margin-left: 15%;">
+						<tbody id="festivalInfo"></tbody>
+					</table>
+					<br>
+					<!-- 썸네일 이미지 파트 -->
+					<div id="thumbImgs"></div>
+					<!-- 카카오 맵 파트 -->
+					<div id="map" class="container"
+						style="width: 500px; height: 400px;"></div>
+				</div>
+			</div>
+			<div>
 
-					<button id="like" class="like_btn">
-						<svg aria-label="좋아요" class="love" color="#262626" fill="#262626"
-							height="24" role="img" viewBox="0 0 24 24" width="24">
+				<button id="like" class="like_btn">
+					<svg aria-label="좋아요" class="love" color="#262626" fill="#262626"
+						height="24" role="img" viewBox="0 0 24 24" width="24">
 										<path
-								d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
+							d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
 										</path>
 									</svg>
-					</button>
+				</button>
 
-					<span id="like_cnt"> 0 </span>
+				<span id="like_cnt"> 0 </span>
 
-				</div>
-
-				<!-- 마이리스트 추가 -->
-				<c:if test="${userInfo eq null}">
-					<div>
-						<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
-						<button id="mylist-button"
-							onclick="location.href='/views/my-list/'">마이리스트 추가</button>
-					</div>
-				</c:if>
-				<c:if test="${userInfo ne null}">
-					<div>
-						<button id="mylist-button" onclick="insertMyList()"
-							id="insertMyList">마이리스트 추가</button>
-					</div>
-				</c:if>
-
-<<<<<<< HEAD
 			</div>
+
+			<!-- 마이리스트 추가 -->
+			<c:if test="${userInfo eq null}">
+				<div>
+					<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
+					<button id="mylist-button"
+						onclick="location.href='/views/my-list/'">마이리스트 추가</button>
+				</div>
+			</c:if>
+			<c:if test="${userInfo ne null}">
+				<div>
+					<button id="mylist-button" onclick="insertMyList()"
+						id="insertMyList">마이리스트 추가</button>
+				</div>
+			</c:if>
+
 			<!-- 관광지 파트 -->
 			<div id="location" class="float-end container"
-				style="width: 35%; margin-top: 100px">
+				style="width: 25%; margin-top: 100px;">
 				<h2>추천 주변 관광지</h2>
 				<div id="readyStateLoc" class="text-center"></div>
 			</div>
@@ -99,37 +98,12 @@
 			<c:forEach items="${param}" var="param">
 				<li>
 					<div>
-						<p>${param.ciWriter}/ ${param.ciRegdate}</p>
+						<p>${param.ciWriter}/${param.ciRegdate}</p>
 						<p>${param.ciContent }</p>
 					</div>
 				</li>
 			</c:forEach>
 		</ul>
-=======
-						</div>
-						<!-- 관광지 파트 -->
-						<div id="location" class="float-end container" style="width: 25%; margin-top:100px;">
-							<h2> 추천 주변 관광지</h2>
-							<div id="readyStateLoc" class="text-center"></div>
-						</div>
-						<!-- float clear -->
-						<div style="clear: both;"></div>
-					</div>
-					<!-- 댓글 시작 -->
-					<hr />
-					<div class="comment-box">
-
-						<div class="comment-count">댓글 <span id="count">0</span></div>
-
-
-						<div class="comment-name">
-							<span class="anonym">작성자 :
-								<input type="text" class="form-control" id="com_writer" placeholder="이름"
-									name="com_writer" value='${userInfo.uiNickname}' readonly>
-							</span>
-						</div>
->>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
-
 		<div>
 
 			<form method="post" action="/comment/write">
