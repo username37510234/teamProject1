@@ -70,9 +70,7 @@
 			<if test='fesTitle!="" and fesTitle!=null'>
 				AND TITLE LIKE CONCAT('%',#{fesTitle},'%')
 			</if>
-			<if test='fesMonth=="" and fesLocal=="" and fesTitle==""'>
-				AND EVENTENDDATE > DATE_FORMAT(NOW(), '%Y%m%d')
-			</if>
+				AND EVENTENDDATE >= DATE_FORMAT(NOW(), '%Y%m%d')
 		</where>
 		ORDER BY EVENTSTARTDATE ASC
 	</select>
@@ -116,6 +114,7 @@
 		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION 
 		WHERE TITLE LIKE CONCAT('%',#{fesTitle},'%')
+		   OR ADDR1 LIKE CONCAT('%',#{fesTitle},'%')
 		ORDER BY EVENTENDDATE DESC
 	</select>
 	<update id="updateFestivalInformation">
