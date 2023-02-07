@@ -61,8 +61,8 @@
 		FROM FESTIVAL_INFORMATION
 		<where>
 			<if test='fesMonth!="" and fesMonth!=null'>
-				AND LEFT(EVENTENDDATE,6) >= CONCAT(DATE_FORMAT(NOW(), '%Y'),#{fesMonth})
-				AND CONCAT(DATE_FORMAT(NOW(), '%Y'),#{fesMonth}) >= LEFT(EVENTSTARTDATE,6)
+				AND LEFT(EVENTENDDATE,6) >= CONCAT(DATE_FORMAT(NOW(), '%Y%m'),#{fesMonth})
+				AND CONCAT(DATE_FORMAT(NOW(), '%Y%m'),#{fesMonth}) >= LEFT(EVENTSTARTDATE,6)
 			</if>
 			<if test='fesLocal!="" and fesLocal!=null'>
 				AND ADDR1 LIKE CONCAT(#{fesLocal},'%')
@@ -70,9 +70,7 @@
 			<if test='fesTitle!="" and fesTitle!=null'>
 				AND TITLE LIKE CONCAT('%',#{fesTitle},'%')
 			</if>
-			<if test='fesMonth=="" and fesLocal=="" and fesTitle==""'>
-				AND EVENTENDDATE > DATE_FORMAT(NOW(), '%Y%m%d')
-			</if>
+				AND EVENTENDDATE >= DATE_FORMAT(NOW(), '%Y%m%d')
 		</where>
 		ORDER BY EVENTSTARTDATE ASC
 	</select>
