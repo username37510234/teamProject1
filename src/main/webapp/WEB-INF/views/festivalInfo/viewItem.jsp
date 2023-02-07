@@ -78,8 +78,6 @@
 										추가</button>
 								</div>
 							</c:if>
-
-<<<<<<< HEAD
 			<!-- 관광지 파트 -->
 			<div id="location" class="float-end container"
 				style="width: 25%; margin-top: 100px;">
@@ -89,33 +87,14 @@
 			<!-- float clear -->
 			<div style="clear: both;"></div>
 		</div>
-		<!-- 댓글 시작 -->
-		<hr />
-		<ul>
-			<c:forEach items="${comment}" var="comment">
-				<li>
-					<div>
-						<p>${comment.ciWriter}/${comment.ciRegdate}</p>
-						<p>${comment.ciContent }</p>
-						<p>
-							<a href="">수정</a> / <a href="">삭제</a>
-						</p>
-
-						<hr />
-					</div>
-				</li>
-			</c:forEach>
-		</ul>
-		<div>
-=======
-							<!-- 관광지 파트 -->
+			<!-- 관광지 파트 -->
 							<div id="location" class="float-end container" style="width: 25%; margin-top: 100px;">
 								<h2>추천 주변 관광지</h2>
 								<div id="readyStateLoc" class="text-center"></div>
 							</div>
 							<!-- float clear -->
 							<div style="clear: both;"></div>
-						</div>
+							
 						<!-- 댓글 시작 -->
 						<hr />
 						<ul>
@@ -129,8 +108,6 @@
 							</c:forEach>
 						</ul>
 						<div>
->>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
-
 							<form method="post" action="/comment/write">
 
 								<p>
