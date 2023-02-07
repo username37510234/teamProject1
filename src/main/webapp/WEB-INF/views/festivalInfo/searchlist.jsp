@@ -40,7 +40,7 @@
                             document.querySelector('#page').value = 1;
                         }
                         if (!document.querySelector('#rows').value) {
-                            document.querySelector('#rows').value = 15;
+                            document.querySelector('#rows').value = 10;
                         }
                         fe("/festival-search" + searchUrl())
                             .then(jsonData => {

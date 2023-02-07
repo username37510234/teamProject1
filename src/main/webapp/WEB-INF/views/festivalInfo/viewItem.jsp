@@ -33,26 +33,26 @@
 
 <body>
 
-	<!-- HEADER -->
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<main>
-		<div id="mainContent">
-			<div class="float-start" style="width: 65%;">
-				<div id="readyState" class="text-center"></div>
-				<div id="mainContent" class="container text-center">
-					<!-- 축제 정보 파트 -->
-					<table class="table-borderless"
-						style="margin-top: 100px; width: 80%; margin-left: 15%;">
-						<tbody id="festivalInfo"></tbody>
-					</table>
-					<br>
-					<!-- 썸네일 이미지 파트 -->
-					<div id="thumbImgs"></div>
-					<!-- 카카오 맵 파트 -->
-					<div id="map" class="container"
-						style="width: 500px; height: 400px;"></div>
-				</div>
-				<div>
+			<!-- HEADER -->
+			<%@ include file="/WEB-INF/views/common/header.jsp" %>
+				<main>
+					<div id="mainContent">
+						<div class="float-start" style="width: 75%;">
+							<div id="readyState" class="text-center"></div>
+							<div id="mainContent" class="container text-center">
+								<!-- 축제 정보 파트 -->
+								<table class="table-borderless"
+									style="margin-top: 100px; width: 80%; margin-left: 15%;">
+									<tbody id="festivalInfo"></tbody>
+								</table>
+								<br>
+								<!-- 썸네일 이미지 파트 -->
+								<div id="thumbImgs"></div>
+								<!-- 카카오 맵 파트 -->
+								<div id="map" class="container" style="width:500px;height:400px;">
+								</div>
+							</div>
+							<div>
 
 					<button id="like" class="like_btn">
 						<svg aria-label="좋아요" class="love" color="#262626" fill="#262626"
@@ -82,6 +82,7 @@
 					</div>
 				</c:if>
 
+<<<<<<< HEAD
 			</div>
 			<!-- 관광지 파트 -->
 			<div id="location" class="float-end container"
@@ -104,6 +105,30 @@
 				</li>
 			</c:forEach>
 		</ul>
+=======
+						</div>
+						<!-- 관광지 파트 -->
+						<div id="location" class="float-end container" style="width: 25%; margin-top:100px;">
+							<h2> 추천 주변 관광지</h2>
+							<div id="readyStateLoc" class="text-center"></div>
+						</div>
+						<!-- float clear -->
+						<div style="clear: both;"></div>
+					</div>
+					<!-- 댓글 시작 -->
+					<hr />
+					<div class="comment-box">
+
+						<div class="comment-count">댓글 <span id="count">0</span></div>
+
+
+						<div class="comment-name">
+							<span class="anonym">작성자 :
+								<input type="text" class="form-control" id="com_writer" placeholder="이름"
+									name="com_writer" value='${userInfo.uiNickname}' readonly>
+							</span>
+						</div>
+>>>>>>> branch 'main' of https://github.com/Mirabilia963/3rd-Team.git
 
 		<div>
 
