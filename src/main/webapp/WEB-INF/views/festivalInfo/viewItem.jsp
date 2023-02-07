@@ -269,7 +269,6 @@
 							ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
 							fe("/festival-info/${param.fiNum}")
 								.then(jsonData => {
-									console.log(jsonData)
 									if (jsonData.status === 500) {
 										alert('잘못된 요청입니다.');
 										location.replace("/");

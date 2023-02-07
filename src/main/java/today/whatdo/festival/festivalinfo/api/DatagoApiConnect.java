@@ -28,15 +28,17 @@ public class DatagoApiConnect {
 		try {
 			URI uri = new URI(url);
 			ResponseEntity<Map> getResult = restTemplate.getForEntity(uri, Map.class);
-			int numOfRows = (int) ((Map<String, Object>) ((Map<String, Object>) getResult.getBody().get("response"))
-					.get("body")).get("numOfRows");
-			if (numOfRows == 0) {
-				return null;
-			}
-			FestivalResultVO result = om.convertValue(getResult.getBody(), FestivalResultVO.class);
-			if (result != null) {
-				return result.getResponse().getBody().getItems().getItem();
-			}
+			if(getResult.getBody() != null) {
+				int numOfRows = (int) ((Map<String, Object>) ((Map<String, Object>) getResult.getBody().get("response")).get("body")).get("numOfRows");
+				if (numOfRows == 0) {
+					return null;
+				}
+				FestivalResultVO result = om.convertValue(getResult.getBody(), FestivalResultVO.class);
+				if (result != null) {
+					return result.getResponse().getBody().getItems().getItem();
+				}
+			}				
+			
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
