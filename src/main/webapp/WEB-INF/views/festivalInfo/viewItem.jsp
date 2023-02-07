@@ -1,35 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-		<!DOCTYPE html>
-		<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
 
-		<head>
-			<meta charset="UTF-8">
-			<title>Insert title here</title>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-			<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
 
-			<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
-				integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-			<link rel="stylesheet" href="/resources/css/festival.css">
-			<link rel="stylesheet" href="/resources/css/viewItem.css">
-			<link rel="stylesheet" href="/resources/css/common.css">
-			<style>
-				.like_btn {
-					width: 40px;
-					height: 40px;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="/resources/css/festival.css">
+<link rel="stylesheet" href="/resources/css/viewItem.css">
+<link rel="stylesheet" href="/resources/css/common.css">
+<style>
+.like_btn {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+}
 
-					background-color: transparent;
-				}
+.like_btn.active svg {
+	fill: red
+}
+</style>
+</head>
 
-				.like_btn.active svg {
-					fill: red
-				}
-			</style>
-		</head>
-
-		<body>
+<body>
 
 			<!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -52,37 +52,37 @@
 							</div>
 							<div>
 
-								<button id="like" class="like_btn">
-									<svg aria-label="좋아요" class="love" color="#262626" fill="#262626" height="24"
-										role="img" viewBox="0 0 24 24" width="24">
+					<button id="like" class="like_btn">
+						<svg aria-label="좋아요" class="love" color="#262626" fill="#262626"
+							height="24" role="img" viewBox="0 0 24 24" width="24">
 										<path
-											d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
+								d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
 										</path>
 									</svg>
-								</button>
+					</button>
 
-								<span id="like_cnt">
-									0
-								</span>
+					<span id="like_cnt"> 0 </span>
 
-							</div>
+				</div>
 
-							<!-- 마이리스트 추가 -->
-							<c:if test="${userInfo eq null}">
-								<div>
-									<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
-									<button onclick="location.href='/views/my-list/'">마이리스트 추가</button>
-								</div>
-							</c:if>
-							<c:if test="${userInfo ne null}">
-								<div>
-									<button id="mylist-button" onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
-								</div>
-							</c:if>
+				<!-- 마이리스트 추가 -->
+				<c:if test="${userInfo eq null}">
+					<div>
+						<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
+						<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트
+							추가</button>
+					</div>
+				</c:if>
+				<c:if test="${userInfo ne null}">
+					<div>
+						<button id="mylist-button" onclick="insertMyList()"
+							id="insertMyList">마이리스트 추가</button>
+					</div>
+				</c:if>
 
 						</div>
 						<!-- 관광지 파트 -->
-						<div id="location" class="float-end container" style="width: 25%; margin-top:100px">
+						<div id="location" class="float-end container" style="width: 35%; margin-top:100px">
 							<h2> 추천 주변 관광지</h2>
 							<div id="readyStateLoc" class="text-center"></div>
 						</div>
@@ -104,25 +104,26 @@
 						</div>
 
 
-						<div class="comment-sbox">
-							<textarea class="comment-input" id="com_content" cols="80" rows="2"
-								name="com_content"></textarea>
+			<div class="comment-sbox">
+				<textarea class="comment-input" id="ciContent" cols="80" rows="2"
+					name="ciContent"></textarea>
 
-						</div>
-						<div class="regBtn">
-							<button id="Comment_regist"> 댓글등록</button>
-						</div>
-					</div>
+			</div>
+			<div class="regBtn">
+				<button id="Comment_regist">댓글등록</button>
+			</div>
+		</div>
 
-					<div class="comment_Box"> <!-- 댓글이 들어갈 박스 -->
+		<div class="comment_Box">
+			<!-- 댓글이 들어갈 박스 -->
 
-					</div>
-					<!-- 댓글 끝 -->
-				</main>
-				<!-- FOOTER -->
-				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-					<script src="/resources/js/common.js"></script>
-					<script>
+		</div>
+		<!-- 댓글 끝 -->
+	</main>
+	<!-- FOOTER -->
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	<script src="/resources/js/common.js"></script>
+	<script>
 						/* 마이리스트 추가 */
 						function insertMyList() {
 							const param = {};
@@ -382,8 +383,23 @@
 						}
 
 						//댓글쓰기 
-						
+						$('#Comment-regist').click(function(){
+							const ciWriter = $('#ciWriter').val();
+							const ciContent = $('#ciContent').val();
+							const fiNum = ${param.fiNum};
+							
+							console.log(ciWriter);
+							console.log(ciContent);
+							console.log(fiNum);
+							
+							if(ciWriter ==''){
+								alert('로그인 후 이용해주세요.');
+								return;
+							} else if(ciContent ==''){
+								alert('내용을 입력하세요.');
+							}
+						})
 					</script>
-		</body>
+</body>
 
-		</html>
+</html>

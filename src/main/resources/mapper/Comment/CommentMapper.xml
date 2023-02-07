@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="today.whatdo.festival.festivalinfo.mapper.CommentMapper">
 	<!-- 댓글 등록 -->
-	<insert id="CommentRegist">
+	<insert id="commentRegist">
   		INSERT INTO COMMENT_INFO (CI_WRITER,CI_CONTENT, FI_NUM)
-		VALUES(#{ciWriter},#{ciContent}, #{ciWriter})
+		VALUES(#{ciWriter},#{ciContent}, #{fiNum})
   	</insert>
   	
   	<!-- 댓글 갯수-->

@@ -24,7 +24,7 @@
 				<input type="text" id="uiId" class="form-control" placeholder="아이디">
 				<button onclick="checkId()" class="btn btn-secondary">중복확인</button>
 			</div>
-			<small align="left">최소 4글자 이상</small>
+			<small align="left">&nbsp;최소 4글자 이상</small>
 			<!-- 이름 입력 -->
 			<br><label for="uiName" class="form-label" align="left">이름</label>
 			<input type="text" id="uiName" class="form-control" placeholder="이름"><br>
@@ -34,11 +34,11 @@
 				<input type="text" id="uiNickname" class="form-control" placeholder="닉네임"><br>
 				<button onclick="checkUiNickname()" class="btn btn-secondary">중복확인</button>
 			</div>
-			<small align="left">최소 2글자 이상</small>
+			<small align="left">&nbsp;최소 2글자 이상</small>
 			<!-- 비밀번호 입력 -->
 			<br><label for="uiPwd" class="form-label" align="left">비밀번호</label>
 			<input type="password" id="uiPwd" class="form-control" placeholder="비밀번호">
-			<small align="left">최소 6글자 이상</small>
+			<small align="left">&nbsp;최소 6글자 이상</small>
 			<br><label for="uiPwdCheck" class="form-label" align="left">비밀번호 확인</label>
 			<input type="password" id="uiPwdCheck" class="form-control" placeholder="비밀번호 확인">
 		</div>
@@ -151,7 +151,7 @@
 		.then(function(data){
 			console.log(data);
 			alert('회원가입이 완료되었습니다.')
-			location.href='/views/index'
+			location.href='/views/user-info/login'
 		})
 	}
 	</script>

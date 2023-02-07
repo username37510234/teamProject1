@@ -16,6 +16,10 @@ body {
   padding: 15px;
 }
 
-small {
-    font-size: 0.7em;
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin .form-floating #uiPwd {
+  margin-bottom: 10px;
 }
