@@ -12,25 +12,30 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<link href="/resources/css/info.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!-- Main -->
 <main>
-	<div>
-		이름 : <input type="text" id="uiName" value="${userInfo.uiName}"><br>
-		닉네임 : <input type="text" id="uiNickname" value="${userInfo.uiNickname}"><br>
-	</div> 
+<div class="wrap">
+<div class="info">
+<div id = "infotitle">정보수정</div>
+	<div class="info_name">
+		<h5>이름</h5><input type="text" id="uiName" value="${userInfo.uiName}">
+	</div>
+	<div class="info_nick">
+		<h5>닉네임</h5><input type="text" id="uiNickname" value="${userInfo.uiNickname}">
+	</div>
+ 
 	
-	<button onclick="update()">회원수정</button>
+	<button class="update-btn" onclick="update()">회원수정</button>
+	</div>
+</div>
 </main>
 <!-- FOOTER -->
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-	
-	
-	
-	
 	
 	
 	<script>
