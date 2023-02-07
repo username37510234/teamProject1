@@ -7,12 +7,25 @@
 	
 .date {
 	font-weight: bold;
+	
 }
 
 .title {
-	font-size:21px;
+	font-size:24px;
 	color : #f6546a;
 	font-weight : bold;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+   
+	
+}
+
+.addr {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
 }
 
 #features-wrapper {
