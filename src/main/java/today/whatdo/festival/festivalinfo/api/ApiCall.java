@@ -18,7 +18,7 @@ public class ApiCall {
 	public <T> T getDataToAPI(String url, Class<T> clazz) {
 		try {
 			URI uri = new URI(url);
-			ResponseEntity<T> response = restTemplate.getForEntity(uri, (Class<T>) clazz);
+			ResponseEntity<T> response = restTemplate.getForEntity(uri, clazz);
 			return response.getBody();
 		} catch (Exception e) {
 			e.printStackTrace();

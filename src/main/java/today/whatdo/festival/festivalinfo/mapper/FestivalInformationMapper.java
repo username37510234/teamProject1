@@ -10,7 +10,7 @@ import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
 
 @Mapper
 public interface FestivalInformationMapper {
-	int insertFestivalInformations(@Param("FestivalInfoList") List<FestivalInformationVO> FestivalInfoList);
+	int insertFestivalInformations(@Param("festivalInfoList") List<FestivalInformationVO> festivalInfoList);
 
 	int insertFestivalInformation(FestivalInformationVO festivalInfo);
 	

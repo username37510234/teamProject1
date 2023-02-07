@@ -35,7 +35,7 @@
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<main>
 					<div id="mainContent">
-						<div class="float-start" style="width: 65%;">
+						<div class="float-start" style="width: 75%;">
 							<div id="readyState" class="text-center"></div>
 							<div id="mainContent" class="container text-center">
 								<!-- 축제 정보 파트 -->
@@ -82,7 +82,7 @@
 
 						</div>
 						<!-- 관광지 파트 -->
-						<div id="location" class="float-end container" style="width: 35%; margin-top:100px">
+						<div id="location" class="float-end container" style="width: 25%; margin-top:100px">
 							<h2> 추천 주변 관광지</h2>
 							<div id="readyStateLoc" class="text-center"></div>
 						</div>
