@@ -45,6 +45,7 @@ public class AuthController {
 	public @ResponseBody UserInfoVO login(@RequestBody UserInfoVO userInfo, HttpSession session) {
 		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
 		if (loginUserInfo != null) {
+			//session scope를 사용하기 위해서 VO에 Serializable이 필요하다.
 			session.setAttribute("userInfo", loginUserInfo);
 			loginUserInfo.setUiPwd(null);
 		}
@@ -59,7 +60,6 @@ public class AuthController {
 	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		System.out.println("session :: " + session);
 		session.invalidate(); //세션무효화
 		return "redirect:/";
 	}
@@ -71,14 +71,16 @@ public class AuthController {
 		String uri = "https://kauth.kakao.com/oauth/token";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
+		
+		//Map에 값이 머무를 수 없어서 sonarLint에서 잡아내지만 Map을 안 쓸 수 없는 상황 
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("grant_type", "authorization_code");
 		map.add("client_id", "175423f05591ec33e1712c6cdb8ee97b"); //REST API 키
 		map.add("redirect_uri", "http://localhost/auth/oauth"); //EC2로 하면 도메인 또는 IP로 바꿀 것
 		map.add("code", code); //일회용 코드
 		log.info("code=>{}",code);
-
+		
+		//Map에 값이 머무를 수 없어서 sonarLint에서 잡아내지만 Map을 안 쓸 수 없는 상황 
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
 		ResponseEntity<KakaoLoginVO> res = restTemplate.postForEntity(uri, request, KakaoLoginVO.class);
@@ -97,6 +99,7 @@ public class AuthController {
 			return "views/kakao/join";
 		}
 		//값이 null이 아니면(이미 가입한 회원) 로그인
+		//session scope를 사용하기 위해서 VO에 Serializable이 필요하다.
 		session.setAttribute("userInfo", loginUserInfo);
 		return "views/kakao/login";
 	}

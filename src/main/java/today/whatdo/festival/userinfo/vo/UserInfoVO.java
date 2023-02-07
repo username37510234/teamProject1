@@ -1,10 +1,15 @@
 package today.whatdo.festival.userinfo.vo;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class UserInfoVO {
-
+public class UserInfoVO implements Serializable {
+	
+	//session scope를 사용하기 위해서 Serializable이 필요하다.
+	private static final long serialVersionUID = 1L;
+	
 	private int uiNum;
 	//uiId는 카카오에서 받은 code 값
 	private String uiId;

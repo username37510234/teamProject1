@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import today.whatdo.festival.auth.CheckSessionUserInfo;
 import today.whatdo.festival.festivalinfo.service.MyListService;
 import today.whatdo.festival.festivalinfo.vo.mylist.MyListVO;
 import today.whatdo.festival.userinfo.vo.UserInfoVO;
@@ -27,15 +28,15 @@ public class MyListController {
 	@Autowired
 	private MyListService myListService;
 	
+	//로그인이 돼있는 상태인지 체크
+	@Autowired
+	private CheckSessionUserInfo checkSessionUserInfo;
+	
 	//로그인이 돼있어야 마이리스트 전부 불러오기 가능
 	@GetMapping("/my-lists")
 	@ResponseBody
 	public List<MyListVO> getMyLists(@ModelAttribute MyListVO myList, Model model, HttpSession session){
-		UserInfoVO userInfo = (UserInfoVO)session.getAttribute("userInfo");
-		if(userInfo == null) {
-			throw new RuntimeException("로그인이 필요합니다.");
-		}
-		myList.setUiNum(userInfo.getUiNum());
+		checkSessionUserInfo.checkSession(myList, session);
 		model.addAttribute("myList", myList);
 		return myListService.getMyLists(myList);
 	}
@@ -44,11 +45,7 @@ public class MyListController {
 	@PostMapping("/my-lists")
 	@ResponseBody
 	public int insertMyList(@RequestBody MyListVO myList, HttpSession session) {
-		UserInfoVO userInfo = (UserInfoVO)session.getAttribute("userInfo");
-		if(userInfo == null) {
-			throw new RuntimeException("로그인이 필요합니다.");
-		}
-		myList.setUiNum(userInfo.getUiNum());
+		checkSessionUserInfo.checkSession(myList, session);
 		return myListService.insertMyList(myList);
 	}
 	
@@ -56,12 +53,8 @@ public class MyListController {
 	@DeleteMapping("/my-lists/{fiNum}")
 	@ResponseBody
 	public int deleteMyList(@PathVariable("fiNum") int fiNum, HttpSession session) {
-		UserInfoVO userInfo = (UserInfoVO)session.getAttribute("userInfo");
-		if(userInfo == null) {
-			throw new RuntimeException("로그인이 필요합니다.");
-		}
 		MyListVO myList = new MyListVO();
-		myList.setUiNum(userInfo.getUiNum());
+		checkSessionUserInfo.checkSession(myList, session);
 		return myListService.deleteMyList(fiNum);
 	}
 	
@@ -69,11 +62,7 @@ public class MyListController {
 	@DeleteMapping("/my-lists")
 	@ResponseBody
 	public int deleteMyLists(@RequestBody MyListVO myList, HttpSession session) {
-		UserInfoVO userInfo = (UserInfoVO)session.getAttribute("userInfo");
-		if(userInfo == null) {
-			throw new RuntimeException("로그인이 필요합니다.");
-		}
-		myList.setUiNum(userInfo.getUiNum());
+		checkSessionUserInfo.checkSession(myList, session);
 		log.info("myList=>{}", myList);
 		return myListService.deleteMyLists(myList.getMlNums());
 	}
