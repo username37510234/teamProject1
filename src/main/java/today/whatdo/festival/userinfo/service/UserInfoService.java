@@ -29,10 +29,7 @@ public class UserInfoService {
 	}
 	
 	public boolean existsUserNickname(String uiNickname) {
-		if(userInfoMapper.selectUserInfoByNickName(uiNickname)==null) {
-			return false;
-		}
-		return true;
+		return userInfoMapper.selectUserInfoByNickName(uiNickname)!=null;
 	}
 	
 	public int insertUserInfo(UserInfoVO userInfo) {

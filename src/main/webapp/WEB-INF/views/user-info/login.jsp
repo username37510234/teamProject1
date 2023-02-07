@@ -37,9 +37,12 @@
 			  <img src="/resources/images/kakao_login_large_narrow.png" width="200"
 			    alt="카카오 로그인 버튼" />
 			</a>
-			<p id="token-result"></p>
+			<p id="token-result"></p><br>
 		</div>
 		
+		<div>
+			<a href="/views/user-info/join">아직 회원가입을 하지 않으셨습니까?</a>
+		</div>
 	</main>
 	
 	<script>
