@@ -37,12 +37,12 @@ li {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: 'NanumSquareRound';
 }
 
 #infotitle {
   color: black;
   font-size: 36px;
-  
 }
 
 

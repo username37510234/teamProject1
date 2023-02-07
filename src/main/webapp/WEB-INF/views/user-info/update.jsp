@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/main.css">
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -18,10 +19,10 @@
 <!-- HEADER -->
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!-- Main -->
-<main>
+
 <div class="wrap">
 <div class="info">
-<div id = "infotitle">정보수정</div>
+<div id = "infotitle" >정보수정</div>
 	<div class="info_name">
 		<h5>이름</h5><input type="text" id="uiName" value="${userInfo.uiName}">
 	</div>
@@ -33,7 +34,7 @@
 	<button class="update-btn" onclick="update()">회원수정</button>
 	</div>
 </div>
-</main>
+
 <!-- FOOTER -->
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
