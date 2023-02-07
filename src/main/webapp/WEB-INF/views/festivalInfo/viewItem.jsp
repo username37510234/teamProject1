@@ -82,7 +82,7 @@
 
 						</div>
 						<!-- 관광지 파트 -->
-						<div id="location" class="float-end container" style="width: 35%; margin-top:100px">
+						<div id="location" class="float-end container" style="width: 25%; margin-top:100px;">
 							<h2> 추천 주변 관광지</h2>
 							<div id="readyStateLoc" class="text-center"></div>
 						</div>
