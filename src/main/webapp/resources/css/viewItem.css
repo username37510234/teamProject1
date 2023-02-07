@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.comment_Box{
+	border: 1px solid gray;
+}
+
+#com_writer {
+	width: 100px;
+	border: none;
+	
+}

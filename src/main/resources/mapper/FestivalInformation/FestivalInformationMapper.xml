@@ -13,7 +13,7 @@
 		<include refid="festivalInformationColumns"></include>
 		)
 		VALUES
-		<foreach collection="FestivalInfoList" item="FesInfo" separator=",">
+		<foreach collection="festivalInfoList" item="FesInfo" separator=",">
 				(
 					#{FesInfo.addr1},#{FesInfo.addr2},#{FesInfo.areacode},#{FesInfo.booktour},#{FesInfo.cat1},
 					#{FesInfo.cat2},#{FesInfo.cat3},#{FesInfo.contentid},#{FesInfo.contenttypeid},#{FesInfo.createdtime},

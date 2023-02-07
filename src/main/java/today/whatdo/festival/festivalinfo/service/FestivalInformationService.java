@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.page.PageMethod;
 
 import lombok.AllArgsConstructor;
 import today.whatdo.festival.festivalinfo.api.ApiDetailFestivalInfo;
@@ -60,17 +60,17 @@ public class FestivalInformationService {
 	}
 
 	public PageInfo<FestivalInformationVO> getFestivalInformationListAll(SearchParameterVO searchParameter) {
-		PageHelper.startPage(searchParameter.getPage(), searchParameter.getRows());
+		PageMethod.startPage(searchParameter.getPage(), searchParameter.getRows());
 		return PageInfo.of(festivalInformationMapper.selectFestivalInformationLists(searchParameter));
 	}
 
 	public PageInfo<FestivalInformationVO> getFinishedInformationList(SearchParameterVO searchParameter) {
-		PageHelper.startPage(searchParameter.getPage(), searchParameter.getRows());
+		PageMethod.startPage(searchParameter.getPage(), searchParameter.getRows());
 		return PageInfo.of(festivalInformationMapper.selectFinishedInformationLists(searchParameter));
 	}
 
 	public PageInfo<FestivalInformationVO> getMostLikeFestival(SearchParameterVO searchParameter) {
-		PageHelper.startPage(searchParameter.getPage(), 10);
+		PageMethod.startPage(searchParameter.getPage(), 10);
 		return PageInfo.of(festivalInformationMapper.selectMostLikedfestivalLists(searchParameter));
 	}
 
@@ -79,7 +79,7 @@ public class FestivalInformationService {
 	}
 
 	public PageInfo<FestivalInformationVO> getFestvalInformationsBySearch(SearchParameterVO searchParameter) {
-		PageHelper.startPage(searchParameter.getPage(), searchParameter.getRows());
+		PageMethod.startPage(searchParameter.getPage(), searchParameter.getRows());
 		return PageInfo.of(festivalInformationMapper.selectFestivalInformationBySearch(searchParameter));
 	}
 
