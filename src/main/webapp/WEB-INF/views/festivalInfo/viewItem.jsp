@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +13,8 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/css/festival.css">
 <link rel="stylesheet" href="/resources/css/viewItem.css">
 <link rel="stylesheet" href="/resources/css/common.css">
@@ -69,8 +71,8 @@
 				<c:if test="${userInfo eq null}">
 					<div>
 						<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
-						<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트
-							추가</button>
+						<button id="mylist-button"
+							onclick="location.href='/views/my-list/'">마이리스트 추가</button>
 					</div>
 				</c:if>
 				<c:if test="${userInfo ne null}">
@@ -92,30 +94,32 @@
 		</div>
 		<!-- 댓글 시작 -->
 		<hr />
-		<div class="comment-box">
-			<div class="comment-count">
-				댓글 <span id="count">0</span>
-			</div>
-			<div class="comment-name">
-				<span class="anonym">작성자 : <input type="text"
-					class="form-control" id="ciWriter" placeholder="이름"
-					name="ciWriter" value='${userInfo.uiNickname}' readonly>
-				</span>
-			</div>
+		<ul>
+			<c:forEach items="${param}" var="param">
+				<li>
+					<div>
+						<p>${param.ciWriter}/ ${param.ciRegdate}</p>
+						<p>${param.ciContent }</p>
+					</div>
+				</li>
+			</c:forEach>
+		</ul>
 
+		<div>
 
-			<div class="comment-sbox">
-				<textarea class="comment-input" id="ciContent" cols="80" rows="2"
-					name="ciContent"></textarea>
+			<form method="post" action="/comment/write">
 
-			</div>
-			<div class="regBtn">
-				<button id="Comment_regist">댓글등록</button>
-			</div>
-		</div>
-
-		<div class="comment_Box">
-			<!-- 댓글이 들어갈 박스 -->
+				<p>
+					<label>댓글 작성자</label> <input type="text" name="ciWriter">
+				</p>
+				<p>
+					<textarea rows="5" cols="50" name="ciContent"></textarea>
+				</p>
+				<p>
+					<input type="hidden" name="fiNum" value="${param.fiNum}">
+					<button type="submit">댓글 작성</button>
+				</p>
+			</form>
 
 		</div>
 		<!-- 댓글 끝 -->
@@ -382,23 +386,7 @@
 
 						}
 
-						//댓글쓰기 
-						$('#Comment-regist').click(function(){
-							const ciWriter = $('#ciWriter').val();
-							const ciContent = $('#ciContent').val();
-							const fiNum = ${param.fiNum};
-							
-							console.log(ciWriter);
-							console.log(ciContent);
-							console.log(fiNum);
-							
-							if(ciWriter ==''){
-								alert('로그인 후 이용해주세요.');
-								return;
-							} else if(ciContent ==''){
-								alert('내용을 입력하세요.');
-							}
-						})
+		
 					</script>
 </body>
 
