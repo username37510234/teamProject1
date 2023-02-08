@@ -18,17 +18,6 @@
 <link rel="stylesheet" href="/resources/css/festival.css">
 <link rel="stylesheet" href="/resources/css/viewItem.css">
 <link rel="stylesheet" href="/resources/css/common.css">
-<style>
-.like_btn {
-	width: 40px;
-	height: 40px;
-	background-color: transparent;
-}
-
-.like_btn.active svg {
-	fill: red
-}
-</style>
 </head>
 
 <body>
@@ -37,20 +26,18 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<main>
 		<div id="mainContent">
-			<div class="float-start" style="width: 75%;">
+			<div class="float-start">
 				<div id="readyState" class="text-center"></div>
 				<div id="mainContent" class="container text-center">
 					<!-- 축제 정보 파트 -->
-					<table class="table-borderless"
-						style="margin-top: 100px; width: 80%; margin-left: 15%;">
+					<table class="table-borderless">
 						<tbody id="festivalInfo"></tbody>
 					</table>
 					<br>
 					<!-- 썸네일 이미지 파트 -->
 					<div id="thumbImgs"></div>
 					<!-- 카카오 맵 파트 -->
-					<div id="map" class="container"
-						style="width: 500px; height: 400px;"></div>
+					<div id="map" class="container"></div>
 				</div>
 			</div>
 		</div>
@@ -84,8 +71,7 @@
 			</div>
 		</c:if>
 		<!-- 관광지 파트 -->
-		<div id="location" class="float-end container"
-			style="width: 25%; margin-top: 100px;">
+		<div id="location" class="float-end container">
 			<h2>추천 주변 관광지</h2>
 			<div id="readyStateLoc" class="text-center"></div>
 		</div>

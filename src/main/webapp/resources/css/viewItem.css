@@ -9,3 +9,33 @@
 	border: none;
 	
 }
+
+.like_btn {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+}
+
+.like_btn.active svg {
+	fill: red;
+}
+
+.float-start {
+	width: 75%;
+}
+
+.table-borderless{
+	margin-top: 100px; 
+	width: 80%; 
+	margin-left: 15%;
+}
+
+#map{
+	width: 500px; 
+	height: 400px;
+}
+
+#location{
+	width: 25%; 
+	margin-top: 100px;
+}
