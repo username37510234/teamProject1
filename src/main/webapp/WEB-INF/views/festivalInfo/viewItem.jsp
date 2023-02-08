@@ -94,16 +94,8 @@
 
 		<!-- 댓글 시작 -->
 		<hr />
-		<ul>
-			<c:forEach items="${param}" var="param">
-				<li>
-					<div>
-						<p>${param.ciWriter}/${param.ciRegdate}</p>
-						<p>${param.ciContent }</p>
-					</div>
-				</li>
-			</c:forEach>
-		</ul>
+		<!-- 댓글 리스트 -->
+		<%@ include file="/WEB-INF/views/comment/list.jsp" %>
 		<div>
 			<form method="post" action="/comment/write">
 
