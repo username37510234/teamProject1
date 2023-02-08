@@ -23,7 +23,7 @@ import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
 @Slf4j
 public class FestivalInformationService {
 	private final FestivalInformationMapper festivalInformationMapper;
-	
+
 	private final Map<String, FestivalResponseVO> tmpMap = new ConcurrentHashMap<>();
 
 	public int insertFestivalInformationList(FestivalResultVO festivalInfos) {
@@ -93,13 +93,13 @@ public class FestivalInformationService {
 	private final ApiDetailFestivalInfo apiDetailFestivalInfo;
 
 	public FestivalResponseVO getFestivalDetails(FestivalInformationVO festivalInfo) {
-		if(tmpMap.containsKey(festivalInfo.getContentid())) {
+		if (tmpMap.containsKey(festivalInfo.getContentid())) {
 			return tmpMap.get(festivalInfo.getContentid());
 		}
 		FestivalResponseVO response = new FestivalResponseVO();
 		response.setFestivalInfo(apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo));
 		response.setFestivalImages(apiDetailFestivalInfo.getFestivalImages(festivalInfo));
-		response.setFestivalIntro(apiDetailFestivalInfo.getFestivalIntro(festivalInfo)); 
+		response.setFestivalIntro(apiDetailFestivalInfo.getFestivalIntro(festivalInfo));
 		if ("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
 			tmpMap.put(festivalInfo.getContentid(), response);
 			return response;

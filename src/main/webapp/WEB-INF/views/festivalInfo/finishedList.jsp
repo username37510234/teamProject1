@@ -15,8 +15,8 @@
             <main>
                 <!-- NAV -->
                 <%@ include file="/WEB-INF/views/common/searchNav.jsp" %>
-                <!-- Festival List -->
-                <%@ include file="/WEB-INF/views/common/festivalList.jsp" %>
+                    <!-- Festival List -->
+                    <%@ include file="/WEB-INF/views/common/festivalList.jsp" %>
             </main>
             <!-- FOOTER -->
             <%@ include file="/WEB-INF/views/common/footer.jsp" %>
