@@ -19,16 +19,7 @@
 	<!-- HEADER -->
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<!-- MAIN -->
-
 	<main>
-		<!-- 소개 -->
-
-		<div class="col-12">
-			<h2 class="font-weight-bold heading text-primary mb-4">'오늘 뭐하지'
-				방문을 환영합니다!</h2>
-			<h2>365일 전국 축제정보는 '오늘 뭐하지'에 맡겨주세요!</h2>
-		</div>
-
 		<div class="container align-items-center">
 			<div id="carouselFestivalCaptions" class="carousel slide"
 				data-bs-ride="carousel">
@@ -47,6 +38,7 @@
 			</div>
 		</div>
 	</main>
+	<!-- 소개 -->
 	<div class="section">
 		<div class="container">
 			<div class="row text-left mb-5">
