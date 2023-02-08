@@ -52,6 +52,7 @@
 		SELECT FI_NUM,
 		<include refid="festivalInformationColumns"></include>
 		FROM FESTIVAL_INFORMATION
+		WHERE EVENTENDDATE >= DATE_FORMAT(NOW(),'%Y%m%D')
 		ORDER BY CAST(READCOUNT AS SIGNED) DESC
 		LIMIT 0,10
 	</select>
