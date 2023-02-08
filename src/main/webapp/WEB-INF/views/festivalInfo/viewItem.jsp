@@ -399,8 +399,8 @@
 								myImg.src = img.src;
 								const getImg = new Image();
 								getImg.src = myImg.src;
-								myImg.style.marginTop = (window.screen.height-getImg.height-100)/4+'px';
-								closeBtn.style.top = (window.outerHeight-getImg.height-200)/4+'px';
+								myImg.style.marginTop = (window.screen.height-getImg.height-200)/4+'px';
+								closeBtn.style.top = (window.outerHeight-getImg.height-300)/4+'px';
 								myModal.style.display = 'block';
 								console.log(window.screen.height-getImg.height)
 							}
