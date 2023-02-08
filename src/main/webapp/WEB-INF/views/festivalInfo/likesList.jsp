@@ -28,9 +28,14 @@
 						<div class="row" id="popularList"></div>
 					</div>
 				</div>
-
+					</div>
+						</div>
+							</div>
+								</div>
+				
 
 				<div class="paginaiton"></div>
+				
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
@@ -67,7 +72,7 @@
 						'        <div class="inner">\n' +
 						'            <div>\n' +
 						'                <div class="title">' + data.title + '</div>\n' +
-						'                <p>' + data.addr1 + '</p>\n' +
+						'                <div class="addr">' + data.addr1 + '</div>\n' +
 						'				 <div class="date">' + data.eventstartdate + " - " + data.eventenddate + '</div>\n' +				
 						' 				 <p align="right"><img src="/resources/images/like_img.jpg" width="23" height="23">' + " " + data.likecnt + '</p>\n' +
 						'            </div>\n' +						

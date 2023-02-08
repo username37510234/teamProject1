@@ -27,6 +27,7 @@
 
                     window.onload = function () {
                         addMonthOption();
+                        disableMonth();
                         addLocalOption();
                         loadFestivalList();
                     }
@@ -37,6 +38,13 @@
                             });
                     }
                     yesScroll()
+                    function disableMonth(){
+                        const now = new Date();
+                        const monthObjs = document.querySelectorAll('#fesMonth option');
+                        for(let monthObj of monthObjs){
+                            monthObj.disabled = monthObj.value.trim()<=now.getMonth() && monthObj.value>0 ? true : false;
+                        }
+                    }
                 </script>
     </body>
 

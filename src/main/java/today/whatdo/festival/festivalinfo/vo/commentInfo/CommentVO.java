@@ -8,9 +8,10 @@ import lombok.Data;
 public class CommentVO {
 	
 	private int ciNum;
+	private int fiNum;
 	private String ciWriter;
 	private String ciContent;
 	private Date ciRegdate;
-	private int fiNum;
+	
 }
 

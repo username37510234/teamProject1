@@ -3,6 +3,7 @@ package today.whatdo.festival.festivalinfo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 
+import today.whatdo.festival.festivalinfo.service.CommentService;
 import today.whatdo.festival.festivalinfo.service.FestivalInformationService;
+import today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalResponseVO;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
@@ -19,6 +22,8 @@ import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
 public class FestivalInformationController {
 	@Autowired
 	private FestivalInformationService festivalInformationService;
+	@Autowired
+	private CommentService commentService;
 
 	@GetMapping("/festival-infos")
 	public PageInfo<FestivalInformationVO> getFestivalInformations(SearchParameterVO searchParameter) {
@@ -28,6 +33,7 @@ public class FestivalInformationController {
 	@GetMapping("/festival-info/{fiNum}")
 	public FestivalInformationVO getFestivalInformation(@PathVariable("fiNum") int fiNum) {
 		return festivalInformationService.getFestivalInformation(fiNum);
+		
 	}
 
 	// 마이리스트 축제 정보 불러오기

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import today.whatdo.festival.festivalinfo.mapper.MyListMapper;
+import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO;
 import today.whatdo.festival.festivalinfo.vo.mylist.MyListVO;
 
 @Service
@@ -15,7 +16,7 @@ public class MyListService {
 	private MyListMapper myListMapper;
 	
 	//마이리스트 전부 불러오기
-	public List<MyListVO> getMyLists(MyListVO myList){
+	public List<FestivalInformationVO> getMyLists(MyListVO myList){
 		return myListMapper.selectMyLists(myList);
 	}
 	

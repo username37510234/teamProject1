@@ -33,4 +33,5 @@ public class FestivalInformationVO {
 	private String originimgurl;
 	private String imgname;
 	private int likecnt;
+	private String mlDate;
 }

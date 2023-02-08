@@ -67,11 +67,11 @@
 	</div>
 </header>
 <script>
-		document.querySelector(' title').innerText = '오늘 뭐하지'; const searchDo = document.querySelector('#search'); function
-			searchGo() { location.href = '/views/festivalInfo/searchlist?fesTitle=' + searchDo.value; }
-		searchDo.addEventListener('keyup', key => {
-			if (key.keyCode === 13) {
-				searchGo();
-			}
-		})
+	document.querySelector(' title').innerText = '오늘 뭐하지'; const searchDo = document.querySelector('#search'); function
+		searchGo() { location.href = '/views/festivalInfo/searchlist?fesTitle=' + searchDo.value; }
+	searchDo.addEventListener('keyup', key => {
+		if (key.keyCode === 13) {
+			searchGo();
+		}
+	})
 </script>
