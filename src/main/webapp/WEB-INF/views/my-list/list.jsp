@@ -34,88 +34,88 @@
 	<!-- FOOTER -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
-<script>
-window.onload = function(){
-	getMyLists();
-}
-
-function toggleCheck(obj){
-	console.log(obj);
-	const diNums = document.querySelectorAll('input[name="mlNums"]');
-	for(const mlNum of mlNums){
-		/* console.log(diNum); */
-		diNum.checked = obj.checked;
+	<script>
+	window.onload = function(){
+		getMyLists();
 	}
-}
-
-function getMyLists(){
-	fetch('/my-lists')
-	.then(function(res){
-		return res.json();
-	})
-	.then(function(myLists){
-		console.log(myLists);
-		let html = '';
-		for(let myListValue of myLists){
-			const myList = myListValue;
-			console.log(myList);
-			fetch('/festival-infos/' + myList.fiNum)
-			.then(function(res){
-				console.log(res);
-				return res.json();
-			})
-			.then(function(fesInfo){
-				html += '<tr>';
-				html += '<td><input type="checkbox" name="mlNums" value="' + myList.mlNum + '"></td>';
-				html += '<td>' + myList.mlDate + '</td>';
-				html += '<td><img src="' + fesInfo.firstimage + '" height=125px></td>';
-				html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + myList.fiNum + '">' + fesInfo.title + '</a></td>';
-				html += '<td>' + fesInfo.addr1 + '</td>';
-				html += '<td>' + fesInfo.eventstartdate + '</td>';
-				html += '<td>' + fesInfo.eventenddate + '</td>';
-				html += '</tr>';
-				document.querySelector('#tBody').innerHTML = html;
-			});
+	
+	function toggleCheck(obj){
+		console.log(obj);
+		const diNums = document.querySelectorAll('input[name="mlNums"]');
+		for(const mlNum of mlNums){
+			/* console.log(diNum); */
+			diNum.checked = obj.checked;
 		}
-	})
-}
-
-function deleteMyList(){
-	const mlNumObjs = document.querySelectorAll('input[name="mlNums"]:checked');
-	console.log(mlNumObjs);
-	const mlNums = [];
-	for(const mlNumObj of mlNumObjs){
-		mlNums.push(mlNumObj.value);
 	}
-	console.log(mlNums);
-	if(mlNums.length===0){
-		alert('선택하세요');
-		return;
+	
+	function getMyLists(){
+		fetch('/my-lists')
+		.then(function(res){
+			return res.json();
+		})
+		.then(function(myLists){
+			console.log(myLists);
+			let html = '';
+			for(let myListValue of myLists){
+				const myList = myListValue;
+				console.log(myList);
+				fetch('/festival-infos/' + myList.fiNum)
+				.then(function(res){
+					console.log(res);
+					return res.json();
+				})
+				.then(function(fesInfo){
+					html += '<tr>';
+					html += '<td><input type="checkbox" name="mlNums" value="' + myList.mlNum + '"></td>';
+					html += '<td>' + myList.mlDate + '</td>';
+					html += '<td><img src="' + fesInfo.firstimage + '" height=125px></td>';
+					html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + myList.fiNum + '">' + fesInfo.title + '</a></td>';
+					html += '<td>' + fesInfo.addr1 + '</td>';
+					html += '<td>' + fesInfo.eventstartdate + '</td>';
+					html += '<td>' + fesInfo.eventenddate + '</td>';
+					html += '</tr>';
+					document.querySelector('#tBody').innerHTML = html;
+				});
+			}
+		})
 	}
-	const param = {
-		mlNums:mlNums
-	}
-	fetch('/my-lists',{
-		method:'DELETE',
-		headers: {
-			 'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(param)
-	})
-	.then(function(res){
-		console.log(res);
-		return res.json();
-	})
-	.then(function(data){
-		console.log(data);
-		if(data>=1){
-			alert('삭제 완료!');
-			location.href='/views/my-list/list'
-		} else {
-			alert('삭제 실패!');
+	
+	function deleteMyList(){
+		const mlNumObjs = document.querySelectorAll('input[name="mlNums"]:checked');
+		console.log(mlNumObjs);
+		const mlNums = [];
+		for(const mlNumObj of mlNumObjs){
+			mlNums.push(mlNumObj.value);
 		}
-	})
-}
-</script>
+		console.log(mlNums);
+		if(mlNums.length===0){
+			alert('선택하세요');
+			return;
+		}
+		const param = {
+			mlNums:mlNums
+		}
+		fetch('/my-lists',{
+			method:'DELETE',
+			headers: {
+				 'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(param)
+		})
+		.then(function(res){
+			console.log(res);
+			return res.json();
+		})
+		.then(function(data){
+			console.log(data);
+			if(data>=1){
+				alert('삭제 완료!');
+				location.href='/views/my-list/list'
+			} else {
+				alert('삭제 실패!');
+			}
+		})
+	}
+	</script>
 </body>
 </html>

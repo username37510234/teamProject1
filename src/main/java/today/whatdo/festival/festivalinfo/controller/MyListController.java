@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
-import today.whatdo.festival.auth.CheckSessionUserInfo;
+import today.whatdo.festival.festivalinfo.service.CheckSessionUserInfo;
 import today.whatdo.festival.festivalinfo.service.MyListService;
 import today.whatdo.festival.festivalinfo.vo.mylist.MyListVO;
 import today.whatdo.festival.userinfo.vo.UserInfoVO;

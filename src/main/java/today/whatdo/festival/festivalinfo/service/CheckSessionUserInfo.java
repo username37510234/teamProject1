@@ -1,4 +1,4 @@
-package today.whatdo.festival.auth;
+package today.whatdo.festival.festivalinfo.service;
 
 import javax.servlet.http.HttpSession;
 
