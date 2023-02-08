@@ -9,4 +9,5 @@ public class FestivalResponseVO {
 	private FestivalInformationVO festivalInfo;
 	private List<FestivalInformationVO> locationInfo;
 	private List<FestivalInformationVO> festivalImages;
+	private FestivalInformationVO festivalIntro;
 }

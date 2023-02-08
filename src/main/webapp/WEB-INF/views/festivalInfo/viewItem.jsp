@@ -41,7 +41,7 @@
 				<div id="readyState" class="text-center"></div>
 				<div id="mainContent" class="container text-center">
 					<!-- 축제 정보 파트 -->
-					<table class="table-borderless"
+					<table class="table table-hover table-bordered"
 						style="margin-top: 100px; width: 80%; margin-left: 15%;">
 						<tbody id="festivalInfo"></tbody>
 					</table>
@@ -280,18 +280,17 @@
 											return;
 										}
 										if (fest.firstimage) {
-											html += '<tr><td colspan=2><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
+											html += '<tr><td colspan=4><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
 										}
-										html += '<tr><td width="200px">축제명</td><td>' + fest.title + '</td></tr>';
-										html += '<tr><td>위치</td><td>' + fest.addr1;
+										html += '<tr><td width="200px">축제명</td><td colspan=3>' + fest.title + '</td></tr>';
+										html += '<tr><td>위치</td><td colspan=3>' + fest.addr1;
 										if (fest.addr2) {
 											html += ' ' + fest.addr2;
 										}
 										html += '</td></tr>';
-										html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td></tr>';
-										html += '<tr><td>종료일</td><td>' + fest.eventenddate.substr(0, 4) + '년 ' + fest.eventenddate.substr(4, 2) + '월 ' + fest.eventenddate.substr(6, 2) + '일' + '</td></tr>';
-										html += '<tr><td>전화번호</td><td>' + fest.tel + '</td></tr>';
-
+										html += '<tr><td width=15%>시작일자</td><td width=35%>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td>';
+										html += '<td width=15%>종료일자</td><td>' + fest.eventenddate.substr(0, 4) + '년 ' + fest.eventenddate.substr(4, 2) + '월 ' + fest.eventenddate.substr(6, 2) + '일' + '</td></tr>';
+										
 										document.querySelector('#festivalInfo').innerHTML = html;
 										document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
 										ready.remove();
@@ -306,18 +305,45 @@
 												html = '';
 												if (deatilFest) {
 													if (deatilFest.telname) {
-														html += '<tr><td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+														html += '<tr><td>전화번호</td><td>' + fest.tel + '</td>';
+														html += '<td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+													} else{
+														html += '<tr><td>전화번호</td><td colspan=3>' + fest.tel + '</td></tr>';
 													}
 													if (deatilFest.homepage) {
-														html += '<tr><td>홈페이지</td><td>' + deatilFest.homepage + '</td></tr>';
+														html += '<tr><td>홈페이지</td><td colspan=3>' + deatilFest.homepage + '</td></tr>';
 													}
-													if (deatilFest.overview) {
-														html += '<tr><td colspan=2>' + deatilFest.overview + '</td></tr>';
-													}
-													document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
 												}
-												if (detailData.festivalImages != null && detailData.festivalImages.length !== 0) {
-													const fesPictures = detailData.festivalImages;
+												const fesIntro = detailData.festivalIntro;
+												if(fesIntro){
+													if(fesIntro.agelimit){
+														html += '<tr><td>연령 제한</td><td>' + fesIntro.agelimit + '</td></tr>';
+													}
+													if(fesIntro.playtime && fesIntro.spendtimefestival){
+														html += '<tr><td>운영 시간</td><td>' + fesIntro.playtime + '</td>';
+														html += '<td>관람 소요 시간</td><td>' + fesIntro.spendtimefestival + '</td></tr>';
+													} else if(fesIntro.spendtimefestival){
+														html += '<tr><td>관람 소요 시간</td><td colspan=3>' + fesIntro.spendtimefestival + '</td></tr>';
+													} else if(fesIntro.playtime){
+														html += '<tr><td>운영 시간</td><td colspan=3>' + fesIntro.playtime + '</td></tr>';
+													}
+													if(fesIntro.usetimefestival){
+														html += '<tr><td>비용</td><td>' + fesIntro.usetimefestival + '</td></tr>';
+													}
+													if(fesIntro.subevent){
+														html += '<tr><td>부대 행사</td><td colspan=3>' + fesIntro.subevent + '</td></tr>';
+													}
+													if(fesIntro.bookingplace){
+														html += '<tr><td>예매처</td><td colspan=3>' + fesIntro.bookingplace + '</td></tr>';
+													}
+												}
+												
+												if (deatilFest.overview) {
+													html += '<tr><td colspan=4>' + deatilFest.overview + '</td></tr>';
+												}
+												document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
+												const fesPictures = detailData.festivalImages;
+												if (fesPictures != null && fesPictures.length !== 0) {
 													let imghtml = '';
 													if (fesPictures.length >= 1) {
 														for (let fesPicture of fesPictures) {

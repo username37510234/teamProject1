@@ -1,9 +1,8 @@
 package today.whatdo.festival.festivalinfo.service;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import today.whatdo.festival.festivalinfo.api.ApiDetailFestivalInfo;
 import today.whatdo.festival.festivalinfo.mapper.FestivalInformationMapper;
 import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO;
@@ -20,10 +20,11 @@ import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class FestivalInformationService {
 	private final FestivalInformationMapper festivalInformationMapper;
 	
-	private final Map<String, FestivalResponseVO> tmpMap = Collections.synchronizedMap(new HashMap<>());
+	private final Map<String, FestivalResponseVO> tmpMap = new ConcurrentHashMap<>();
 
 	public int insertFestivalInformationList(FestivalResultVO festivalInfos) {
 		return festivalInformationMapper
@@ -95,11 +96,12 @@ public class FestivalInformationService {
 		if(tmpMap.containsKey(festivalInfo.getContentid())) {
 			return tmpMap.get(festivalInfo.getContentid());
 		}
-		
 		FestivalResponseVO response = new FestivalResponseVO();
 		response.setFestivalInfo(apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo));
 		response.setFestivalImages(apiDetailFestivalInfo.getFestivalImages(festivalInfo));
+		response.setFestivalIntro(apiDetailFestivalInfo.getFestivalIntro(festivalInfo)); 
 		if ("0".equals(festivalInfo.getMapx())) { // 맵좌표가 없을경우 주변 명소를 가져오지 않고 리턴
+			tmpMap.put(festivalInfo.getContentid(), response);
 			return response;
 		}
 		response.setLocationInfo(apiDetailFestivalInfo.getLocationInformationByMap(festivalInfo));
