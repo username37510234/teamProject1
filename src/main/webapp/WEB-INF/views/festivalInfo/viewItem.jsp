@@ -34,6 +34,10 @@
 									<br>
 									<!-- 썸네일 이미지 파트 -->
 									<div id="thumbImgs" class="container"></div>
+									<div id="myModal" class="modal">
+										<span class="close">&times;</span>
+										<img class="modal-content" id="myImg">
+									</div>
 									<!-- 카카오 맵 파트 -->
 									<div id="map" class="container" style="margin-top: 10px;"></div>
 								</div>
@@ -329,7 +333,7 @@
 													let imghtml = '';
 													if (fesPictures.length >= 1) {
 														for (let fesPicture of fesPictures) {
-															imghtml += '<img src="' + fesPicture.originimgurl + '" width="180px" height="180px" title="' + fesPicture.imgname + '" class="img-thumbnail">';
+															imghtml += '<img src="' + fesPicture.originimgurl + '" width="180px" height="180px" title="' + fesPicture.imgname + '" class="img-thumbnail" onclick="openModal(this)">';
 														}
 													}
 													document.querySelector('#thumbImgs').insertAdjacentHTML('beforeend', imghtml);
@@ -339,7 +343,7 @@
 													const locations = detailData.locationInfo;
 													for (let location of locations) {
 														html += '<li class="list-group-item"><img src="'
-														html += (location.firstimage2) ? location.firstimage2 : '/resources/images/noimg.jpg';
+														html += (location.firstimage2) ? location.firstimage : '/resources/images/noimg.jpg';
 														html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank">' + location.addr1 + '</a></li>';
 													}
 													html += '</ul>';
@@ -386,6 +390,27 @@
 									infowindow.open(map, marker);
 								} else {
 									document.querySelector('#map').remove();
+								}
+							}
+							const myModal = document.querySelector('#myModal')
+							const closeBtn = document.querySelector('.close')
+							function openModal(img) {
+								const myImg = document.querySelector('#myImg')
+								myImg.src = img.src;
+								const getImg = new Image();
+								getImg.src = myImg.src;
+								myImg.style.marginTop = (window.screen.height-getImg.height-100)/4+'px';
+								closeBtn.style.top = (window.outerHeight-getImg.height-200)/4+'px';
+								myModal.style.display = 'block';
+								console.log(window.screen.height-getImg.height)
+							}
+							document.querySelector('.close').onclick = function () {
+								myModal.style.display = "none";
+							}
+
+							window.onclick = function (event) {
+								if (event.target == myModal) {
+									myModal.style.display = "none";
 								}
 							}
 						</script>
