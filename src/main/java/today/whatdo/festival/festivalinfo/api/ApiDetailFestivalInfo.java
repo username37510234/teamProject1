@@ -21,9 +21,10 @@ public class ApiDetailFestivalInfo {
 
 	public FestivalInformationVO getFestivalInformationDetail(FestivalInformationVO festivalInfo) {
 		String url = dataUrl + "/detailCommon?";
-		url += "&contentTypeId=15&_type=json&MobileOS=ETC&MobileApp=APPTest&overviewYN=Y&defaultYN=Y&serviceKey=";
+		url += "contentTypeId=15&_type=json&MobileOS=ETC&MobileApp=APPTest&overviewYN=Y&defaultYN=Y&serviceKey=";
 		url += festivalKey + "&contentId=" + festivalInfo.getContentid();
-		return datagoApiConnect.datagoApi(url).get(0);
+		List<FestivalInformationVO> result = datagoApiConnect.datagoApi(url);
+		return !result.isEmpty() ? result.get(0) : null;
 	}
 
 	public List<FestivalInformationVO> getFestivalImages(FestivalInformationVO festivalInfo) {
@@ -35,8 +36,15 @@ public class ApiDetailFestivalInfo {
 
 	public List<FestivalInformationVO> getLocationInformationByMap(FestivalInformationVO festivalInfo) {
 		String url = dataUrl + "/locationBasedList?";
-		url += "&radius=5000&contentTypeId=12&arrange=E&numOfRows=10&_type=json&MobileOS=ETC&MobileApp=APPTest&serviceKey=";
+		url += "radius=5000&contentTypeId=12&arrange=E&numOfRows=10&_type=json&MobileOS=ETC&MobileApp=APPTest&serviceKey=";
 		url += festivalKey + "&mapX=" + festivalInfo.getMapx() + "&mapY=" + festivalInfo.getMapy();
 		return datagoApiConnect.datagoApi(url);
+	}
+	public FestivalInformationVO getFestivalIntro(FestivalInformationVO festivalInfo) {
+		String url = dataUrl + "/detailIntro?";
+		url += "contentTypeId=15&numOfRows=1&_type=json&MobileOS=ETC&MobileApp=APPTest&serviceKey=";
+		url += festivalKey + "&contentId=" + festivalInfo.getContentid();
+		List<FestivalInformationVO> result = datagoApiConnect.datagoApi(url);
+		return !result.isEmpty() ? result.get(0) : null;
 	}
 }

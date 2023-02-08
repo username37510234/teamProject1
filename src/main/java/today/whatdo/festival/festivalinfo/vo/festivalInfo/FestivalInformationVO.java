@@ -34,4 +34,10 @@ public class FestivalInformationVO {
 	private String imgname;
 	private int likecnt;
 	private String mlDate;
+	private String agelimit;
+	private String bookingplace;
+	private String playtime;
+	private String spendtimefestival;
+	private String subevent;
+	private String usetimefestival;
 }

@@ -1,109 +1,110 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+			<!DOCTYPE html>
+			<html>
 
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
+			<head>
+				<meta charset="UTF-8">
+				<title>Insert title here</title>
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82febca4b29e4327a47c30d8e9856913"></script>
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="/resources/css/festival.css">
-<link rel="stylesheet" href="/resources/css/viewItem.css">
-<link rel="stylesheet" href="/resources/css/common.css">
-</head>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+				<link rel="stylesheet" href="/resources/css/festival.css">
+				<link rel="stylesheet" href="/resources/css/viewItem.css">
+				<link rel="stylesheet" href="/resources/css/common.css">
+			</head>
 
-<body>
+			<body>
 
-	<!-- HEADER -->
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<main>
-		<div id="mainContent">
-			<div class="float-start">
-				<div id="readyState" class="text-center"></div>
-				<div id="mainContent" class="container text-center">
-					<!-- 축제 정보 파트 -->
-					<table class="table-borderless">
-						<tbody id="festivalInfo"></tbody>
-					</table>
-					<br>
-					<!-- 썸네일 이미지 파트 -->
-					<div id="thumbImgs"></div>
-					<!-- 카카오 맵 파트 -->
-					<div id="map" class="container"></div>
-				</div>
-			</div>
-		</div>
-		<div>
+				<!-- HEADER -->
+				<%@ include file="/WEB-INF/views/common/header.jsp" %>
+					<main>
+						<div id="mainContent">
+							<div class="float-start">
+								<div id="readyState" class="text-center"></div>
+								<div id="mainContent" class="container text-center">
+									<!-- 축제 정보 파트 -->
+									<table class="table table-hover table-bordered"
+										style="margin-top: 100px; width: 80%; margin-left: 15%;">
+										<tbody id="festivalInfo"></tbody>
+									</table>
+									<br>
+									<!-- 썸네일 이미지 파트 -->
+									<div id="thumbImgs" class="container"></div>
+									<div id="myModal" class="modal">
+										<span class="close">&times;</span>
+										<img class="modal-content" id="myImg">
+									</div>
+									<!-- 카카오 맵 파트 -->
+									<div id="map" class="container" style="margin-top: 10px;"></div>
+								</div>
+							</div>
+						</div>
+						<div>
 
-			<button id="like" class="like_btn">
-				<svg aria-label="좋아요" class="love" color="#262626" fill="#262626"
-					height="24" role="img" viewBox="0 0 24 24" width="24">
-										<path
-						d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
-										</path>
-									</svg>
-			</button>
+							<button id="like" class="like_btn">
+								<svg aria-label="좋아요" class="love" color="#262626" fill="#262626" height="24" role="img"
+									viewBox="0 0 24 24" width="24">
+									<path
+										d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
+									</path>
+								</svg>
+							</button>
 
-			<span id="like_cnt"> 0 </span>
+							<span id="like_cnt"> 0 </span>
 
-		</div>
+						</div>
 
-		<!-- 마이리스트 추가 -->
-		<c:if test="${userInfo eq null}">
-			<div>
-				<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
-				<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트
-					추가</button>
-			</div>
-		</c:if>
-		<c:if test="${userInfo ne null}">
-			<div>
-				<button id="mylist-button" onclick="insertMyList()"
-					id="insertMyList">마이리스트 추가</button>
-			</div>
-		</c:if>
-		<!-- 관광지 파트 -->
-		<div id="location" class="float-end container">
-			<h2>추천 주변 관광지</h2>
-			<div id="readyStateLoc" class="text-center"></div>
-		</div>
-		<!-- float clear -->
-		<div style="clear: both;"></div>
+						<!-- 마이리스트 추가 -->
+						<c:if test="${userInfo eq null}">
+							<div>
+								<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
+								<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트
+									추가</button>
+							</div>
+						</c:if>
+						<c:if test="${userInfo ne null}">
+							<div>
+								<button id="mylist-button" onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
+							</div>
+						</c:if>
+						<!-- 관광지 파트 -->
+						<div id="location" class="float-end container">
+							<h2>추천 주변 관광지</h2>
+							<div id="readyStateLoc" class="text-center"></div>
+						</div>
+						<!-- float clear -->
+						<div style="clear: both;"></div>
 
-		<!-- 댓글 시작 -->
-		<hr />
-		<!-- 댓글 리스트 -->
-		<%@ include file="/WEB-INF/views/comment/list.jsp" %>
-		<div>
-			<form method="post" action="/comment/write">
+						<!-- 댓글 시작 -->
+						<hr />
+						<!-- 댓글 리스트 -->
+						<%@ include file="/WEB-INF/views/comment/list.jsp" %>
+							<div>
+								<form method="post" action="/comment/write">
 
-				<p>
-					<label>댓글 작성자</label> <input type="text" name="ciWriter">
-				</p>
-				<p>
-					<textarea rows="5" cols="50" name="ciContent"></textarea>
-				</p>
-				<p>
-					<input type="hidden" name="fiNum" value="${param.fiNum}">
-					<button type="submit">댓글 작성</button>
-				</p>
-			</form>
+									<p>
+										<label>댓글 작성자</label> <input type="text" name="ciWriter">
+									</p>
+									<p>
+										<textarea rows="5" cols="50" name="ciContent"></textarea>
+									</p>
+									<p>
+										<input type="hidden" name="fiNum" value="${param.fiNum}">
+										<button type="submit">댓글 작성</button>
+									</p>
+								</form>
 
-		</div>
-		<!-- 댓글 끝 -->
-	</main>
-	<!-- FOOTER -->
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-	<script src="/resources/js/common.js"></script>
-	<script>
+							</div>
+							<!-- 댓글 끝 -->
+					</main>
+					<!-- FOOTER -->
+					<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+						<script src="/resources/js/common.js"></script>
+						<script>
 							/* 마이리스트 추가 */
 							function insertMyList() {
 								const param = {};
@@ -266,17 +267,16 @@
 											return;
 										}
 										if (fest.firstimage) {
-											html += '<tr><td colspan=2><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
+											html += '<tr><td colspan=4><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
 										}
-										html += '<tr><td width="200px">축제명</td><td>' + fest.title + '</td></tr>';
-										html += '<tr><td>위치</td><td>' + fest.addr1;
+										html += '<tr><td width="200px">축제명</td><td colspan=3>' + fest.title + '</td></tr>';
+										html += '<tr><td>위치</td><td colspan=3>' + fest.addr1;
 										if (fest.addr2) {
 											html += ' ' + fest.addr2;
 										}
 										html += '</td></tr>';
-										html += '<tr><td>시작일</td><td>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td></tr>';
-										html += '<tr><td>종료일</td><td>' + fest.eventenddate.substr(0, 4) + '년 ' + fest.eventenddate.substr(4, 2) + '월 ' + fest.eventenddate.substr(6, 2) + '일' + '</td></tr>';
-										html += '<tr><td>전화번호</td><td>' + fest.tel + '</td></tr>';
+										html += '<tr><td width=15%>시작일자</td><td width=35%>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td>';
+										html += '<td width=15%>종료일자</td><td>' + fest.eventenddate.substr(0, 4) + '년 ' + fest.eventenddate.substr(4, 2) + '월 ' + fest.eventenddate.substr(6, 2) + '일' + '</td></tr>';
 
 										document.querySelector('#festivalInfo').innerHTML = html;
 										document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
@@ -292,22 +292,48 @@
 												html = '';
 												if (deatilFest) {
 													if (deatilFest.telname) {
-														html += '<tr><td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+														html += '<tr><td>전화번호</td><td>' + fest.tel + '</td>';
+														html += '<td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+													} else {
+														html += '<tr><td>전화번호</td><td colspan=3>' + fest.tel + '</td></tr>';
 													}
 													if (deatilFest.homepage) {
-														html += '<tr><td>홈페이지</td><td>' + deatilFest.homepage + '</td></tr>';
+														html += '<tr><td>홈페이지</td><td colspan=3>' + deatilFest.homepage + '</td></tr>';
 													}
-													if (deatilFest.overview) {
-														html += '<tr><td colspan=2>' + deatilFest.overview + '</td></tr>';
-													}
-													document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
 												}
-												if (detailData.festivalImages != null && detailData.festivalImages.length !== 0) {
-													const fesPictures = detailData.festivalImages;
+												const fesIntro = detailData.festivalIntro;
+												if (fesIntro) {
+													if (fesIntro.agelimit) {
+														html += '<tr><td>연령 제한</td><td>' + fesIntro.agelimit + '</td></tr>';
+													}
+													if (fesIntro.playtime && fesIntro.spendtimefestival) {
+														html += '<tr><td>운영 시간</td><td>' + fesIntro.playtime + '</td>';
+														html += '<td>관람 소요 시간</td><td>' + fesIntro.spendtimefestival + '</td></tr>';
+													} else if (fesIntro.spendtimefestival) {
+														html += '<tr><td>관람 소요 시간</td><td colspan=3>' + fesIntro.spendtimefestival + '</td></tr>';
+													} else if (fesIntro.playtime) {
+														html += '<tr><td>운영 시간</td><td colspan=3>' + fesIntro.playtime + '</td></tr>';
+													}
+													if (fesIntro.usetimefestival) {
+														html += '<tr><td>비용</td><td>' + fesIntro.usetimefestival + '</td></tr>';
+													}
+													if (fesIntro.subevent) {
+														html += '<tr><td>부대 행사</td><td colspan=3>' + fesIntro.subevent + '</td></tr>';
+													}
+													if (fesIntro.bookingplace) {
+														html += '<tr><td>예매처</td><td colspan=3>' + fesIntro.bookingplace + '</td></tr>';
+													}
+												}
+												if (deatilFest && deatilFest.overview) {
+													html += '<tr><td colspan=4>' + deatilFest.overview + '</td></tr>';
+												}
+												document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
+												const fesPictures = detailData.festivalImages;
+												if (fesPictures != null && fesPictures.length !== 0) {
 													let imghtml = '';
 													if (fesPictures.length >= 1) {
 														for (let fesPicture of fesPictures) {
-															imghtml += '<img src="' + fesPicture.originimgurl + '" width="180px" height="180px" title="' + fesPicture.imgname + '" class="img-thumbnail">';
+															imghtml += '<img src="' + fesPicture.originimgurl + '" width="180px" height="180px" title="' + fesPicture.imgname + '" class="img-thumbnail" onclick="openModal(this)">';
 														}
 													}
 													document.querySelector('#thumbImgs').insertAdjacentHTML('beforeend', imghtml);
@@ -317,7 +343,7 @@
 													const locations = detailData.locationInfo;
 													for (let location of locations) {
 														html += '<li class="list-group-item"><img src="'
-														html += (location.firstimage2) ? location.firstimage2 : '/resources/images/noimg.jpg';
+														html += (location.firstimage2) ? location.firstimage : '/resources/images/noimg.jpg';
 														html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank">' + location.addr1 + '</a></li>';
 													}
 													html += '</ul>';
@@ -366,7 +392,28 @@
 									document.querySelector('#map').remove();
 								}
 							}
-						</script>
-</body>
+							const myModal = document.querySelector('#myModal')
+							const closeBtn = document.querySelector('.close')
+							function openModal(img) {
+								const myImg = document.querySelector('#myImg')
+								myImg.src = img.src;
+								const getImg = new Image();
+								getImg.src = myImg.src;
+								myImg.style.marginTop = (window.screen.height-getImg.height-200)/4+'px';
+								closeBtn.style.top = (window.outerHeight-getImg.height-300)/4+'px';
+								myModal.style.display = 'block';
+								console.log(window.screen.height-getImg.height)
+							}
+							document.querySelector('.close').onclick = function () {
+								myModal.style.display = "none";
+							}
 
-</html>
+							window.onclick = function (event) {
+								if (event.target == myModal) {
+									myModal.style.display = "none";
+								}
+							}
+						</script>
+			</body>
+
+			</html>
