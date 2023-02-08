@@ -1,6 +1,9 @@
 package today.whatdo.festival.festivalinfo.service;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,8 @@ import today.whatdo.festival.festivalinfo.vo.festivalInfo.SearchParameterVO;
 @AllArgsConstructor
 public class FestivalInformationService {
 	private final FestivalInformationMapper festivalInformationMapper;
+	
+	private final Map<String, FestivalResponseVO> tmpMap = Collections.synchronizedMap(new HashMap<>());
 
 	public int insertFestivalInformationList(FestivalResultVO festivalInfos) {
 		return festivalInformationMapper
@@ -87,6 +92,10 @@ public class FestivalInformationService {
 	private final ApiDetailFestivalInfo apiDetailFestivalInfo;
 
 	public FestivalResponseVO getFestivalDetails(FestivalInformationVO festivalInfo) {
+		if(tmpMap.containsKey(festivalInfo.getContentid())) {
+			return tmpMap.get(festivalInfo.getContentid());
+		}
+		
 		FestivalResponseVO response = new FestivalResponseVO();
 		response.setFestivalInfo(apiDetailFestivalInfo.getFestivalInformationDetail(festivalInfo));
 		response.setFestivalImages(apiDetailFestivalInfo.getFestivalImages(festivalInfo));
@@ -94,6 +103,7 @@ public class FestivalInformationService {
 			return response;
 		}
 		response.setLocationInfo(apiDetailFestivalInfo.getLocationInformationByMap(festivalInfo));
+		tmpMap.put(festivalInfo.getContentid(), response);
 		return response;
 	}
 }

@@ -4,9 +4,9 @@
 	<sql id="myListCols">
 		ML.ML_NUM, ML.ML_DATE, ML.UI_NUM, ML.FI_NUM
 	</sql>
-	<select id="selectMyLists" resultType="today.whatdo.festival.festivalinfo.vo.mylist.MyListVO">
+	<select id="selectMyLists" resultType="today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO">
 		SELECT
-		<include refid="myListCols"></include>
+		<include refid="myListCols"></include>, FI.*
 		FROM MY_LIST ML
 		<!-- 유저 번호 받아오기 -->
 		INNER JOIN USER_INFO UI ON ML.UI_NUM = UI.UI_NUM
