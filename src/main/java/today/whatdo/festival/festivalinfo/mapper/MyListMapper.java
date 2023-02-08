@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO;
 import today.whatdo.festival.festivalinfo.vo.mylist.MyListVO;
 
 public interface MyListMapper {
 	
 	//마이리스트 전부 불러오기
-	List<MyListVO> selectMyLists(MyListVO myList);
+	List<FestivalInformationVO> selectMyLists(MyListVO myList);
 	//마이리스트 추가
 	int insertMyList(MyListVO myList);
 	//마이리스트 삭제

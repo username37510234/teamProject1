@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import today.whatdo.festival.auth.CheckSessionUserInfo;
 import today.whatdo.festival.festivalinfo.service.MyListService;
+import today.whatdo.festival.festivalinfo.vo.festivalInfo.FestivalInformationVO;
 import today.whatdo.festival.festivalinfo.vo.mylist.MyListVO;
-import today.whatdo.festival.userinfo.vo.UserInfoVO;
 
 @Controller
 @Slf4j
@@ -35,9 +35,8 @@ public class MyListController {
 	//로그인이 돼있어야 마이리스트 전부 불러오기 가능
 	@GetMapping("/my-lists")
 	@ResponseBody
-	public List<MyListVO> getMyLists(@ModelAttribute MyListVO myList, Model model, HttpSession session){
+	public List<FestivalInformationVO> getMyLists(@ModelAttribute MyListVO myList, Model model, HttpSession session){
 		checkSessionUserInfo.checkSession(myList, session);
-		model.addAttribute("myList", myList);
 		return myListService.getMyLists(myList);
 	}
 	

@@ -53,30 +53,21 @@ function getMyLists(){
 	.then(function(res){
 		return res.json();
 	})
-	.then(function(myLists){
+	.then(async function(myLists){
 		console.log(myLists);
 		let html = '';
-		for(let myListValue of myLists){
-			const myList = myListValue;
-			console.log(myList);
-			fetch('/festival-infos/' + myList.fiNum)
-			.then(function(res){
-				console.log(res);
-				return res.json();
-			})
-			.then(function(fesInfo){
-				html += '<tr>';
-				html += '<td><input type="checkbox" name="mlNums" value="' + myList.mlNum + '"></td>';
-				html += '<td>' + myList.mlDate + '</td>';
-				html += '<td><img src="' + fesInfo.firstimage + '" height=125px></td>';
-				html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + myList.fiNum + '">' + fesInfo.title + '</a></td>';
-				html += '<td>' + fesInfo.addr1 + '</td>';
-				html += '<td>' + fesInfo.eventstartdate + '</td>';
-				html += '<td>' + fesInfo.eventenddate + '</td>';
-				html += '</tr>';
-				document.querySelector('#tBody').innerHTML = html;
-			});
+		for(let fesInfo of myLists){
+			html += '<tr>';
+			html += '<td><input type="checkbox" name="mlNums" value="' + fesInfo.mlNum + '"></td>';
+			html += '<td>' + fesInfo.mlDate + '</td>';
+			html += '<td><img src="' + fesInfo.firstimage + '" height=125px></td>';
+			html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + fesInfo.fiNum + '">' + fesInfo.title + '</a></td>';
+			html += '<td>' + fesInfo.addr1 + '</td>';
+			html += '<td>' + fesInfo.eventstartdate + '</td>';
+			html += '<td>' + fesInfo.eventenddate + '</td>';
+			html += '</tr>';
 		}
+		document.querySelector('#tBody').innerHTML = html;
 	})
 }
 
