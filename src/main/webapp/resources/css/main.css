@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	padding-top:90px;
 }
 
 ol, ul {
@@ -1711,24 +1712,6 @@ input, select, textarea {
 		}
 
 /* List */
-
-	ul {
-		list-style: disc;
-		padding-left: 1em;
-	}
-
-		ul li {
-			padding-left: 0.5em;
-		}
-
-		ul.style2 {
-			list-style: none;
-			padding-left: 0;
-		}
-
-			ul.style2 li {
-				padding-left: 0;
-			}
 
 	ol {
 		list-style: decimal;
