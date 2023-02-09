@@ -7,7 +7,7 @@
    
         <footer>
                   
-          <div class="title">오늘 뭐하지?</div>
+          <div class="whatdo">오늘 뭐하지?</div>
            <div class="made">
                사이트 제작 : NowonEzen3rdTeam <br>
             팀원 : 남궁명건, 박진영, 송준수, 최아름, 현상민<br>
