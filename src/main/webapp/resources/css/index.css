@@ -11,6 +11,9 @@
 	text-align: center;
 	font: inherit;
 }
+.carousel-inner{
+	z-index: 0;
+}
 
 
 
