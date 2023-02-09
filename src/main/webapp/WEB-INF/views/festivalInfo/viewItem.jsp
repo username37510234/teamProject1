@@ -26,9 +26,9 @@
 							<div class="float-start">
 								<div id="readyState" class="text-center"></div>
 								<div id="mainContent" class="container text-center">
+								<h3>축제 상세 정보</h3>
 									<!-- 축제 정보 파트 -->
-									<table class="table table-hover table-bordered"
-										style="margin-top: 100px; width: 80%; margin-left: 15%;">
+									<table class="table table-hover table-bordered">
 										<tbody id="festivalInfo"></tbody>
 									</table>
 									<br>
@@ -39,7 +39,7 @@
 										<img class="modal-content" id="myImg">
 									</div>
 									<!-- 카카오 맵 파트 -->
-									<div id="map" class="container" style="margin-top: 10px;"></div>
+									<div id="map" class="container" style="margin-top: 10px; z-index: 0"></div>
 								</div>
 							</div>
 						</div>
