@@ -9,24 +9,23 @@ footer {
   position: relative;
   border-top: 1px solid #c4c4c4;
   padding-top: 15px;
-  color: #808080;
-  font-size: 11px;
+ 
+  
 }
+
 
 
 .whatdo {
    font-family: 'NanumPen';
    color : #fd70a8;
    font-size : 38px;
-   margin-left : 25px;
    font-weight: 200;
 }
 
 
 
 .made{
-  display: inline-block;
-  margin-left : 25px;
+  display: inline-block; 
   font-family: 'NanumSquareRound';
   font-size : 13px;
   color : #666666;  
