@@ -62,14 +62,20 @@
 						<c:if test="${userInfo eq null}">
 							<div>
 								<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
-								<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트
-									추가</button>
+								<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트 추가</button>
 							</div>
 						</c:if>
 						<c:if test="${userInfo ne null}">
-							<div>
-								<button id="mylist-button" onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
-							</div>
+							<c:if test="${myList eq null}">
+								<div>
+									<button id="mylist-button" onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
+								</div>
+							</c:if>
+							<c:if test="${myList ne null}">
+								<div>
+									<button id="mylist-button" onclick="insertMyList()" id="insertMyList">마이리스트 취소</button>
+								</div>
+							</c:if>
 						</c:if>
 						<!-- 관광지 파트 -->
 						<div id="location" class="float-end container">

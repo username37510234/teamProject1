@@ -33,6 +33,7 @@ public class FestivalInformationVO {
 	private String originimgurl;
 	private String imgname;
 	private int likecnt;
+	private String mlNum;
 	private String mlDate;
 	private String agelimit;
 	private String bookingplace;

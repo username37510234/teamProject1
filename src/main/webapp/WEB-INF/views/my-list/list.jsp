@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이리스트</title>
+<link rel="stylesheet" href="/resources/css/my-list.css">
 </head>
 <body>
 	<!-- HEADER -->
@@ -13,22 +14,12 @@
 	
 	<!-- MAIN -->
 	<main>
-		<div>
-			<table border="1">
-				<tr>
-					<th><input type="checkbox" name="allCheck" onclick="toggleCheck(this)"></th>
-					<th>추가한 날짜</th>
-					<th>축제 이미지</th>
-	                <th>축제 명</th>
-	                <th>위치</th>
-	                <th>시작일</th>
-	                <th>종료일</th>
-                </tr>
-                <tBody id="tBody"></tBody>
-			</table>
+		<div class="container">
+			<p><button onclick="deleteMyList()">축제 삭제</button></p>
+			<div id="getInfo" class="row mb-2">
+				
+			</div>
 		</div>
-		<br>
-		<p><button onclick="deleteMyList()">축제 삭제</button></p>
 	</main>
 	
 	<!-- FOOTER -->
@@ -56,19 +47,29 @@
 		.then(async function(myLists){
 			console.log(myLists);
 			let html = '';
+			const getInfo = document.querySelector('#getInfo')
 			for(let fesInfo of myLists){
-				html += '<tr>';
-				html += '<td><input type="checkbox" name="mlNums" value="' + fesInfo.mlNum + '"></td>';
-				html += '<td>' + fesInfo.mlDate + '</td>';
-				html += '<td><img src="' + fesInfo.firstimage + '" height=125px></td>';
-				html += '<td><a href="/views/festivalInfo/viewItem?fiNum=' + fesInfo.fiNum + '">' + fesInfo.title + '</a></td>';
-				html += '<td>' + fesInfo.addr1 + '</td>';
-				html += '<td>' + fesInfo.eventstartdate + '</td>';
-				html += '<td>' + fesInfo.eventenddate + '</td>';
-				html += '</tr>';
+				html += '<div class="col-md-6">'
+					  + '	<div id="formMyListCheckBox" class="form-check">\n'
+					  + '		<input id="myListCheckBox" class="form-check-input" type="checkbox" name="mlNums" value="' + fesInfo.mlNum + '">\n'
+					  + '	</div>\n'
+					  + '	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">\n'
+					  + '		<div class="col p-4 d-flex flex-column position-static">\n'
+					  + '			<strong class="d-inline-block mb-2 text-primary">' + "추가한 날짜 : " + fesInfo.mlDate.substr(0, 4) + '년 ' + fesInfo.mlDate.substr(4, 2) + '월 ' + fesInfo.mlDate.substr(6, 2) + '일' + '</strong>\n'
+					  + '			<h3 id="title" class="mb-0">' + fesInfo.title + '</h3>\n'
+					  + '			<div id="date" class="mb-1 text-muted">' + fesInfo.eventstartdate.substr(0, 4) + '년 ' + fesInfo.eventstartdate.substr(4, 2) + '월 ' + fesInfo.eventstartdate.substr(6, 2) + '일' 
+					  + 				" ~ " + fesInfo.eventenddate.substr(0, 4) + '년 ' + fesInfo.eventenddate.substr(4, 2) + '월 ' + fesInfo.eventenddate.substr(6, 2) + '일' + '</div>\n'
+					  + '			<p id="addr" class="card-text mb-auto">' + fesInfo.addr1 + '</p>\n'
+					  + '			<a id="moreInfo" href="/views/festivalInfo/viewItem?fiNum=' + fesInfo.fiNum + '" class="stretched-link">축제 정보 더보기</a>\n'
+					  + '		</div>\n'
+					  + '		<div class="col-auto d-none d-lg-block">\n'
+					  + '			<img class="bd-placeholder-img" width="200" height="250" src="' + fesInfo.firstimage + '" >\n'
+					  + '		</div>\n'
+					  + '	</div>\n'
+					  + '</div>\n'
 			}
-			document.querySelector('#tBody').innerHTML = html;
-		})
+			getInfo.innerHTML += html;
+		});
 	}
 	
 	function deleteMyList(){
