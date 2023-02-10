@@ -31,11 +31,8 @@
                         addLocalOption();
                         loadFestivalList();
                     }
-                    function loadFestivalList() {
-                        fe("/festival-infos" + searchUrl())
-                            .then(jsonData => {
-                                createList(jsonData);
-                            });
+                    async function loadFestivalList() {
+                        createList(await fe("/festival-infos" + searchUrl()));
                     }
                     yesScroll()
                     function disableMonth() {

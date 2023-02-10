@@ -26,7 +26,7 @@
 							<div class="float-start">
 								<div id="readyState" class="text-center"></div>
 								<div id="mainContent" class="container text-center">
-								<h3>축제 상세 정보</h3>
+									<h3>축제 상세 정보</h3>
 									<!-- 축제 정보 파트 -->
 									<table class="table table-hover table-bordered">
 										<tbody id="festivalInfo"></tbody>
@@ -250,111 +250,106 @@
 								getFestivalItem();
 							}
 
-							function getFestivalItem() {
+							async function getFestivalItem() {
 								const ready = document.querySelector('#readyState');
 								ready.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
-								fe("/festival-info/${param.fiNum}")
-									.then(jsonData => {
-										if (jsonData.status === 500) {
-											alert('잘못된 요청입니다.');
-											location.replace("/");
-											return;
-										}
-										let html = '';
-										const fest = jsonData;
-										if (!fest) {
-											ready.insertAdjacentHTML("afterbegin", '<div class="alert alert-danger" role="alert" onclick="location.reload()">페이지를 불러오는 데 실패하였습니다. 접속한 페이지의 주소가 맞다면, <b>새로고침</b> 해주세요.</div>');
-											return;
-										}
-										if (fest.firstimage) {
-											html += '<tr><td colspan=4><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
-										}
-										html += '<tr><td width="200px">축제명</td><td colspan=3>' + fest.title + '</td></tr>';
-										html += '<tr><td>위치</td><td colspan=3>' + fest.addr1;
-										if (fest.addr2) {
-											html += ' ' + fest.addr2;
-										}
-										html += '</td></tr>';
-										html += '<tr><td width=15%>시작일자</td><td width=35%>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td>';
-										html += '<td width=15%>종료일자</td><td>' + fest.eventenddate.substr(0, 4) + '년 ' + fest.eventenddate.substr(4, 2) + '월 ' + fest.eventenddate.substr(6, 2) + '일' + '</td></tr>';
+								const fest = await fe("/festival-info/${param.fiNum}")
+								if (fest.status === 500) {
+									alert('잘못된 요청입니다.');
+									location.replace("/");
+									return;
+								}
+								let html = '';
+								if (!fest) {
+									ready.insertAdjacentHTML("afterbegin", '<div class="alert alert-danger" role="alert" onclick="location.reload()">페이지를 불러오는 데 실패하였습니다. 접속한 페이지의 주소가 맞다면, <b>새로고침</b> 해주세요.</div>');
+									return;
+								}
+								if (fest.firstimage) {
+									html += '<tr><td colspan=4><img src="' + fest.firstimage + '" class="img-fluid"></td></tr>';
+								}
+								html += '<tr><td width="200px">축제명</td><td colspan=3>' + fest.title + '</td></tr>';
+								html += '<tr><td>위치</td><td colspan=3>' + fest.addr1;
+								if (fest.addr2) {
+									html += ' ' + fest.addr2;
+								}
+								html += '</td></tr>';
+								html += '<tr><td width=15%>시작일자</td><td width=35%>' + fest.eventstartdate.substr(0, 4) + '년 ' + fest.eventstartdate.substr(4, 2) + '월 ' + fest.eventstartdate.substr(6, 2) + '일' + '</td>';
+								html += '<td width=15%>종료일자</td><td>' + fest.eventenddate.substr(0, 4) + '년 ' + fest.eventenddate.substr(4, 2) + '월 ' + fest.eventenddate.substr(6, 2) + '일' + '</td></tr>';
 
-										document.querySelector('#festivalInfo').innerHTML = html;
-										document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
-										ready.remove();
-										const readyLoc = document.querySelector('#readyStateLoc');
+								document.querySelector('#festivalInfo').innerHTML = html;
+								document.querySelector('title').insertAdjacentText("beforeend", ' - ' + fest.title);
+								ready.remove();
+								const readyLoc = document.querySelector('#readyStateLoc');
 
-										//상세정보 불러오기
-										readyLoc.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
-										let url = "contentid=" + fest.contentid + "&mapx=" + fest.mapx + "&mapy=" + fest.mapy
-										fe("/festival-details?" + url)
-											.then(detailData => {
-												const deatilFest = detailData.festivalInfo;
-												html = '';
-												if (deatilFest) {
-													if (deatilFest.telname) {
-														html += '<tr><td>전화번호</td><td>' + fest.tel + '</td>';
-														html += '<td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
-													} else {
-														html += '<tr><td>전화번호</td><td colspan=3>' + fest.tel + '</td></tr>';
-													}
-													if (deatilFest.homepage) {
-														html += '<tr><td>홈페이지</td><td colspan=3>' + deatilFest.homepage + '</td></tr>';
-													}
-												}
-												const fesIntro = detailData.festivalIntro;
-												if (fesIntro) {
-													if (fesIntro.agelimit) {
-														html += '<tr><td>연령 제한</td><td>' + fesIntro.agelimit + '</td></tr>';
-													}
-													if (fesIntro.playtime && fesIntro.spendtimefestival) {
-														html += '<tr><td>운영 시간</td><td>' + fesIntro.playtime + '</td>';
-														html += '<td>관람 소요 시간</td><td>' + fesIntro.spendtimefestival + '</td></tr>';
-													} else if (fesIntro.spendtimefestival) {
-														html += '<tr><td>관람 소요 시간</td><td colspan=3>' + fesIntro.spendtimefestival + '</td></tr>';
-													} else if (fesIntro.playtime) {
-														html += '<tr><td>운영 시간</td><td colspan=3>' + fesIntro.playtime + '</td></tr>';
-													}
-													if (fesIntro.usetimefestival) {
-														html += '<tr><td>비용</td><td>' + fesIntro.usetimefestival + '</td></tr>';
-													}
-													if (fesIntro.subevent) {
-														html += '<tr><td>부대 행사</td><td colspan=3>' + fesIntro.subevent + '</td></tr>';
-													}
-													if (fesIntro.bookingplace) {
-														html += '<tr><td>예매처</td><td colspan=3>' + fesIntro.bookingplace + '</td></tr>';
-													}
-												}
-												if (deatilFest && deatilFest.overview) {
-													html += '<tr><td colspan=4>' + deatilFest.overview + '</td></tr>';
-												}
-												document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
-												const fesPictures = detailData.festivalImages;
-												if (fesPictures != null && fesPictures.length !== 0) {
-													let imghtml = '';
-													if (fesPictures.length >= 1) {
-														for (let fesPicture of fesPictures) {
-															imghtml += '<img src="' + fesPicture.originimgurl + '" width="180px" height="180px" title="' + fesPicture.imgname + '" class="img-thumbnail" onclick="openModal(this)">';
-														}
-													}
-													document.querySelector('#thumbImgs').insertAdjacentHTML('beforeend', imghtml);
-												}
-												if (detailData.locationInfo) {
-													html = '<ul class="list-group">';
-													const locations = detailData.locationInfo;
-													for (let location of locations) {
-														html += '<li class="list-group-item"><img src="'
-														html += (location.firstimage2) ? location.firstimage : '/resources/images/noimg.jpg';
-														html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank">' + location.addr1 + '</a></li>';
-													}
-													html += '</ul>';
-												} else {
-													html = '<br><h3>해당하는 관광지를 찾을 수 없습니다.</h3>';
-												}
-												document.querySelector('#location').insertAdjacentHTML('beforeend', html);
-												readyLoc.remove();
-											})
-										makeKakaoMap(fest);
-									});
+								//상세정보 불러오기
+								readyLoc.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+								let url = "contentid=" + fest.contentid + "&mapx=" + fest.mapx + "&mapy=" + fest.mapy
+								const detailData = await fe("/festival-details?" + url)
+								const deatilFest = detailData.festivalInfo;
+								html = '';
+								if (deatilFest) {
+									if (deatilFest.telname) {
+										html += '<tr><td>전화번호</td><td>' + fest.tel + '</td>';
+										html += '<td>받는 이</td><td>' + deatilFest.telname + '</td></tr>';
+									} else {
+										html += '<tr><td>전화번호</td><td colspan=3>' + fest.tel + '</td></tr>';
+									}
+									if (deatilFest.homepage) {
+										html += '<tr><td>홈페이지</td><td colspan=3>' + deatilFest.homepage + '</td></tr>';
+									}
+								}
+								const fesIntro = detailData.festivalIntro;
+								if (fesIntro) {
+									if (fesIntro.agelimit) {
+										html += '<tr><td>연령 제한</td><td>' + fesIntro.agelimit + '</td></tr>';
+									}
+									if (fesIntro.playtime && fesIntro.spendtimefestival) {
+										html += '<tr><td>운영 시간</td><td>' + fesIntro.playtime + '</td>';
+										html += '<td>관람 소요 시간</td><td>' + fesIntro.spendtimefestival + '</td></tr>';
+									} else if (fesIntro.spendtimefestival) {
+										html += '<tr><td>관람 소요 시간</td><td colspan=3>' + fesIntro.spendtimefestival + '</td></tr>';
+									} else if (fesIntro.playtime) {
+										html += '<tr><td>운영 시간</td><td colspan=3>' + fesIntro.playtime + '</td></tr>';
+									}
+									if (fesIntro.usetimefestival) {
+										html += '<tr><td>비용</td><td>' + fesIntro.usetimefestival + '</td></tr>';
+									}
+									if (fesIntro.subevent) {
+										html += '<tr><td>부대 행사</td><td colspan=3>' + fesIntro.subevent + '</td></tr>';
+									}
+									if (fesIntro.bookingplace) {
+										html += '<tr><td>예매처</td><td colspan=3>' + fesIntro.bookingplace + '</td></tr>';
+									}
+								}
+								if (deatilFest && deatilFest.overview) {
+									html += '<tr><td colspan=4>' + deatilFest.overview + '</td></tr>';
+								}
+								document.querySelector('#festivalInfo').insertAdjacentHTML("beforeend", html);
+								const fesPictures = detailData.festivalImages;
+								if (fesPictures != null && fesPictures.length !== 0) {
+									let imghtml = '';
+									if (fesPictures.length >= 1) {
+										for (let fesPicture of fesPictures) {
+											imghtml += '<img src="' + fesPicture.originimgurl + '" width="180px" height="180px" title="' + fesPicture.imgname + '" class="img-thumbnail" onclick="openModal(this)">';
+										}
+									}
+									document.querySelector('#thumbImgs').insertAdjacentHTML('beforeend', imghtml);
+								}
+								if (detailData.locationInfo) {
+									html = '<ul class="list-group">';
+									const locations = detailData.locationInfo;
+									for (let location of locations) {
+										html += '<li class="list-group-item"><img src="'
+										html += (location.firstimage2) ? location.firstimage : '/resources/images/noimg.jpg';
+										html += '" width="100px"><br>' + location.title + '<br><a href="https://map.kakao.com/link/to/' + location.title + ',' + location.mapy + ',' + location.mapx + '" target="_blank">' + location.addr1 + '</a></li>';
+									}
+									html += '</ul>';
+								} else {
+									html = '<br><h3>해당하는 관광지를 찾을 수 없습니다.</h3>';
+								}
+								document.querySelector('#location').insertAdjacentHTML('beforeend', html);
+								readyLoc.remove();
+								makeKakaoMap(fest);
 							}
 							function makeKakaoMap(data) {
 								var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -399,8 +394,8 @@
 								myImg.src = img.src;
 								const getImg = new Image();
 								getImg.src = myImg.src;
-								myImg.style.top = ((window.screen.height-getImg.height)-200)/4+'px';
-								closeBtn.style.top = ((window.outerHeight-getImg.height)-300)/4+'px';
+								myImg.style.top = ((window.screen.height - getImg.height) - 200) / 4 + 'px';
+								closeBtn.style.top = ((window.outerHeight - getImg.height) - 300) / 4 + 'px';
 								myModal.style.display = 'block';
 							}
 							document.querySelector('.close').onclick = function () {

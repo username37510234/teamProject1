@@ -30,11 +30,8 @@
                         addLocalOption();
                         loadFestivalList();
                     }
-                    function loadFestivalList() {
-                        fe("/festival-infos-last" + searchUrl())
-                            .then(jsonData => {
-                                createList(jsonData);
-                            });
+                    async function loadFestivalList() {
+                        createList(await fe("/festival-infos-last" + searchUrl()));
                     }
                     yesScroll()
                 </script>
