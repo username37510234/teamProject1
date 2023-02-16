@@ -318,7 +318,7 @@
 										html += '<tr><td>운영 시간</td><td colspan=3>' + fesIntro.playtime + '</td></tr>';
 									}
 									if (fesIntro.usetimefestival) {
-										html += '<tr><td>비용</td><td>' + fesIntro.usetimefestival + '</td></tr>';
+										html += '<tr><td>비용</td><td colspan=3>' + fesIntro.usetimefestival + '</td></tr>';
 									}
 									if (fesIntro.subevent) {
 										html += '<tr><td>부대 행사</td><td colspan=3>' + fesIntro.subevent + '</td></tr>';
